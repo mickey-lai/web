@@ -258,6 +258,105 @@
         .current-page::after {
             width: 100% !important;
         }
+        /* 組織架構 */
+        .org-tree ul {
+            padding-top: 20px;
+            position: relative;
+            transition: all 0.5s;
+        }
+        
+        .org-tree li {
+            float: left;
+            text-align: center;
+            list-style-type: none;
+            position: relative;
+            padding: 20px 5px 0 5px;
+            transition: all 0.5s;
+        }
+        
+        .org-tree li::before, .org-tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 2px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+        
+        .org-tree li::after {
+            right: auto;
+            left: 50%;
+            border-left: 2px solid #ccc;
+        }
+        
+        .org-tree li:only-child::after, .org-tree li:only-child::before {
+            display: none;
+        }
+        
+        .org-tree li:only-child {
+            padding-top: 0;
+        }
+        
+        .org-tree li:first-child::before, .org-tree li:last-child::after {
+            border: 0 none;
+        }
+        
+        .org-tree li:last-child::before {
+            border-right: 2px solid #ccc;
+            border-radius: 0 5px 0 0;
+        }
+        
+        .org-tree li:first-child::after {
+            border-radius: 5px 0 0 0;
+        }
+        
+        .org-tree ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 2px solid #ccc;
+            width: 0;
+            height: 20px;
+        }
+        
+        .org-tree li div {
+            padding: 10px;
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            display: inline-block;
+            border-radius: 8px;
+            transition: all 0.5s;
+        }
+        
+        .org-tree li div:hover, .org-tree li div:hover+ul li div {
+            background: #f8f9fa;
+            color: #4f46e5;
+            border-color: #4f46e5;
+        }
+        
+        .org-tree li div:hover+ul li::after, .org-tree li div:hover+ul li::before, .org-tree li div:hover+ul::before, .org-tree li div:hover+ul ul::before {
+            border-color: #4f46e5;
+        }
+        
+        @media (max-width: 768px) {
+            .org-tree li {
+                float: none;
+                display: block;
+                padding: 0;
+                margin: 0 0 20px 0;
+            }
+            
+            .org-tree li::before, .org-tree li::after, .org-tree ul::before {
+                display: none;
+            }
+            
+            .org-tree ul {
+                padding-top: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -436,7 +535,7 @@
                             -->
                             <!-- 組織概覽 -->
                             <div id="overview" class="tab-content active">
-                                <!--
+                                
                                 <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
                                     <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                                         <span class="inline-block w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3">
@@ -533,7 +632,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                -->
+                                
                                 <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
                                     <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                                         <span class="inline-block w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3">
