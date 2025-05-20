@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>組織架構 - AWI Network 亞洲無線網路</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .top-header {
+            background-color: #004ea2;
+            height: 40px;
+            line-height: 40px;
+        }
+        
+        .main-header {
+            background-color: white;
+            height: 80px;
+        }
+        
+        .main-nav a {
+            position: relative;
+            transition: all 0.3s;
+            font-size: 16px;
+            padding: 0 15px;
+        }
+        
+        .main-nav a:hover {
+            color: #004ea2;
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -3px;
+            left: 0;
+            background-color: #004ea2;
+            transition: width 0.3s;
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            border-radius: 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .page-banner {
+            background-color: #004ea2;
+            color: white;
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .page-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.2));
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            color: white;
+        }
+        
+        .breadcrumb .separator {
+            margin: 0 10px;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .org-chart {
+            text-align: center;
+        }
+        
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .org-box {
+            padding: 15px;
+            background-color: white;
+            border: 2px solid #004ea2;
+            border-radius: 5px;
+            min-width: 180px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .org-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .org-box::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background-color: #004ea2;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .org-level:last-child .org-box::after {
+            display: none;
+        }
+        
+        .org-children {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .org-children::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 2px;
+            background-color: #004ea2;
+            top: -15px;
+            left: 10%;
+        }
+        
+        .org-child {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        .org-child::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background-color: #004ea2;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .team-card {
+            transition: all 0.3s;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            
+            .mobile-menu-button {
+                display: block;
+            }
+            
+            .org-level {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .org-children {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .org-child {
+                margin: 30px 0 0;
+            }
+            
+            .org-children::before {
+                display: none;
+            }
+            
+            .org-child::before {
+                height: 30px;
+                top: -30px;
+            }
+        }
+        
+        .footer-links a {
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #004ea2;
+            padding-left: 5px;
+        }
+        
+        /* 當前頁面高亮 */
+        .current-page {
+            color: #004ea2 !important;
+        }
+        
+        .current-page::after {
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header text-white">
+        <div class="container px-4 flex justify-between items-center h-full">
+            <div class="text-sm">歡迎來到亞洲無線網路</div>
+            <div class="flex items-center space-x-6">
+                <a href="#" class="text-white hover:text-blue-200 text-sm">
+                    <i class="fas fa-phone mr-1"></i> 02-2345-6789
+                </a>
+                <a href="#" class="text-white hover:text-blue-200 text-sm">
+                    <i class="fas fa-envelope mr-1"></i> info@awinetwork.com
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Header -->
+    <header class="main-header shadow-sm">
+        <div class="container px-4 flex justify-between items-center h-full">
+            <div class="flex items-center">
+                <a href="index.html" class="block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="60" viewBox="0 0 180 60">
+                        <rect width="60" height="40" fill="#004ea2" rx="3" ry="3"/>
+                        <text x="10" y="28" font-family="Arial" font-size="20" font-weight="bold" fill="white">AWI</text>
+                        <text x="70" y="28" font-family="Arial" font-size="18" font-weight="bold" fill="#004ea2">Network</text>
+                        <text x="70" y="45" font-family="Arial" font-size="12" fill="#666">亞洲無線網路</text>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <nav class="main-nav desktop-menu">
+                <ul class="flex space-x-1">
+                    <li class="dropdown">
+                        <a href="#" class="current-page font-medium text-gray-800 hover:text-blue-600 inline-block py-7">關於我們</a>
+                        <div class="dropdown-content mt-0">
+                            <a href="about-company.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">公司簡介</a>
+                            <a href="about-philosophy.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">經營理念</a>
+                            <a href="about-organization.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">組織架構</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="font-medium text-gray-800 hover:text-blue-600 inline-block py-7">產品服務</a>
+                        <div class="dropdown-content mt-0">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">網路解決方案</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">資安服務</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">雲端服務</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="font-medium text-gray-800 hover:text-blue-600 inline-block py-7">最新消息</a>
+                    </li>
+                    <li>
+                        <a href="#" class="font-medium text-gray-800 hover:text-blue-600 inline-block py-7">成功案例</a>
+                    </li>
+                    <li>
+                        <a href="#" class="font-medium text-gray-800 hover:text-blue-600 inline-block py-7">聯絡我們</a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <div class="mobile-menu-button md:hidden">
+                <button id="menu-toggle" class="text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden bg-white border-t">
+            <div class="container px-4 py-2">
+                <a href="#" class="block py-2 text-blue-600">關於我們</a>
+                <a href="about-company.html" class="block py-2 pl-4 text-gray-700 hover:text-blue-600">- 公司簡介</a>
+                <a href="about-philosophy.html" class="block py-2 pl-4 text-gray-700 hover:text-blue-600">- 經營理念</a>
+                <a href="about-organization.html" class="block py-2 pl-4 text-gray-700 hover:text-blue-600">- 組織架構</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">產品服務</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">最新消息</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">成功案例</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">聯絡我們</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <div class="container px-4 relative z-10">
+            <div class="breadcrumb">
+                <a href="index.html">首頁</a>
+                <span class="separator">/</span>
+                <a href="#">關於我們</a>
+                <span class="separator">/</span>
+                <span class="text-white">組織架構</span>
+            </div>
+            <h1 class="text-4xl font-bold">組織架構</h1>
+        </div>
+    </div>
+    
+    <!-- Content Section -->
+    <section class="py-16">
+        <div class="container px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Sidebar -->
+                <div class="md:col-span-1">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-8">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">關於我們</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="about-company.html" class="block py-2 px-4 hover:bg-gray-100 rounded transition duration-300">
+                                    公司簡介
+                                </a>
+                            </li>
+                            <li>
+                                <a href="about-philosophy.html" class="block py-2 px-4 hover:bg-gray-100 rounded transition duration-300">
+                                    經營理念
+                                </a>
+                            </li>
+                            <li>
+                                <a href="about-organization.html" class="block py-2 px-4 bg-blue-600 text-white rounded">
+                                    組織架構
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-600 p-6 rounded-lg shadow-sm text-white">
+                        <h3 class="text-xl font-bold mb-4">需要協助？</h3>
+                        <p class="mb-6">
+                            如果您有任何問題或需要進一步了解我們的服務，請隨時聯繫我們的專業團隊。
+                        </p>
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm opacity-80">聯絡電話</div>
+                                <div class="font-bold">02-2345-6789</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm opacity-80">電子郵件</div>
+                                <div class="font-bold">info@awinetwork.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="md:col-span-2">
+                    <div class="mb-8">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='300' viewBox='0 0 800 300'%3E%3Crect width='800' height='300' fill='%23f0f4f8'/%3E%3Ctext x='400' y='150' font-family='Arial' font-size='24' text-anchor='middle' fill='%23004ea2'%3E組織架構%3C/text%3E%3C/svg%3E" alt="組織架構" class="w-full rounded-lg shadow-sm">
+                    </div>
+
+                    <!-- 主要內容 -->
+                    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                        <!-- 標籤切換 -->
+                        <div class="mb-10">
+                            <!--
+                            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                                <button class="tab-btn active px-6 py-3 rounded-full bg-indigo-100 text-indigo-700 font-medium" data-tab="overview">
+                                    <i class="fas fa-sitemap mr-2"></i>組織概覽
+                                </button>
+                                <button class="tab-btn px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-medium" data-tab="leadership">
+                                    <i class="fas fa-user-tie mr-2"></i>領導團隊
+                                </button>
+                                <button class="tab-btn px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-medium" data-tab="departments">
+                                    <i class="fas fa-building mr-2"></i>部門介紹
+                                </button>
+                            </div>
+                            -->
+                            <!-- 組織概覽 -->
+                            <div id="overview" class="tab-content active">
+                                <!--
+                                <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                        <span class="inline-block w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3">
+                                            <i class="fas fa-sitemap"></i>
+                                        </span>
+                                        組織架構圖
+                                    </h2>
+                                    
+                                    <div class="org-tree overflow-auto">
+                                        <ul>
+                                            <li>
+                                                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 rounded-lg shadow-md w-48">
+                                                    <div class="font-bold text-lg">董事長</div>
+                                                    <div class="text-sm text-indigo-100">張大明</div>
+                                                </div>
+                                                
+                                                <ul>
+                                                    <li>
+                                                        <div class="bg-indigo-500 text-white p-4 rounded-lg shadow-md w-48">
+                                                            <div class="font-bold text-lg">總經理</div>
+                                                            <div class="text-sm text-indigo-100">李志明</div>
+                                                        </div>
+                                                        
+                                                        <ul>
+                                                            <li>
+                                                                <div class="bg-blue-500 text-white p-3 rounded-lg shadow-md w-40">
+                                                                    <div class="font-bold">營運長</div>
+                                                                    <div class="text-xs text-blue-100">王明德</div>
+                                                                </div>
+                                                                
+                                                                <ul>
+                                                                    <li>
+                                                                        <div class="bg-blue-400 text-white p-2 rounded-lg shadow-md w-32">
+                                                                            <div class="font-bold text-sm">銷售部</div>
+                                                                            <div class="text-xs text-blue-100">林經理</div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="bg-blue-400 text-white p-2 rounded-lg shadow-md w-32">
+                                                                            <div class="font-bold text-sm">市場部</div>
+                                                                            <div class="text-xs text-blue-100">陳經理</div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            
+                                                            <li>
+                                                                <div class="bg-purple-500 text-white p-3 rounded-lg shadow-md w-40">
+                                                                    <div class="font-bold">技術長</div>
+                                                                    <div class="text-xs text-purple-100">黃志偉</div>
+                                                                </div>
+                                                                
+                                                                <ul>
+                                                                    <li>
+                                                                        <div class="bg-purple-400 text-white p-2 rounded-lg shadow-md w-32">
+                                                                            <div class="font-bold text-sm">研發部</div>
+                                                                            <div class="text-xs text-purple-100">張經理</div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="bg-purple-400 text-white p-2 rounded-lg shadow-md w-32">
+                                                                            <div class="font-bold text-sm">工程部</div>
+                                                                            <div class="text-xs text-purple-100">李經理</div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            
+                                                            <li>
+                                                                <div class="bg-pink-500 text-white p-3 rounded-lg shadow-md w-40">
+                                                                    <div class="font-bold">財務長</div>
+                                                                    <div class="text-xs text-pink-100">周美玲</div>
+                                                                </div>
+                                                                
+                                                                <ul>
+                                                                    <li>
+                                                                        <div class="bg-pink-400 text-white p-2 rounded-lg shadow-md w-32">
+                                                                            <div class="font-bold text-sm">會計部</div>
+                                                                            <div class="text-xs text-pink-100">吳經理</div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="bg-pink-400 text-white p-2 rounded-lg shadow-md w-32">
+                                                                            <div class="font-bold text-sm">人資部</div>
+                                                                            <div class="text-xs text-pink-100">蔡經理</div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                -->
+                                <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                        <span class="inline-block w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                        組織架構說明
+                                    </h2>
+                                    
+                                    <div class="space-y-4 text-gray-600">
+                                        <p>我們採用矩陣式組織結構，結合了功能型和專案型組織的優點，使公司能夠更靈活地應對市場變化和客戶需求。</p>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                            <div class="bg-gray-50 p-4 rounded-lg">
+                                                <h3 class="font-semibold text-lg text-indigo-700 mb-2">扁平化管理</h3>
+                                                <p>我們實行扁平化管理，減少層級，提高決策效率，讓信息能夠更快速地在組織內流通。</p>
+                                            </div>
+                                            
+                                            <div class="bg-gray-50 p-4 rounded-lg">
+                                                <h3 class="font-semibold text-lg text-indigo-700 mb-2">跨部門協作</h3>
+                                                <p>我們鼓勵跨部門協作，通過專案小組的形式，整合不同部門的專業知識和資源，共同解決問題。</p>
+                                            </div>
+                                            
+                                            <div class="bg-gray-50 p-4 rounded-lg">
+                                                <h3 class="font-semibold text-lg text-indigo-700 mb-2">授權與責任</h3>
+                                                <p>我們強調授權與責任相結合，給予員工足夠的自主權，同時明確責任，促進自主創新。</p>
+                                            </div>
+                                            
+                                            <div class="bg-gray-50 p-4 rounded-lg">
+                                                <h3 class="font-semibold text-lg text-indigo-700 mb-2">持續優化</h3>
+                                                <p>我們的組織架構不是一成不變的，而是會根據業務發展和市場變化進行持續優化和調整。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 領導團隊 -->
+                            <div id="leadership" class="tab-content">
+                                <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                        <span class="inline-block w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3">
+                                            <i class="fas fa-user-tie"></i>
+                                        </span>
+                                        高階管理團隊
+                                    </h2>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        <!-- 董事長 -->
+                                        <div class="org-card shadow-lg">
+                                            <div class="photo bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                                                <i class="fas fa-user-circle text-white text-6xl"></i>
+                                            </div>
+                                            <div class="p-5 bg-white">
+                                                <div class="flex justify-between items-center mb-3">
+                                                    <h3 class="text-xl font-bold text-gray-800">張大明</h3>
+                                                    <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">董事長</span>
+                                                </div>
+                                                <p class="text-gray-600 mb-4">擁有超過30年的產業經驗，曾任多家國際企業高管，於2005年創立本公司。</p>
+                                                <div class="flex items-center text-gray-500 text-sm">
+                                                    <i class="fas fa-graduation-cap mr-1"></i>
+                                                    <span>哈佛大學企業管理碩士</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 總經理 -->
+                                        <div class="org-card shadow-lg">
+                                            <div class="photo bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+                                                <i class="fas fa-user-circle text-white text-6xl"></i>
+                                            </div>
+                                            <div class="p-5 bg-white">
+                                                <div class="flex justify-between items-center mb-3">
+                                                    <h3 class="text-xl font-bold text-gray-800">李志明</h3>
+                                                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">總經理</span>
+                                                </div>
+                                                <p class="text-gray-600 mb-4">擁有豐富的營運管理經驗，專長於企業轉型與策略規劃，2010年加入本公司。</p>
+                                                <div class="flex items-center text-gray-500 text-sm">
+                                                    <i class="fas fa-graduation-cap mr-1"></i>
+                                                    <span>史丹福大學商學院MBA</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 營運長 -->
+                                        <div class="org-card shadow-lg">
+                                            <div class="photo bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+                                                <i class="fas fa-user-circle text-white text-6xl"></i>
+                                            </div>
+                                            <div class="p-5 bg-white">
+                                                <div class="flex justify-between items-center mb-3">
+                                                    <h3 class="text-xl font-bold text-gray-800">王明德</h3>
+                                                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">營運長</span>
+                                                </div>
+                                                <p class="text-gray-600 mb-4">專注於業務拓展與客戶關係管理，帶領銷售團隊屢創佳績，2012年加入本公司。</p>
+                                                <div class="flex items-center text-gray-500 text-sm">
+                                                    <i class="fas fa-graduation-cap mr-1"></i>
+                                                    <span>台灣大學國際企業管理碩士</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 技術長 -->
+                                        <div class="org-card shadow-lg">
+                                            <div class="photo bg-gradient-to-r from-purple-400 to-purple-600 flex items-center justify-center">
+                                                <i class="fas fa-user-circle text-white text-6xl"></i>
+                                            </div>
+                                            <div class="p-5 bg-white">
+                                                <div class="flex justify-between items-center mb-3">
+                                                    <h3 class="text-xl font-bold text-gray-800">黃志偉</h3>
+                                                    <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">技術長</span>
+                                                </div>
+                                                <p class="text-gray-600 mb-4">擁有深厚的技術背景和創新思維，領導研發團隊開發多項專利技術，2008年加入本公司。</p>
+                                                <div class="flex items-center text-gray-500 text-sm">
+                                                    <i class="fas fa-graduation-cap mr-1"></i>
+                                                    <span>麻省理工學院電腦科學博士</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 財務長 -->
+                                        <div class="org-card shadow-lg">
+                                            <div class="photo bg-gradient-to-r from-pink-400 to-pink-600 flex items-center justify-center">
+                                                <i class="fas fa-user-circle text-white text-6xl"></i>
+                                            </div>
+                                            <div class="p-5 bg-white">
+                                                <div class="flex justify-between items-center mb-3">
+                                                    <h3 class="text-xl font-bold text-gray-800">周美玲</h3>
+                                                    <span class="bg-pink-100 text-pink-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">財務長</span>
+                                                </div>
+                                                <p class="text-gray-600 mb-4">資深財務專家，擅長財務規劃與風險管理，確保公司穩健成長，2011年加入本公司。</p>
+                                                <div class="flex items-center text-gray-500 text-sm">
+                                                    <i class="fas fa-graduation-cap mr-1"></i>
+                                                    <span>賓夕法尼亞大學財務金融碩士</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 部門介紹 -->
+                            <div id="departments" class="tab-content">
+                                <div class="bg-white rounded-xl shadow-lg p-6">
+                                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                        <span class="inline-block w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3">
+                                            <i class="fas fa-building"></i>
+                                        </span>
+                                        部門介紹
+                                    </h2>
+                                    
+                                    <div class="space-y-8">
+                                        <!-- 營運部門 -->
+                                        <div class="border-l-4 border-blue-500 pl-4">
+                                            <h3 class="text-xl font-bold text-blue-700 mb-3">營運部門</h3>
+                                            <p class="text-gray-600 mb-4">負責公司日常業務運作，包括銷售、市場推廣、客戶服務等，是公司業績增長的核心驅動力。</p>
+                                            
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                                <div class="bg-blue-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-blue-700 mb-2">
+                                                        <i class="fas fa-chart-line mr-2"></i>銷售團隊
+                                                    </h4>
+                                                    <p class="text-gray-600">負責產品銷售、客戶開發與維護，制定銷售策略，達成業績目標。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：25人</div>
+                                                </div>
+                                                
+                                                <div class="bg-blue-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-blue-700 mb-2">
+                                                        <i class="fas fa-bullhorn mr-2"></i>市場團隊
+                                                    </h4>
+                                                    <p class="text-gray-600">負責品牌推廣、市場分析、行銷活動策劃與執行，提升品牌知名度。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：15人</div>
+                                                </div>
+                                                
+                                                <div class="bg-blue-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-blue-700 mb-2">
+                                                        <i class="fas fa-headset mr-2"></i>客服團隊
+                                                    </h4>
+                                                    <p class="text-gray-600">負責客戶服務、問題解決、客戶反饋收集與分析，提升客戶滿意度。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：20人</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 技術部門 -->
+                                        <div class="border-l-4 border-purple-500 pl-4">
+                                            <h3 class="text-xl font-bold text-purple-700 mb-3">技術部門</h3>
+                                            <p class="text-gray-600 mb-4">負責產品研發、技術創新、品質控制等，是公司核心競爭力的重要來源。</p>
+                                            
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                                <div class="bg-purple-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-purple-700 mb-2">
+                                                        <i class="fas fa-flask mr-2"></i>研發團隊
+                                                    </h4>
+                                                    <p class="text-gray-600">負責新產品研發、技術創新、專利申請，推動公司技術進步。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：30人</div>
+                                                </div>
+                                                
+                                                <div class="bg-purple-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-purple-700 mb-2">
+                                                        <i class="fas fa-cogs mr-2"></i>工程團隊
+                                                    </h4>
+                                                    <p class="text-gray-600">負責產品實現、技術支援、系統維護，確保產品穩定運行。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：35人</div>
+                                                </div>
+                                                
+                                                <div class="bg-purple-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-purple-700 mb-2">
+                                                        <i class="fas fa-check-circle mr-2"></i>品質團隊
+                                                    </h4>
+                                                    <p class="text-gray-600">負責產品測試、品質控制、標準制定，確保產品品質符合標準。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：15人</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 行政部門 -->
+                                        <div class="border-l-4 border-pink-500 pl-4">
+                                            <h3 class="text-xl font-bold text-pink-700 mb-3">行政部門</h3>
+                                            <p class="text-gray-600 mb-4">負責公司內部管理、人力資源、財務會計等，為公司運營提供堅實的後勤保障。</p>
+                                            
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                                <div class="bg-pink-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-pink-700 mb-2">
+                                                        <i class="fas fa-users mr-2"></i>人力資源
+                                                    </h4>
+                                                    <p class="text-gray-600">負責招聘、培訓、績效管理、員工關係，打造優秀的人才隊伍。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：10人</div>
+                                                </div>
+                                                
+                                                <div class="bg-pink-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-pink-700 mb-2">
+                                                        <i class="fas fa-calculator mr-2"></i>財務會計
+                                                    </h4>
+                                                    <p class="text-gray-600">負責財務規劃、會計核算、成本控制、風險管理，確保公司財務健康。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：12人</div>
+                                                </div>
+                                                
+                                                <div class="bg-pink-50 p-4 rounded-lg">
+                                                    <h4 class="font-semibold text-pink-700 mb-2">
+                                                        <i class="fas fa-briefcase mr-2"></i>行政管理
+                                                    </h4>
+                                                    <p class="text-gray-600">負責日常行政事務、辦公環境維護、企業文化建設，提升工作效率。</p>
+                                                    <div class="mt-2 text-sm text-gray-500">團隊人數：8人</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 統計數據 -->
+                        <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl shadow-lg p-6 text-white mb-10">
+                            <h2 class="text-2xl font-bold mb-6">公司概況</h2>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold mb-2">200+</div>
+                                    <div class="text-indigo-100">員工人數</div>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold mb-2">8</div>
+                                    <div class="text-indigo-100">部門數量</div>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold mb-2">3</div>
+                                    <div class="text-indigo-100">辦公地點</div>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold mb-2">18</div>
+                                    <div class="text-indigo-100">成立年數</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 常見問題 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                <span class="inline-block w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3">
+                                    <i class="fas fa-question-circle"></i>
+                                </span>
+                                常見問題
+                            </h2>
+                            
+                            <div class="space-y-4">
+                                <div class="border border-gray-200 rounded-lg">
+                                    <button class="faq-btn w-full flex justify-between items-center p-4 focus:outline-none">
+                                        <span class="font-medium text-gray-800">公司的組織架構如何促進創新？</span>
+                                        <i class="fas fa-chevron-down text-gray-500"></i>
+                                    </button>
+                                    <div class="faq-answer hidden p-4 pt-0 text-gray-600 border-t border-gray-200">
+                                        我們的扁平化組織結構減少了層級，使創新想法能夠更快地被聽到和實施。同時，我們鼓勵跨部門協作，通過不同專業背景的人才碰撞，產生更多創新的火花。此外，我們還設立了創新實驗室，為員工提供自由探索和嘗試新想法的空間。
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg">
+                                    <button class="faq-btn w-full flex justify-between items-center p-4 focus:outline-none">
+                                        <span class="font-medium text-gray-800">公司如何培養和發展人才？</span>
+                                        <i class="fas fa-chevron-down text-gray-500"></i>
+                                    </button>
+                                    <div class="faq-answer hidden p-4 pt-0 text-gray-600 border-t border-gray-200">
+                                        我們非常重視人才培養和發展。公司設有完善的培訓體系，包括新員工培訓、專業技能培訓、管理能力培訓等。我們還實施導師制，由資深員工指導新員工，促進知識傳承。此外，我們鼓勵員工輪崗，拓展其技能和視野，為其職業發展提供更多可能性。
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg">
+                                    <button class="faq-btn w-full flex justify-between items-center p-4 focus:outline-none">
+                                        <span class="font-medium text-gray-800">公司的決策機制是怎樣的？</span>
+                                        <i class="fas fa-chevron-down text-gray-500"></i>
+                                    </button>
+                                    <div class="faq-answer hidden p-4 pt-0 text-gray-600 border-t border-gray-200">
+                                        我們的決策機制結合了集中決策和分散決策的優點。重大戰略決策由高層管理團隊集體討論決定，而日常運營決策則下放給各部門，賦予其足夠的自主權。我們還建立了暢通的溝通渠道，確保決策過程中能夠聽取不同層級員工的意見和建議，使決策更加科學合理。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 pt-12 pb-6">
+        <div class="container px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="50" viewBox="0 0 150 50">
+                            <rect width="50" height="40" fill="#ffffff" rx="3" ry="3"/>
+                            <text x="10" y="28" font-family="Arial" font-size="20" font-weight="bold" fill="#004ea2">AWI</text>
+                            <text x="60" y="28" font-family="Arial" font-size="18" fill="#ffffff">Network</text>
+                        </svg>
+                    </div>
+                    <p class="mb-4">
+                        亞洲無線網路股份有限公司<br>
+                        提供專業的網路與資安解決方案
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="text-lg font-bold mb-4 text-white">服務項目</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">網路基礎建設</a></li>
+                        <li><a href="#" class="hover:text-white">資訊安全</a></li>
+                        <li><a href="#" class="hover:text-white">雲端服務</a></li>
+                        <li><a href="#" class="hover:text-white">顧問諮詢</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="text-lg font-bold mb-4 text-white">關於我們</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about-company.html" class="hover:text-white">公司簡介</a></li>
+                        <li><a href="about-philosophy.html" class="hover:text-white">經營理念</a></li>
+                        <li><a href="about-organization.html" class="hover:text-white">組織架構</a></li>
+                        <li><a href="#" class="hover:text-white">徵才資訊</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="text-lg font-bold mb-4 text-white">聯絡資訊</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>台北市信義區信義路五段100號</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-2"></i>
+                            <span>02-2345-6789</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-2"></i>
+                            <span>info@awinetwork.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 text-center text-sm">
+                <p>&copy; 2023 AWI Network 亞洲無線網路股份有限公司. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 標籤切換功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // 移除所有按鈕的活動狀態
+                    tabBtns.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.classList.add('bg-gray-100');
+                        btn.classList.remove('bg-indigo-100');
+                        btn.classList.add('text-gray-700');
+                        btn.classList.remove('text-indigo-700');
+                    });
+                    
+                    // 添加當前按鈕的活動狀態
+                    this.classList.add('active');
+                    this.classList.remove('bg-gray-100');
+                    this.classList.add('bg-indigo-100');
+                    this.classList.remove('text-gray-700');
+                    this.classList.add('text-indigo-700');
+                    
+                    // 隱藏所有內容
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // 顯示當前內容
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // FAQ 折疊功能
+            const faqBtns = document.querySelectorAll('.faq-btn');
+            
+            faqBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    if (answer.classList.contains('hidden')) {
+                        answer.classList.remove('hidden');
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        answer.classList.add('hidden');
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
