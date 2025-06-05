@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - InvestFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-item.active a {
+            color: #ffc107;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 100px 0 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffc107;
+        }
+
+        .hero-stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Why Work Here Section */
+        .why-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+            border-color: #4a6cf7;
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            margin: 0 auto 24px;
+        }
+
+        .benefit-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Open Positions Section */
+        .positions-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .positions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .positions-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .position-filters {
+            display: flex;
+            gap: 16px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #4a6cf7;
+            color: white;
+            border-color: #4a6cf7;
+        }
+
+        .positions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .position-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .position-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-left-color: #4a6cf7;
+        }
+
+        .position-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .position-info {
+            flex: 1;
+        }
+
+        .position-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .position-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .position-meta span {
+            color: #666;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .position-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .position-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .skill-tag {
+            background: #e7f3ff;
+            color: #4a6cf7;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .position-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-apply {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.4);
+        }
+
+        .btn-learn-more {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 12px 0;
+        }
+
+        .btn-learn-more:hover {
+            text-decoration: underline;
+        }
+
+        .position-salary {
+            background: #f0f8ff;
+            color: #4a6cf7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Culture Section */
+        .culture-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .culture-content h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 24px;
+        }
+
+        .culture-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .culture-features {
+            list-style: none;
+        }
+
+        .culture-features li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .culture-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .culture-image {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 16px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: #4a6cf7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .culture-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid #4a6cf7;
+            border-radius: 12px;
+            opacity: 0.3;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .positions-header {
+                flex-direction: column;
+                gap: 30px;
+                align-items: flex-start;
+            }
+
+            .position-filters {
+                flex-wrap: wrap;
+            }
+
+            .position-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .position-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            .culture-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .culture-image {
+                height: 300px;
+                order: -1;
+            }
+
+            .section-header h2,
+            .culture-content h2,
+            .positions-title {
+                font-size: 32px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .benefit-card,
+        .position-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .benefit-card:nth-child(2) { animation-delay: 0.1s; }
+        .benefit-card:nth-child(3) { animation-delay: 0.2s; }
+        .benefit-card:nth-child(4) { animation-delay: 0.3s; }
+        .benefit-card:nth-child(5) { animation-delay: 0.4s; }
+        .benefit-card:nth-child(6) { animation-delay: 0.5s; }
+
+        .position-card:nth-child(1) { animation-delay: 0.1s; }
+        .position-card:nth-child(2) { animation-delay: 0.2s; }
+        .position-card:nth-child(3) { animation-delay: 0.3s; }
+        .position-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <div class="promo-banner">
+        🎉 Join Our Growing Team - We're Hiring Amazing Talent!
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">InvestFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item active"><a href="#">Careers</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Build The Future of Finance</h1>
+                <p>Join our passionate team of innovators, engineers, and financial experts as we revolutionize how investors discover opportunities and make data-driven decisions.</p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">50+</div>
+                        <div class="hero-stat-label">Team Members</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">15</div>
+                        <div class="hero-stat-label">Open Positions</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">20+</div>
+                        <div class="hero-stat-label">Countries</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">95%</div>
+                        <div class="hero-stat-label">Employee Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Work Here Section -->
+    <section class="why-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Why Choose InvestFocus?</h2>
+                <p>We're building the most comprehensive investment platform in the world, and we need exceptional people to make that vision a reality.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>High-Impact Work</h3>
+                    <p>Your code and ideas directly impact millions of investment decisions. Build features that matter to real people managing real money.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌍</div>
+                    <h3>Remote-First Culture</h3>
+                    <p>Work from anywhere in the world. We believe great talent isn't limited by geography, and we've built our systems to support distributed teams.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Competitive Compensation</h3>
+                    <p>Top-tier salaries, equity packages, and comprehensive benefits. We reward exceptional performance and value long-term commitment.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📚</div>
+                    <h3>Learning & Growth</h3>
+                    <p>$5,000 annual learning budget, conference attendance, mentorship programs, and career development paths for every role.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚖️</div>
+                    <h3>Work-Life Balance</h3>
+                    <p>Flexible hours, unlimited PTO policy, mental health support, and a culture that respects your time outside of work.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏥</div>
+                    <h3>Complete Benefits</h3>
+                    <p>Premium health insurance, dental & vision coverage, 401(k) matching, life insurance, and wellness programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Positions Section -->
+    <section class="positions-section">
+        <div class="section-container">
+            <div class="positions-header">
+                <h2 class="positions-title">Open Positions</h2>
+                <div class="position-filters">
+                    <a href="#" class="filter-btn active">All</a>
+                    <a href="#" class="filter-btn">Engineering</a>
+                    <a href="#" class="filter-btn">Product</a>
+                    <a href="#" class="filter-btn">Design</a>
+                    <a href="#" class="filter-btn">Data</a>
+                    <a href="#" class="filter-btn">Marketing</a>
+                </div>
+            </div>
+            
+            <div class="positions-list">
+                <!-- Senior Full Stack Engineer -->
+                <div class="position-card" data-category="engineering">
+                    <div class="position-header">
+                        <div class="position-info">
+                            <h3 class="position-title">Senior Full Stack Engineer</h3>
+                            <div class="position-meta">
+                                <span>📍 Remote</span>
+                                <span>⏰ Full-time</span>
+                                <span>💼 Senior Level</span>
+                            </div>
+                        </div>
+                        <div class="position-salary">$140k - $180k</div>
+                    </div>
+                    <p class="position-description">
+                        Join our core engineering team to build scalable web applications that serve millions of users. You'll work on our React frontend, Node.js backend, and help architect new features for our investment platform.
+                    </p>
+                    <div class="position-skills">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                    <div class="position-actions">
+                        <a href="#" class="btn-apply">Apply Now</a>
+                        <a href="#" class="btn-learn-more">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Data Scientist -->
+                <div class="position-card" data-category="data">
+                    <div class="position-header">
+                        <div class="position-info">
+                            <h3 class="position-title">Senior Data Scientist</h3>
+                            <div class="position-meta">
+                                <span>📍 Remote/NYC</span>
+                                <span>⏰ Full-time</span>
+                                <span>💼 Senior Level</span>
+                            </div>
+                        </div>
+                        <div class="position-salary">$150k - $200k</div>
+                    </div>
+                    <p class="position-description">
+                        Build machine learning models to analyze financial data, predict market trends, and enhance our investment screening algorithms. Work with terabytes of financial data to uncover actionable insights.
+                    </p>
+                    <div class="position-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Statistics</span>
+                        <span class="skill-tag">Finance</span>
+                    </div>
+                    <div class="position-actions">
+                        <a href="#" class="btn-apply">Apply Now</a>
+                        <a href="#" class="btn-learn-more">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Product Manager -->
+                <div class="position-card" data-category="product">
+                    <div class="position-header">
+                        <div class="position-info">
+                            <h3 class="position-title">Senior Product Manager</h3>
+                            <div class="position-meta">
+                                <span>📍 Remote</span>
+                                <span>⏰ Full-time</span>
+                                <span>💼 Senior Level</span>
+                            </div>
+                        </div>
+                        <div class="position-salary">$130k - $170k</div>
+                    </div>
+                    <p class="position-description">
+                        Own the product roadmap for our core investment tools. Work closely with engineering and design to ship features that delight users and drive business growth. Experience with fintech products preferred.
+                    </p>
+                    <div class="position-skills">
+                        <span class="skill-tag">Product Strategy</span>
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">Analytics</span>
+                        <span class="skill-tag">Fintech</span>
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Agile</span>
+                    </div>
+                    <div class="position-actions">
+                        <a href="#" class="btn-apply">Apply Now</a>
+                        <a href="#" class="btn-learn-more">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- UX Designer -->
+                <div class="position-card" data-category="design">
+                    <div class="position-header">
+                        <div class="position-info">
+                            <h3 class="position-title">Senior UX Designer</h3>
+                            <div class="position-meta">
+                                <span>📍 Remote</span>
+                                <span>⏰ Full-time</span>
+                                <span>💼 Senior Level</span>
+                            </div>
+                        </div>
+                        <div class="position-salary">$110k - $150k</div>
+                    </div>
+                    <p class="position-description">
+                        Design intuitive experiences for complex financial data. Create user flows, wireframes, and prototypes that make investing accessible to everyone from beginners to professional traders.
+                    </p>
+                    <div class="position-skills">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">Prot</span>
+                    </div>
+                    <div class="position-actions">
+                        <a href="#" class="btn-apply">Apply Now</a>
+                        <a href="#" class="btn-learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">InvestFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Stock Screener</a></li>
+                        <li><a href="#">Portfolio Analyzer</a></li>
+                        <li><a href="#">Backtesting</a></li>
+                        <li><a href="#">DCF Calculator</a></li>
+                        <li><a href="#">Options Tools</a></li>
+                        <li><a href="#">Market Data</a></li>
+                        <li><a href="#">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Guru Tracking</a></li>
+                        <li><a href="#">Analyst Ratings</a></li>
+                        <li><a href="#">Market News</a></li>
+                        <li><a href="#">Economic Calendar</a></li>
+                        <li><a href="#">Earnings Reports</a></li>
+                        <li><a href="#">Research Reports</a></li>
+                        <li><a href="#">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Investment Guide</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="aboutUs.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="enterprise.html">Enterprise</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                        <li><a href="pressKit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 InvestFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add some interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate numbers on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.classList.contains('stat-number')) {
+                            animateNumber(element);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.stat-number').forEach(el => {
+                observer.observe(el);
+            });
+
+            function animateNumber(element) {
+                const text = element.textContent;
+                const number = parseFloat(text.replace(/[^0-9.]/g, ''));
+                const suffix = text.replace(/[0-9.,]/g, '');
+                
+                if (!isNaN(number)) {
+                    let current = 0;
+                    const increment = number / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= number) {
+                            element.textContent = text;
+                            clearInterval(timer);
+                        } else {
+                            element.textContent = Math.floor(current).toLocaleString() + suffix;
+                        }
+                    }, 30);
+                }
+            }
+
+            // Add hover effects to table rows
+            document.querySelectorAll('.stock-table tr').forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.01)';
+                    this.style.transition = 'transform 0.2s ease';
+                });
+
+                row.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Simulate real-time price updates
+            setInterval(() => {
+                document.querySelectorAll('.stock-change-positive, .stock-change-negative').forEach(el => {
+                    const isPositive = Math.random() > 0.5;
+                    const change = (Math.random() * 5).toFixed(2);
+                    el.textContent = (isPositive ? '+' : '-') + change + '%';
+                    el.className = isPositive ? 'stock-change-positive' : 'stock-change-negative';
+                });
+            }, 5000);
+
+            // Tool card hover effects
+            document.querySelectorAll('.tool-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
