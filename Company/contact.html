@@ -722,6 +722,33 @@
         .contact-method:nth-child(2) { animation-delay: 0.1s; }
         .contact-method:nth-child(3) { animation-delay: 0.2s; }
         .contact-method:nth-child(4) { animation-delay: 0.3s; }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #4a6cf7; /* 現代瀏覽器中的自定義顏色 */
+        }
+
+        .checkbox-group label {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .checkbox-group label:hover {
+            color: #333;
+        }
     </style>
 </head>
 <body>
