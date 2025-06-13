@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base - GuruFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb-container a {
+            color: #4a6cf7;
+            text-decoration: none;
+        }
+
+        .breadcrumb-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background: white;
+            padding: 40px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 18px;
+        }
+
+        .popular-searches {
+            text-align: center;
+        }
+
+        .popular-searches span {
+            color: #666;
+            margin-right: 15px;
+        }
+
+        .search-tag {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #4a6cf7;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 5px;
+            transition: background 0.3s;
+        }
+
+        .search-tag:hover {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            margin-bottom: 12px;
+        }
+
+        .category-item a {
+            color: #666;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .category-item a:hover,
+        .category-item a.active {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        .category-count {
+            float: right;
+            background: #e9ecef;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .category-item a:hover .category-count,
+        .category-item a.active .category-count {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        /* Content Area */
+        .content-area {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .content-header {
+            padding: 30px 30px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .content-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .content-subtitle {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .content-tabs {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 0;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            color: #4a6cf7;
+            border-bottom-color: #4a6cf7;
+        }
+
+        .content-body {
+            padding: 30px;
+        }
+
+        /* Article Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .article-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+            border-left: 4px solid #4a6cf7;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .article-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .article-title a:hover {
+            color: #4a6cf7;
+        }
+
+        .article-excerpt {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .article-category {
+            background: #4a6cf7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 20px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            color: #4a6cf7;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 0 20px 0;
+            color: #666;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .quick-actions-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .quick-actions h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .quick-actions p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: white;
+            color: #4a6cf7;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid #4a6cf7;
+        }
+
+        .action-btn:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.primary {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        .action-btn.primary:hover {
+            background: #3b5998;
+            border-color: #3b5998;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .article-card:nth-child(2) { animation-delay: 0.1s; }
+        .article-card:nth-child(3) { animation-delay: 0.2s; }
+        .article-card:nth-child(4) { animation-delay: 0.3s; }
+        .article-card:nth-child(5) { animation-delay: 0.4s; }
+        .article-card:nth-child(6) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="breadcrumb-container">
+            <a href="index.html">Home</a> > <a href="#">Resources</a> > <span>Knowledge Base</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Knowledge Base</h1>
+            <p>Everything you need to know about investment research, our platform features, and advanced trading strategies. Learn from experts and master your investment journey.</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search articles, guides, and tutorials...">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="popular-searches">
+                <span>Popular:</span>
+                <a href="#" class="search-tag">Stock Screening</a>
+                <a href="#" class="search-tag">DCF Analysis</a>
+                <a href="#" class="search-tag">Portfolio Management</a>
+                <a href="#" class="search-tag">Options Trading</a>
+                <a href="#" class="search-tag">Backtesting</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Categories</h3>
+            <ul class="category-list">
+                <li class="category-item">
+                    <a href="#" class="active">
+                        Getting Started
+                        <span class="category-count">12</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#">
+                        Stock Screening
+                        <span class="category-count">18</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#">
+                        Portfolio Analysis
+                        <span class="category-count">15</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#">
+                        Valuation Models
+                        <span class="category-count">22</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#">
+                        Backtesting
+                        <span class="category-count">14</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#">
+                        Options Trading
+                        <span class="category-count">16</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#">
+                        Market Analysis
+                        <span class="category-count">20</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#">
+                        API & Integrations
+                        <span class="category-count">8</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#">
+                        Troubleshooting
+                        <span class="category-count">11</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content-area">
+            <div class="content-header">
+                <h2 class="content-title">Getting Started</h2>
+                <p class="content-subtitle">Learn the basics of GuruFocus and start your investment research journey</p>
+                <div class="content-tabs">
+                    <button class="tab-button active">All Articles</button>
+                    <button class="tab-button">Beginner</button>
+                    <button class="tab-button">Advanced</button>
+                    <button class="tab-button">Video Tutorials</button>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <!-- Articles Grid -->
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <div class="article-icon">🚀</div>
+                        <h3 class="article-title">
+                            <a href="#">Getting Started with GuruFocus Platform</a>
+                        </h3>
+                        <p class="article-excerpt">
+                            A comprehensive guide to help you navigate the GuruFocus platform, set up your account, and understand the main features available to you.
+                        </p>
+                        <div class="article-meta">
+                            <span>5 min read</span>
+                            <a href="#" class="article-category">Beginner</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-icon">🔍</div>
+                        <h3 class="article-title">
+                            <a href="#">Your First Stock Screen: Step-by-Step Guide</a>
+                        </h3>
+                        <p class="article-excerpt">
+                            Learn how to create your first stock screen using our 500+ filters. This tutorial covers basic screening criteria and how to interpret results.
+                        </p>
+                        <div class="article-meta">
+                            <span>8 min read</span>
+                            <a href="#" class="article-category">Beginner</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-icon">📊</div>
+                        <h3 class="article-title">
+                            <a href="#">Understanding Portfolio Metrics and Analysis</a>
+                        </h3>
+                        <p class="article-excerpt">
+                            Deep dive into portfolio analysis features including risk metrics, diversification analysis, and performance attribution calculations.
+                        </p>
+                        <div class="article-meta">
+                            <span>12 min read</span>
+                            <a href="#" class="article-category">Intermediate</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-icon">💰</div>
+                        <h3 class="article-title">
+                            <a href="#">DCF Valuation Model: Complete Tutorial</a>
+                        </h3>
+                        <p class="article-excerpt">
+                            Master discounted cash flow analysis with our built-in DCF calculator. Learn about terminal value, WACC calculations, and sensitivity analysis.
+                        </p>
+                        <div class="article-meta">
+                            <span>15 min read</span>
+                            <a href="#" class="article-category">Advanced</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-icon">⚡</div>
+                        <h3 class="article-title">
+                            <a href="#">Backtesting Strategies: Best Practices</a>
+                        </h3>
+                        <p class="article-excerpt">
+                            Learn how to properly backtest your investment strategies, avoid common pitfalls, and interpret historical performance data accurately.
+                        </p>
+                        <div class="article-meta">
+                            <span>10 min read</span>
+                            <a href="#" class="article-category">Intermediate</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-icon">📈</div>
+                        <h3 class="article-title">
+                            <a href="#">Options Strategy Builder Tutorial</a>
+                        </h3>
+                        <p class="article-excerpt">
+                            Complete guide to using our options strategy builder, including profit/loss diagrams, Greeks analysis, and risk management features.
+                        </p>
+                        <div class="article-meta">
+                            <span>18 min read</span>
+                            <a href="#" class="article-category">Advanced</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <h3 style="margin-bottom: 30px; font-size: 24px; color: #333;">Frequently Asked Questions</h3>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How do I create my first stock screen?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            To create your first stock screen, navigate to the Screeners section and click "New Screen". You can then select from our 500+ filters covering fundamentals, technicals, valuation metrics, and more. Start with basic criteria like market cap, P/E ratio, and revenue growth, then refine your screen based on your investment strategy.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What's included in the portfolio analysis tool?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Our portfolio analysis tool includes comprehensive risk metrics (Sharpe ratio, beta, volatility), diversification analysis across sectors and geographies, performance attribution, correlation analysis, and asset allocation breakdowns. You can also compare your portfolio against various benchmarks and indices.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How accurate is the DCF valuation model?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Our DCF model uses the latest financial data and allows for customizable assumptions. While no valuation model is perfect, our DCF calculator includes sensitivity analysis and scenario planning to help you understand the range of possible outcomes. The accuracy depends on the quality of your assumptions about growth rates, margins, and terminal value.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Can I export my screening results and analysis?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes, you can export screening results, portfolio analysis, and backtesting reports in multiple formats including CSV, Excel, and PDF. Premium users also have access to API endpoints for automated data retrieval and integration with other tools.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How often is the market data updated?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Our market data is updated in real-time during market hours for price data, and fundamentals are updated within 24 hours of company filings. We source data from multiple providers to ensure accuracy and completeness across global markets.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+        <div class="quick-actions-container">
+            <h2>Need More Help?</h2>
+            <p>Can't find what you're looking for? Our support team is here to help you succeed.</p>
+            <div class="action-buttons">
+                <a href="#" class="action-btn primary">Contact Support</a>
+                <a href="#" class="action-btn">Schedule Demo</a>
+                <a href="#" class="action-btn">Join Community</a>
+                <a href="#" class="action-btn">Video Tutorials</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Stock Screener</a></li>
+                        <li><a href="#">Portfolio Analyzer</a></li>
+                        <li><a href="#">Backtesting</a></li>
+                        <li><a href="#">DCF Calculator</a></li>
+                        <li><a href="#">Options Tools</a></li>
+                        <li><a href="#">Market Data</a></li>
+                        <li><a href="#">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml" style="color: #4a6cf7;">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>

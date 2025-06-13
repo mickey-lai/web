@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market News - GuruFocus Investment Research Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-item.active a {
+            color: #ffc107;
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .page-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .breadcrumb {
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        /* News Content */
+        .news-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .news-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .news-filters {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: #4a6cf7;
+            background: #4a6cf7;
+            color: white;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .main-news {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .featured-article {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .featured-article:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .article-image {
+            height: 300px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="20" height="20" x="10" y="10" fill="white" opacity="0.1"/><rect width="20" height="20" x="70" y="70" fill="white" opacity="0.1"/><rect width="15" height="15" x="50" y="30" fill="white" opacity="0.05"/></svg>');
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .article-category {
+            background: #4a6cf7;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .article-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        /* News List */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .news-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .news-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .news-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .news-item-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .news-item-time {
+            font-size: 12px;
+            color: #999;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+
+        .news-item-excerpt {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .news-item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .news-item-source {
+            color: #4a6cf7;
+            font-weight: 600;
+        }
+
+        .news-item-tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .news-tag {
+            background: #f8f9fa;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Market Summary */
+        .market-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .market-item:last-child {
+            border-bottom: none;
+        }
+
+        .market-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .market-price {
+            text-align: right;
+        }
+
+        .market-value {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .market-change {
+            font-size: 12px;
+        }
+
+        .positive { color: #4CAF50; }
+        .negative { color: #f44336; }
+
+        /* Trending Topics */
+        .trending-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+
+        .trending-topic {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .trending-count {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Newsletter Signup */
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .newsletter-input {
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.4);
+        }
+
+        /* Load More */
+        .load-more {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .load-more-btn {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .load-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                grid-row: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .news-title {
+                font-size: 24px;
+            }
+
+            .news-filters {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .news-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .news-item,
+        .featured-article,
+        .sidebar-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .news-item:nth-child(2) { animation-delay: 0.1s; }
+        .news-item:nth-child(3) { animation-delay: 0.2s; }
+        .news-item:nth-child(4) { animation-delay: 0.3s; }
+        .news-item:nth-child(5) { animation-delay: 0.4s; }
+
+        .sidebar-card:nth-child(2) { animation-delay: 0.2s; }
+        .sidebar-card:nth-child(3) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item active"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <span>Market News</span>
+            </div>
+            <h1>Market News & Analysis</h1>
+            <p>Stay informed with the latest market developments, breaking news, and expert analysis to make better investment decisions.</p>
+        </div>
+    </section>
+
+    <!-- News Content -->
+    <main class="news-container">
+        <div class="news-header">
+            <h2 class="news-title">Latest Market News</h2>
+            <div class="news-filters">
+                <a href="#" class="filter-btn active">All</a>
+                <a href="#" class="filter-btn">Breaking</a>
+                <a href="#" class="filter-btn">Market Updates</a>
+                <a href="#" class="filter-btn">Earnings</a>
+                <a href="#" class="filter-btn">Economy</a>
+                <a href="#" class="filter-btn">Tech</a>
+                <a href="#" class="filter-btn">Analysis</a>
+            </div>
+        </div>
+
+        <div class="news-grid">
+            <div class="main-news">
+                <!-- Featured Article -->
+                <article class="featured-article">
+                    <div class="article-image">📈</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-category">Market Update</span>
+                            <span>2 hours ago</span>
+                        </div>
+                        <h2 class="article-title">Fed Signals Potential Rate Cuts as Inflation Shows Signs of Cooling</h2>
+                        <p class="article-excerpt">Federal Reserve officials hint at possible interest rate reductions in the coming months as recent inflation data suggests a cooling trend. Market analysts are closely watching for signals about monetary policy shifts that could impact equity valuations across sectors.</p>
+                        <div class="article-author">
+                            <div class="author-avatar">JM</div>
+                            <div>
+                                <div style="font-weight: 600;">John Mitchell</div>
+                                <div style="color: #666;">Senior Market Analyst</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- News List -->
+                <div class="news-list">
+                    <article class="news-item">
+                        <div class="news-item-header">
+                            <div>
+                                <h3 class="news-item-title">NVIDIA Reports Record Q4 Earnings Driven by AI Demand</h3>
+                            </div>
+                            <span class="news-item-time">4 hrs ago</span>
+                        </div>
+                        <p class="news-item-excerpt">Chip giant NVIDIA exceeded expectations with Q4 revenue of $60.9 billion, marking a 22% increase quarter-over-quarter as AI applications continue to drive demand for advanced semiconductors.</p>
+                        <div class="news-item-meta">
+                            <span class="news-item-source">TechFinance Today</span>
+                            <div class="news-item-tags">
+                                <span class="news-tag">Earnings</span>
+                                <span class="news-tag">Tech</span>
+                                <span class="news-tag">AI</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-item-header">
+                            <div>
+                                <h3 class="news-item-title">Oil Prices Surge on Middle East Tensions and Supply Concerns</h3>
+                            </div>
+                            <span class="news-item-time">6 hrs ago</span>
+                        </div>
+                        <p class="news-item-excerpt">Crude oil futures jumped 3.2% in early trading as geopolitical tensions escalate and OPEC+ maintains production cuts, raising concerns about global energy supply chains.</p>
+                        <div class="news-item-meta">
+                            <span class="news-item-source">Energy Markets Weekly</span>
+                            <div class="news-item-tags">
+                                <span class="news-tag">Commodities</span>
+                                <span class="news-tag">Energy</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-item-header">
+                            <div>
+                                <h3 class="news-item-title">Treasury Yields Fall as Investors Seek Safe Haven Assets</h3>
+                            </div>
+                            <span class="news-item-time">8 hrs ago</span>
+                        </div>
+                        <p class="news-item-excerpt">The 10-year Treasury yield dropped to 4.21% as investors moved capital to safer assets amid global market uncertainty and mixed economic signals from major economies.</p>
+                        <div class="news-item-meta">
+                            <span class="news-item-source">Bond Market Today</span>
+                            <div class="news-item-tags">
+                                <span class="news-tag">Bonds</span>
+                                <span class="news-tag">Treasury</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-item-header">
+                            <div>
+                                <h3 class="news-item-title">European Markets Rally on Strong Manufacturing Data</h3>
+                            </div>
+                            <span class="news-item-time">12 hrs ago</span>
+                        </div>
+                        <p class="news-item-excerpt">European indices posted significant gains following better-than-expected manufacturing PMI data from Germany and France, suggesting economic resilience in the eurozone.</p>
+                        <div class="news-item-meta">
+                            <span class="news-item-source">European Markets Review</span>
+                            <div class="news-item-tags">
+                                <span class="news-tag">International</span>
+                                <span class="news-tag">Economy</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-item-header">
+                            <div>
+                                <h3 class="news-item-title">Bitcoin Reaches New All-Time High Above $75,000</h3>
+                            </div>
+                            <span class="news-item-time">1 day ago</span>
+                        </div>
+                        <p class="news-item-excerpt">The world's largest cryptocurrency surged past $75,000 for the first time, driven by institutional adoption and speculation about potential regulatory clarity from new government policies.</p>
+                        <div class="news-item-meta">
+                            <span class="news-item-source">Crypto Markets Daily</span>
+                            <div class="news-item-tags">
+                                <span class="news-tag">Crypto</span>
+                                <span class="news-tag">Digital Assets</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-item-header">
+                            <div>
+                                <h3 class="news-item-title">Warren Buffett's Berkshire Hathaway Increases Apple Stake</h3>
+                            </div>
+                            <span class="news-item-time">1 day ago</span>
+                        </div>
+                        <p class="news-item-excerpt">The Oracle of Omaha's investment vehicle added 2.3 million shares of Apple in Q4, signaling continued confidence in the tech giant despite broader market volatility.</p>
+                        <div class="news-item-meta">
+                            <span class="news-item-source">Investment Gurus</span>
+                            <div class="news-item-tags">
+                                <span class="news-tag">Guru Moves</span>
+                                <span class="news-tag">Large Cap</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Market Summary -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Market Summary</h3>
+                    <div class="market-item">
+                        <div class="market-name">S&P 500</div>
+                        <div class="market-price">
+                            <div class="market-value">5,431.52</div>
+                            <div class="market-change positive">+0.86%</div>
+                        </div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">NASDAQ</div>
+                        <div class="market-price">
+                            <div class="market-value">17,235.09</div>
+                            <div class="market-change positive">+1.24%</div>
+                        </div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">Dow Jones</div>
+                        <div class="market-price">
+                            <div class="market-value">39,781.37</div>
+                            <div class="market-change negative">-0.32%</div>
+                        </div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">VIX</div>
+                        <div class="market-price">
+                            <div class="market-value">16.23</div>
+                            <div class="market-change negative">-2.1%</div>
+                        </div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">Gold</div>
+                        <div class="market-price">
+                            <div class="market-value">$2,014.50</div>
+                            <div class="market-change positive">+0.45%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Topics -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Trending Topics</h3>
+                    <div class="trending-item">
+                        <div class="trending-topic">AI & Machine Learning</div>
+                        <div class="trending-count">2,847 mentions today</div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-topic">Federal Reserve Policy</div>
+                        <div class="trending-count">1,923 mentions today</div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-topic">Cryptocurrency</div>
+                        <div class="trending-count">1,756 mentions today</div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-topic">Electric Vehicles</div>
+                        <div class="trending-count">1,432 mentions today</div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-topic">ESG Investing</div>
+                        <div class="trending-count">987 mentions today</div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-topic">Supply Chain</div>
+                        <div class="trending-count">876 mentions today</div>
+                    </div>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Daily Market Brief</h3>
+                    <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Get the most important market news and analysis delivered to your inbox every morning.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email address">
+                        <button type="submit" class="newsletter-btn">Subscribe Now</button>
+                    </form>
+                    <p style="font-size: 12px; color: #999; margin-top: 10px;">Join 15,000+ investors who start their day with our insights.</p>
+                </div>
+
+                <!-- Most Read -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Most Read Today</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 5px; line-height: 1.4;">How to Navigate Market Volatility: A Complete Guide</h4>
+                            <p style="font-size: 12px; color: #666;">Investment Strategy • 12,543 views</p>
+                        </div>
+                        <div style="padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 5px; line-height: 1.4;">5 High-Growth Stocks to Watch in 2025</h4>
+                            <p style="font-size: 12px; color: #666;">Stock Analysis • 9,876 views</p>
+                        </div>
+                        <div style="padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 5px; line-height: 1.4;">Understanding the New Tax Implications for Crypto</h4>
+                            <p style="font-size: 12px; color: #666;">Tax & Legal • 7,234 views</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 5px; line-height: 1.4;">Real Estate vs. Stock Market: Where to Invest Now</h4>
+                            <p style="font-size: 12px; color: #666;">Market Comparison • 6,891 views</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Load More -->
+        <div class="load-more">
+            <button class="load-more-btn">Load More Articles</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html" style="color: #4a6cf7;">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Simulate filter animation
+                    const newsItems = document.querySelectorAll('.news-item');
+                    newsItems.forEach((item, index) => {
+                        item.style.opacity = '0.5';
+                        item.style.transform = 'translateY(10px)';
+                        
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 100 * index);
+                    });
+                });
+            });
+
+            // Newsletter form
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (email) {
+                        alert('Thank you for subscribing! You will receive our daily market brief starting tomorrow.');
+                        this.querySelector('input[type="email"]').value = '';
+                    }
+                });
+            }
+
+            // Load more functionality
+            const loadMoreBtn = document.querySelector('.load-more-btn');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    this.textContent = 'Loading...';
+                    this.disabled = true;
+                    
+                    // Simulate loading
+                    setTimeout(() => {
+                        // Add new articles (simplified for demo)
+                        const newArticles = [
+                            {
+                                title: "Tech Stocks Lead Market Rally Amid Optimistic Earnings",
+                                excerpt: "Technology sector stocks outperformed broader markets as several major companies reported better-than-expected quarterly results.",
+                                source: "Tech Market News",
+                                time: "2 days ago",
+                                tags: ["Tech", "Earnings"]
+                            },
+                            {
+                                title: "Inflation Data Shows Continued Moderation in Price Pressures",
+                                excerpt: "Latest consumer price index data reveals inflation continuing its downward trend, supporting market expectations for policy changes.",
+                                source: "Economic Times",
+                                time: "2 days ago",
+                                tags: ["Economy", "Inflation"]
+                            }
+                        ];
+
+                        const newsList = document.querySelector('.news-list');
+                        newArticles.forEach(article => {
+                            const articleHtml = `
+                                <article class="news-item">
+                                    <div class="news-item-header">
+                                        <div>
+                                            <h3 class="news-item-title">${article.title}</h3>
+                                        </div>
+                                        <span class="news-item-time">${article.time}</span>
+                                    </div>
+                                    <p class="news-item-excerpt">${article.excerpt}</p>
+                                    <div class="news-item-meta">
+                                        <span class="news-item-source">${article.source}</span>
+                                        <div class="news-item-tags">
+                                            ${article.tags.map(tag => `<span class="news-tag">${tag}</span>`).join('')}
+                                        </div>
+                                    </div>
+                                </article>
+                            `;
+                            newsList.insertAdjacentHTML('beforeend', articleHtml);
+                        });
+
+                        this.textContent = 'Load More Articles';
+                        this.disabled = false;
+                    }, 1500);
+                });
+            }
+
+            // Article click handlers
+            document.querySelectorAll('.news-item, .featured-article').forEach(article => {
+                article.addEventListener('click', function() {
+                    // Simulate article view
+                    this.style.opacity = '0.8';
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                    }, 200);
+                });
+            });
+
+            // Market data animation
+            const marketItems = document.querySelectorAll('.market-item');
+            marketItems.forEach(item => {
+                const changeEl = item.querySelector('.market-change');
+                if (changeEl) {
+                    // Simulate real-time updates
+                    setInterval(() => {
+                        const isPositive = Math.random() > 0.5;
+                        const change = (Math.random() * 2).toFixed(2);
+                        changeEl.textContent = (isPositive ? '+' : '-') + change + '%';
+                        changeEl.className = isPositive ? 'market-change positive' : 'market-change negative';
+                    }, 10000);
+                }
+            });
+
+            // Trending topics animation
+            const trendingCounts = document.querySelectorAll('.trending-count');
+            trendingCounts.forEach(count => {
+                setInterval(() => {
+                    const currentNum = parseInt(count.textContent.replace(/[^0-9]/g, ''));
+                    const newNum = currentNum + Math.floor(Math.random() * 10) - 5;
+                    if (newNum > 0) {
+                        count.textContent = newNum.toLocaleString() + ' mentions today';
+                    }
+                }, 15000);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add reading progress indicator
+            const progressBar = document.createElement('div');
+            progressBar.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 3px;
+                background: linear-gradient(90deg, #4a6cf7, #667eea);
+                z-index: 9999;
+                transition: width 0.3s ease;
+            `;
+            document.body.appendChild(progressBar);
+
+            window.addEventListener('scroll', () => {
+                const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+        });
+    </script>
+</body>
+</html>

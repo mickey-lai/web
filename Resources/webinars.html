@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webinars - GuruFocus Investment Research Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover,
+        .nav-item.active a {
+            opacity: 0.8;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .page-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .filter-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .search-box {
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            min-width: 250px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        /* Featured Webinar */
+        .featured-webinar {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .featured-webinar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4a6cf7, #667eea);
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .featured-info {
+            padding: 50px;
+        }
+
+        .featured-badge {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-info h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .featured-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .featured-description {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .featured-highlights {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .featured-highlights li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .featured-highlights li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .featured-video {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .video-placeholder {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            font-size: 48px;
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 40px rgba(74, 108, 247, 0.3);
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 108, 247, 0.4);
+        }
+
+        /* Webinars Grid */
+        .webinars-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .webinars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .webinar-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .webinar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+        }
+
+        .webinar-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .webinar-image .play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .webinar-image .play-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .webinar-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-live {
+            background: #f44336;
+            color: white;
+        }
+
+        .status-upcoming {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status-recorded {
+            background: #666;
+            color: white;
+        }
+
+        .webinar-content {
+            padding: 25px;
+        }
+
+        .webinar-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .webinar-presenter {
+            color: #4a6cf7;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .webinar-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .webinar-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .webinar-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .webinar-duration {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .webinar-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .webinar-tag {
+            background: #f8f9fa;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .webinar-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #666;
+            border: 1px solid #e9ecef;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        /* Upcoming Schedule */
+        .schedule-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .schedule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .schedule-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .schedule-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background: #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .calendar-day {
+            background: white;
+            padding: 15px 10px;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            position: relative;
+        }
+
+        .calendar-day.header {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+            min-height: 40px;
+            justify-content: center;
+        }
+
+        .calendar-day.has-event {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            cursor: pointer;
+        }
+
+        .calendar-day-number {
+            font-weight: 600;
+        }
+
+        .calendar-event {
+            font-size: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 4px;
+            border-radius: 3px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-info {
+                padding: 30px;
+            }
+
+            .webinars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+            }
+
+            .filter-controls .search-box {
+                min-width: 100%;
+            }
+
+            .schedule-calendar {
+                font-size: 12px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .webinar-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .webinar-card:nth-child(2) { animation-delay: 0.1s; }
+        .webinar-card:nth-child(3) { animation-delay: 0.2s; }
+        .webinar-card:nth-child(4) { animation-delay: 0.3s; }
+        .webinar-card:nth-child(5) { animation-delay: 0.4s; }
+        .webinar-card:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .status-live {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item active"><a href="webinars.html">Webinars</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="page-header-content">
+            <h1>Investment Webinars</h1>
+            <p>Join expert-led sessions covering market analysis, investment strategies, and professional trading techniques. Learn from industry professionals and enhance your investment knowledge with our comprehensive webinar series.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="filter-header">
+                <h2>Find Your Perfect Webinar</h2>
+            </div>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select class="filter-select">
+                        <option>All Categories</option>
+                        <option>Stock Analysis</option>
+                        <option>Options Trading</option>
+                        <option>Portfolio Management</option>
+                        <option>Market Trends</option>
+                        <option>Technical Analysis</option>
+                        <option>Fundamental Analysis</option>
+                        <option>Risk Management</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Level</label>
+                    <select class="filter-select">
+                        <option>All Levels</option>
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                        <option>Expert</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Type</label>
+                    <select class="filter-select">
+                        <option>All Types</option>
+                        <option>Live</option>
+                        <option>Upcoming</option>
+                        <option>Recorded</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Search</label>
+                    <input type="text" class="search-box" placeholder="Search webinars, topics, or presenters...">
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Webinar -->
+        <section class="featured-webinar">
+            <div class="featured-content">
+                <div class="featured-info">
+                    <div class="featured-badge">Featured Webinar</div>
+                    <h3>Advanced Portfolio Optimization: Modern Risk Management Strategies</h3>
+                    <div class="featured-meta">
+                        <div class="featured-meta-item">
+                            <span>📅</span>
+                            <span>June 15, 2025 • 2:00 PM EST</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <span>⏱️</span>
+                            <span>90 minutes</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <span>👥</span>
+                            <span>Advanced Level</span>
+                        </div>
+                    </div>
+                    <p class="featured-description">
+                        Join renowned portfolio manager Sarah Chen as she explores cutting-edge portfolio optimization techniques using modern risk management frameworks. Learn how to construct resilient portfolios that outperform in various market conditions while managing downside risk effectively.
+                    </p>
+                    <ul class="featured-highlights">
+                        <li>Advanced portfolio construction techniques</li>
+                        <li>Risk parity and factor-based strategies</li>
+                        <li>Alternative risk measures beyond volatility</li>
+                        <li>Real-world case studies and practical applications</li>
+                        <li>Live Q&A session with portfolio optimization tools</li>
+                    </ul>
+                    <a href="#" class="btn-register">Register Now - Free</a>
+                </div>
+                <div class="featured-video">
+                    <div class="video-placeholder">▶</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Schedule -->
+        <section class="schedule-section">
+            <div class="schedule-header">
+                <h2>This Month's Schedule</h2>
+                <a href="#" class="btn btn-demo">View Full Calendar</a>
+            </div>
+            <div class="schedule-calendar">
+                <div class="calendar-day header">Sun</div>
+                <div class="calendar-day header">Mon</div>
+                <div class="calendar-day header">Tue</div>
+                <div class="calendar-day header">Wed</div>
+                <div class="calendar-day header">Thu</div>
+                <div class="calendar-day header">Fri</div>
+                <div class="calendar-day header">Sat</div>
+                
+                <div class="calendar-day"><span class="calendar-day-number">1</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">2</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">3</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">4</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">5</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">6</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">7</span></div>
+                
+                <div class="calendar-day"><span class="calendar-day-number">8</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">9</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">10</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">11</span></div>
+                <div class="calendar-day has-event">
+                    <span class="calendar-day-number">12</span>
+                    <span class="calendar-event">Options Trading</span>
+                </div>
+                <div class="calendar-day"><span class="calendar-day-number">13</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">14</span></div>
+                
+                <div class="calendar-day has-event">
+                    <span class="calendar-day-number">15</span>
+                    <span class="calendar-event">Portfolio Opt.</span>
+                </div>
+                <div class="calendar-day"><span class="calendar-day-number">16</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">17</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">18</span></div>
+                <div class="calendar-day has-event">
+                    <span class="calendar-day-number">19</span>
+                    <span class="calendar-event">Market Analysis</span>
+                </div>
+                <div class="calendar-day"><span class="calendar-day-number">20</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">21</span></div>
+                
+                <div class="calendar-day"><span class="calendar-day-number">22</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">23</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">24</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">25</span></div>
+                <div class="calendar-day has-event">
+                    <span class="calendar-day-number">26</span>
+                    <span class="calendar-event">Risk Mgmt</span>
+                </div>
+                <div class="calendar-day"><span class="calendar-day-number">27</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">28</span></div>
+                
+                <div class="calendar-day"><span class="calendar-day-number">29</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">30</span></div>
+                <div class="calendar-day"><span class="calendar-day-number">31</span></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+            </div>
+        </section>
+
+        <!-- Webinars Grid -->
+        <section class="webinars-section">
+            <h2>All Webinars</h2>
+            <div class="webinars-grid">
+                <!-- Live Webinar -->
+                <div class="webinar-card">
+                    <div class="webinar-image">
+                        <div class="play-button">▶</div>
+                        <div class="webinar-status status-live">Live Now</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">Technical Analysis Masterclass: Chart Patterns & Indicators</h3>
+                        <div class="webinar-presenter">Michael Rodriguez, CFA</div>
+                        <p class="webinar-description">Master the art of technical analysis with comprehensive coverage of chart patterns, key indicators, and real-time market examples.</p>
+                        <div class="webinar-meta">
+                            <div class="webinar-date">📅 Live Now</div>
+                            <div class="webinar-duration">⏱️ 120 min</div>
+                        </div>
+                        <div class="webinar-tags">
+                            <span class="webinar-tag">Technical Analysis</span>
+                            <span class="webinar-tag">Intermediate</span>
+                            <span class="webinar-tag">Live</span>
+                        </div>
+                        <div class="webinar-actions">
+                            <a href="#" class="btn-small btn-primary">Join Now</a>
+                            <a href="#" class="btn-small btn-secondary">Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Webinar -->
+                <div class="webinar-card">
+                    <div class="webinar-image">
+                        <div class="play-button">📅</div>
+                        <div class="webinar-status status-upcoming">Upcoming</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">Options Strategies for Income Generation</h3>
+                        <div class="webinar-presenter">Jennifer Kim, Options Specialist</div>
+                        <p class="webinar-description">Learn proven options strategies to generate consistent income while managing risk in your investment portfolio.</p>
+                        <div class="webinar-meta">
+                            <div class="webinar-date">📅 Jun 12, 3:00 PM</div>
+                            <div class="webinar-duration">⏱️ 90 min</div>
+                        </div>
+                        <div class="webinar-tags">
+                            <span class="webinar-tag">Options</span>
+                            <span class="webinar-tag">Intermediate</span>
+                            <span class="webinar-tag">Income</span>
+                        </div>
+                        <div class="webinar-actions">
+                            <a href="#" class="btn-small btn-primary">Register</a>
+                            <a href="#" class="btn-small btn-secondary">Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recorded Webinar -->
+                <div class="webinar-card">
+                    <div class="webinar-image">
+                        <div class="play-button">▶</div>
+                        <div class="webinar-status status-recorded">Recorded</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">ESG Investing: Sustainable Portfolio Construction</h3>
+                        <div class="webinar-presenter">Dr. Amanda Foster, ESG Expert</div>
+                        <p class="webinar-description">Explore ESG investment strategies and learn how to build sustainable portfolios without sacrificing returns.</p>
+                        <div class="webinar-meta">
+                            <div class="webinar-date">📅 May 28, 2025</div>
+                            <div class="webinar-duration">⏱️ 75 min</div>
+                        </div>
+                        <div class="webinar-tags">
+                            <span class="webinar-tag">ESG</span>
+                            <span class="webinar-tag">Beginner</span>
+                            <span class="webinar-tag">Sustainable</span>
+                        </div>
+                        <div class="webinar-actions">
+                            <a href="#" class="btn-small btn-primary">Watch Now</a>
+                            <a href="#" class="btn-small btn-secondary">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Webinar -->
+                <div class="webinar-card">
+                    <div class="webinar-image">
+                        <div class="play-button">📅</div>
+                        <div class="webinar-status status-upcoming">Upcoming</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">Cryptocurrency Market Analysis & Investment Strategies</h3>
+                        <div class="webinar-presenter">Alex Chen, Crypto Analyst</div>
+                        <p class="webinar-description">Navigate the crypto market with professional analysis techniques and strategic investment approaches for digital assets.</p>
+                        <div class="webinar-meta">
+                            <div class="webinar-date">📅 Jun 19, 1:00 PM</div>
+                            <div class="webinar-duration">⏱️ 90 min</div>
+                        </div>
+                        <div class="webinar-tags">
+                            <span class="webinar-tag">Cryptocurrency</span>
+                            <span class="webinar-tag">Advanced</span>
+                            <span class="webinar-tag">Digital Assets</span>
+                        </div>
+                        <div class="webinar-actions">
+                            <a href="#" class="btn-small btn-primary">Register</a>
+                            <a href="#" class="btn-small btn-secondary">Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recorded Webinar -->
+                <div class="webinar-card">
+                    <div class="webinar-image">
+                        <div class="play-button">▶</div>
+                        <div class="webinar-status status-recorded">Recorded</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">Value Investing Fundamentals with Warren Buffett Principles</h3>
+                        <div class="webinar-presenter">Robert Johnson, Value Investor</div>
+                        <p class="webinar-description">Master the principles of value investing using time-tested strategies from Warren Buffett and Benjamin Graham.</p>
+                        <div class="webinar-meta">
+                            <div class="webinar-date">📅 May 15, 2025</div>
+                            <div class="webinar-duration">⏱️ 105 min</div>
+                        </div>
+                        <div class="webinar-tags">
+                            <span class="webinar-tag">Value Investing</span>
+                            <span class="webinar-tag">Beginner</span>
+                            <span class="webinar-tag">Fundamentals</span>
+                        </div>
+                        <div class="webinar-actions">
+                            <a href="#" class="btn-small btn-primary">Watch Now</a>
+                            <a href="#" class="btn-small btn-secondary">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Webinar -->
+                <div class="webinar-card">
+                    <div class="webinar-image">
+                        <div class="play-button">📅</div>
+                        <div class="webinar-status status-upcoming">Upcoming</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">Risk Management in Volatile Markets</h3>
+                        <div class="webinar-presenter">Sarah Williams, Risk Manager</div>
+                        <p class="webinar-description">Learn advanced risk management techniques to protect your portfolio during market volatility and uncertainty.</p>
+                        <div class="webinar-meta">
+                            <div class="webinar-date">📅 Jun 26, 4:00 PM</div>
+                            <div class="webinar-duration">⏱️ 85 min</div>
+                        </div>
+                        <div class="webinar-tags">
+                            <span class="webinar-tag">Risk Management</span>
+                            <span class="webinar-tag">Advanced</span>
+                            <span class="webinar-tag">Volatility</span>
+                        </div>
+                        <div class="webinar-actions">
+                            <a href="#" class="btn-small btn-primary">Register</a>
+                            <a href="#" class="btn-small btn-secondary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn-register">Load More Webinars</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html" style="color: #4a6cf7;">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterSelects = document.querySelectorAll('.filter-select');
+            const searchBox = document.querySelector('.search-box');
+            const webinarCards = document.querySelectorAll('.webinar-card');
+
+            // Filter webinars based on selection
+            function filterWebinars() {
+                const category = document.querySelector('.filter-select:nth-child(1)').value;
+                const level = document.querySelector('.filter-select:nth-child(2)').value;
+                const type = document.querySelector('.filter-select:nth-child(3)').value;
+                const searchTerm = searchBox.value.toLowerCase();
+
+                webinarCards.forEach(card => {
+                    let showCard = true;
+
+                    // Category filter
+                    if (category !== 'All Categories') {
+                        const tags = card.querySelectorAll('.webinar-tag');
+                        const hasCategory = Array.from(tags).some(tag => 
+                            tag.textContent.includes(category.replace(' Trading', '').replace(' Analysis', ''))
+                        );
+                        if (!hasCategory) showCard = false;
+                    }
+
+                    // Level filter
+                    if (level !== 'All Levels') {
+                        const tags = card.querySelectorAll('.webinar-tag');
+                        const hasLevel = Array.from(tags).some(tag => tag.textContent === level);
+                        if (!hasLevel) showCard = false;
+                    }
+
+                    // Type filter
+                    if (type !== 'All Types') {
+                        const status = card.querySelector('.webinar-status');
+                        if (type === 'Live' && !status.classList.contains('status-live')) showCard = false;
+                        if (type === 'Upcoming' && !status.classList.contains('status-upcoming')) showCard = false;
+                        if (type === 'Recorded' && !status.classList.contains('status-recorded')) showCard = false;
+                    }
+
+                    // Search filter
+                    if (searchTerm) {
+                        const title = card.querySelector('.webinar-title').textContent.toLowerCase();
+                        const presenter = card.querySelector('.webinar-presenter').textContent.toLowerCase();
+                        const description = card.querySelector('.webinar-description').textContent.toLowerCase();
+                        
+                        if (!title.includes(searchTerm) && !presenter.includes(searchTerm) && !description.includes(searchTerm)) {
+                            showCard = false;
+                        }
+                    }
+
+                    card.style.display = showCard ? 'block' : 'none';
+                });
+            }
+
+            filterSelects.forEach(select => {
+                select.addEventListener('change', filterWebinars);
+            });
+
+            searchBox.addEventListener('input', filterWebinars);
+
+            // Calendar day clicks
+            document.querySelectorAll('.calendar-day.has-event').forEach(day => {
+                day.addEventListener('click', function() {
+                    const event = this.querySelector('.calendar-event').textContent;
+                    alert(`Event details: ${event}\nClick for more information or to register.`);
+                });
+            });
+
+            // Video placeholder clicks
+            document.querySelectorAll('.video-placeholder, .play-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Video player would open here. In a real implementation, this would launch the webinar or video player.');
+                });
+            });
+
+            // Webinar card hover effects
+            webinarCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Registration button clicks
+            document.querySelectorAll('.btn-register, .btn-primary').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (this.textContent.includes('Register') || this.textContent.includes('Register Now')) {
+                        alert('Registration form would open here. Thank you for your interest!');
+                    } else if (this.textContent.includes('Join Now')) {
+                        alert('Joining live webinar... This would redirect to the live session.');
+                    } else if (this.textContent.includes('Watch Now')) {
+                        alert('Opening recorded webinar... This would start the video player.');
+                    }
+                });
+            });
+
+            // Live status animation
+            const liveStatuses = document.querySelectorAll('.status-live');
+            liveStatuses.forEach(status => {
+                setInterval(() => {
+                    status.style.opacity = status.style.opacity === '0.7' ? '1' : '0.7';
+                }, 1000);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Load more functionality
+            document.querySelector('.btn-register[href="#"]').addEventListener('click', function(e) {
+                if (this.textContent.includes('Load More')) {
+                    e.preventDefault();
+                    alert('Loading more webinars... This would fetch additional webinar content.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Insights Blog - GuruFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-item.active a {
+            color: #ffc107;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Blog Header */
+        .blog-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .blog-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .blog-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Blog Navigation */
+        .blog-nav {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .blog-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .blog-categories {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .blog-categories a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .blog-categories a:hover,
+        .blog-categories a.active {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        .blog-search {
+            position: relative;
+        }
+
+        .blog-search input {
+            padding: 10px 40px 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            width: 300px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .blog-search input:focus {
+            border-color: #4a6cf7;
+        }
+
+        .blog-search button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .blog-search button:hover {
+            background: #f0f0f0;
+        }
+
+        /* Main Blog Content */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .featured-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.15);
+        }
+
+        .featured-image {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.3));
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #ffc107;
+            color: #333;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .featured-content {
+            padding: 30px;
+        }
+
+        .article-category {
+            color: #4a6cf7;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .article-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .article-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+        }
+
+        .article-card-content {
+            padding: 25px;
+        }
+
+        .article-card .article-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .article-card .article-excerpt {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .read-time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .widget-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Newsletter Widget */
+        .newsletter-widget {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-widget .widget-title {
+            color: white;
+        }
+
+        .newsletter-form {
+            margin-top: 20px;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .newsletter-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        /* Popular Posts */
+        .popular-post {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .popular-post:last-child {
+            border-bottom: none;
+        }
+
+        .popular-thumb {
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .popular-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .popular-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Tags */
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            background: #f8f9fa;
+            color: #666;
+            border-radius: 15px;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        /* Load More */
+        .load-more {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .load-more-btn {
+            background: #4a6cf7;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .load-more-btn:hover {
+            background: #3b5998;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .blog-header h1 {
+                font-size: 36px;
+            }
+
+            .blog-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .blog-nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .blog-categories {
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .blog-categories a {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .blog-search input {
+                width: 250px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-title {
+                font-size: 24px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .article-card:nth-child(2) { animation-delay: 0.1s; }
+        .article-card:nth-child(3) { animation-delay: 0.2s; }
+        .article-card:nth-child(4) { animation-delay: 0.3s; }
+        .article-card:nth-child(5) { animation-delay: 0.4s; }
+        .article-card:nth-child(6) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item active"><a href="blog.html">Blog</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="blog-header-content">
+            <h1>Investment Insights Blog</h1>
+            <p>Expert analysis, market trends, and investment strategies from our team of financial professionals and industry leaders.</p>
+        </div>
+    </section>
+
+    <!-- Blog Navigation -->
+    <div class="blog-nav">
+        <div class="blog-nav-container">
+            <ul class="blog-categories">
+                <li><a href="#" class="active">All Posts</a></li>
+                <li><a href="#">Market Analysis</a></li>
+                <li><a href="#">Investment Strategies</a></li>
+                <li><a href="#">Company Research</a></li>
+                <li><a href="#">Economic Insights</a></li>
+                <li><a href="#">Portfolio Management</a></li>
+                <li><a href="#">Technology</a></li>
+            </ul>
+            <div class="blog-search">
+                <input type="text" placeholder="Search articles...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Blog Content -->
+    <div class="blog-container">
+        <main class="blog-main">
+            <!-- Featured Article -->
+            <article class="featured-article">
+                <div class="featured-image">
+                    <div class="featured-badge">Featured</div>
+                </div>
+                <div class="featured-content">
+                    <div class="article-category">Market Analysis</div>
+                    <h2 class="article-title">The AI Revolution in Financial Markets: Opportunities and Risks for 2025</h2>
+                    <p class="article-excerpt">
+                        As artificial intelligence continues to reshape industries worldwide, the financial markets are experiencing unprecedented transformation. From algorithmic trading to robo-advisors, AI is revolutionizing how we invest, analyze markets, and manage risk. This comprehensive analysis explores the key opportunities and potential pitfalls investors should consider.
+                    </p>
+                    <div class="article-meta">
+                        <div class="author-info">
+                            <div class="author-avatar">SJ</div>
+                            <span>Sarah Johnson</span>
+                        </div>
+                        <span>•</span>
+                        <span>June 10, 2025</span>
+                        <span>•</span>
+                        <span class="read-time">8 min read</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Articles Grid -->
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-image"></div>
+                    <div class="article-card-content">
+                        <div class="article-category">Investment Strategies</div>
+                        <h3 class="article-title">Value Investing in the Digital Age: Warren Buffett's Principles Revisited</h3>
+                        <p class="article-excerpt">
+                            How traditional value investing principles apply to modern markets and digital companies. A deep dive into adapting time-tested strategies for contemporary opportunities.
+                        </p>
+                        <div class="article-meta">
+                            <div class="author-info">
+                                <div class="author-avatar">MR</div>
+                                <span>Michael Rodriguez</span>
+                            </div>
+                            <span>•</span>
+                            <span>June 8, 2025</span>
+                            <span>•</span>
+                            <span class="read-time">6 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"></div>
+                    <div class="article-card-content">
+                        <div class="article-category">Company Research</div>
+                        <h3 class="article-title">Tesla's Q2 2025 Earnings: Beyond the Numbers</h3>
+                        <p class="article-excerpt">
+                            Analyzing Tesla's latest quarterly results, focusing on production milestones, autonomous driving progress, and energy business expansion.
+                        </p>
+                        <div class="article-meta">
+                            <div class="author-info">
+                                <div class="author-avatar">EL</div>
+                                <span>Emily Liu</span>
+                            </div>
+                            <span>•</span>
+                            <span>June 7, 2025</span>
+                            <span>•</span>
+                            <span class="read-time">5 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"></div>
+                    <div class="article-card-content">
+                        <div class="article-category">Economic Insights</div>
+                        <h3 class="article-title">Federal Reserve Policy Impact on Tech Stocks: A 2025 Perspective</h3>
+                        <p class="article-excerpt">
+                            Understanding how monetary policy decisions affect technology sector valuations and what investors should watch for in the coming months.
+                        </p>
+                        <div class="article-meta">
+                            <div class="author-info">
+                                <div class="author-avatar">JT</div>
+                                <span>James Thompson</span>
+                            </div>
+                            <span>•</span>
+                            <span>June 5, 2025</span>
+                            <span>•</span>
+                            <span class="read-time">7 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"></div>
+                    <div class="article-card-content">
+                        <div class="article-category">Portfolio Management</div>
+                        <h3 class="article-title">ESG Investing: Performance vs. Principles in 2025</h3>
+                        <p class="article-excerpt">
+                            Examining the latest trends in environmental, social, and governance investing, including performance metrics and portfolio integration strategies.
+                        </p>
+                        <div class="article-meta">
+                            <div class="author-info">
+                                <div class="author-avatar">AC</div>
+                                <span>Anna Chen</span>
+                            </div>
+                            <span>•</span>
+                            <span>June 3, 2025</span>
+                            <span>•</span>
+                            <span class="read-time">6 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"></div>
+                    <div class="article-card-content">
+                        <div class="article-category">Technology</div>
+                        <h3 class="article-title">Blockchain Technology in Financial Services: Beyond Cryptocurrency</h3>
+                        <p class="article-excerpt">
+                            Exploring how traditional financial institutions are leveraging blockchain for settlement, trade finance, and regulatory compliance.
+                        </p>
+                        <div class="article-meta">
+                            <div class="author-info">
+                                <div class="author-avatar">DP</div>
+                                <span>David Park</span>
+                            </div>
+                            <span>•</span>
+                            <span>June 1, 2025</span>
+                            <span>•</span>
+                            <span class="read-time">9 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"></div>
+                    <div class="article-card-content">
+                        <div class="article-category">Market Analysis</div>
+                        <h3 class="article-title">Emerging Markets Outlook: Opportunities in Asia-Pacific Region</h3>
+                        <p class="article-excerpt">
+                            A comprehensive analysis of investment opportunities across Asian markets, including regulatory changes and growth projections for 2025.
+                        </p>
+                        <div class="article-meta">
+                            <div class="author-info">
+                                <div class="author-avatar">RG</div>
+                                <span>Rachel Green</span>
+                            </div>
+                            <span>•</span>
+                            <span>May 30, 2025</span>
+                            <span>•</span>
+                            <span class="read-time">8 min read</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more">
+                <button class="load-more-btn">Load More Articles</button>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Newsletter Widget -->
+            <div class="sidebar-widget newsletter-widget">
+                <h3 class="widget-title">Stay Updated</h3>
+                <p>Get the latest investment insights and market analysis delivered to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email">
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+
+            <!-- Popular Posts -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Popular Posts</h3>
+                <div class="popular-post">
+                    <div class="popular-thumb"></div>
+                    <div class="popular-content">
+                        <h4>Top 10 Dividend Stocks for Long-term Growth</h4>
+                        <div class="popular-date">May 28, 2025</div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="popular-thumb"></div>
+                    <div class="popular-content">
+                        <h4>Understanding Options Trading: A Beginner's Guide</h4>
+                        <div class="popular-date">May 25, 2025</div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="popular-thumb"></div>
+                    <div class="popular-content">
+                        <h4>Cryptocurrency Market Trends: What to Watch in 2025</h4>
+                        <div class="popular-date">May 22, 2025</div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="popular-thumb"></div>
+                    <div class="popular-content">
+                        <h4>Real Estate Investment Trusts (REITs) Performance Analysis</h4>
+                        <div class="popular-date">May 20, 2025</div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="popular-thumb"></div>
+                    <div class="popular-content">
+                        <h4>Market Volatility Strategies for Conservative Investors</h4>
+                        <div class="popular-date">May 18, 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Market Analysis (24)</a></li>
+                    <li><a href="#">Investment Strategies (18)</a></li>
+                    <li><a href="#">Company Research (15)</a></li>
+                    <li><a href="#">Economic Insights (12)</a></li>
+                    <li><a href="#">Portfolio Management (10)</a></li>
+                    <li><a href="#">Technology (8)</a></li>
+                    <li><a href="#">Beginner's Guide (6)</a></li>
+                </ul>
+            </div>
+
+            <!-- Tags Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Popular Tags</h3>
+                <div class="tags-cloud">
+                    <a href="#" class="tag">AI Investing</a>
+                    <a href="#" class="tag">Value Stocks</a>
+                    <a href="#" class="tag">Dividend Yield</a>
+                    <a href="#" class="tag">Tech Stocks</a>
+                    <a href="#" class="tag">ESG</a>
+                    <a href="#" class="tag">Options</a>
+                    <a href="#" class="tag">Crypto</a>
+                    <a href="#" class="tag">REITs</a>
+                    <a href="#" class="tag">Growth Stocks</a>
+                    <a href="#" class="tag">Market Analysis</a>
+                    <a href="#" class="tag">Portfolio</a>
+                    <a href="#" class="tag">Risk Management</a>
+                </div>
+            </div>
+
+            <!-- Market Data Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Market Snapshot</h3>
+                <div style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-weight: 600;">S&P 500</span>
+                        <span style="color: #4CAF50;">+0.42%</span>
+                    </div>
+                    <div style="font-size: 18px; font-weight: 700; color: #4a6cf7;">5,426.78</div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-weight: 600;">NASDAQ</span>
+                        <span style="color: #4CAF50;">+0.76%</span>
+                    </div>
+                    <div style="font-size: 18px; font-weight: 700; color: #4a6cf7;">17,192.53</div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-weight: 600;">DOW</span>
+                        <span style="color: #f44336;">-0.13%</span>
+                    </div>
+                    <div style="font-size: 18px; font-weight: 700; color: #4a6cf7;">38,712.21</div>
+                </div>
+                <div style="font-size: 12px; color: #999; text-align: center; margin-top: 15px;">
+                    Last updated: June 11, 2025 4:00 PM EST
+                </div>
+            </div>
+
+            <!-- Resources Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Investment Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Stock Screener Tool</a></li>
+                    <li><a href="#">Portfolio Analyzer</a></li>
+                    <li><a href="#">Investment Calculator</a></li>
+                    <li><a href="#">Market Calendar</a></li>
+                    <li><a href="#">Risk Assessment</a></li>
+                    <li><a href="#">Educational Webinars</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html" style="color: #4a6cf7;">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Blog functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filtering
+            const categoryLinks = document.querySelectorAll('.blog-categories a');
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    categoryLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Filter articles (in a real app, this would filter the content)
+                    console.log('Filtering by category:', this.textContent);
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.blog-search input');
+            const searchButton = document.querySelector('.blog-search button');
+            
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    console.log('Searching for:', query);
+                    // In a real app, this would perform the search
+                }
+            }
+
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Article card hover effects
+            const articleCards = document.querySelectorAll('.article-card, .featured-article');
+            articleCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = this.classList.contains('featured-article') ? 
+                        'translateY(-5px)' : 'translateY(-3px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+
+                // Click to read article
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('.article-title').textContent;
+                    console.log('Opening article:', title);
+                    // In a real app, this would navigate to the full article
+                });
+            });
+
+            // Load more functionality
+            const loadMoreBtn = document.querySelector('.load-more-btn');
+            loadMoreBtn.addEventListener('click', function() {
+                // Show loading state
+                this.textContent = 'Loading...';
+                this.disabled = true;
+                
+                // Simulate loading
+                setTimeout(() => {
+                    this.textContent = 'Load More Articles';
+                    this.disabled = false;
+                    console.log('Loading more articles...');
+                    // In a real app, this would load more content
+                }, 1000);
+            });
+
+            // Newsletter subscription
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('.newsletter-input').value;
+                
+                if (email) {
+                    const btn = this.querySelector('.newsletter-btn');
+                    const originalText = btn.textContent;
+                    
+                    btn.textContent = 'Subscribing...';
+                    btn.disabled = true;
+                    
+                    setTimeout(() => {
+                        btn.textContent = 'Subscribed!';
+                        btn.style.background = '#4CAF50';
+                        
+                        setTimeout(() => {
+                            btn.textContent = originalText;
+                            btn.style.background = '#ffc107';
+                            btn.disabled = false;
+                            this.querySelector('.newsletter-input').value = '';
+                        }, 2000);
+                    }, 1000);
+                }
+            });
+
+            // Tag cloud interactions
+            const tags = document.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Filtering by tag:', this.textContent);
+                    // In a real app, this would filter articles by tag
+                });
+            });
+
+            // Popular posts interactions
+            const popularPosts = document.querySelectorAll('.popular-post');
+            popularPosts.forEach(post => {
+                post.addEventListener('click', function() {
+                    const title = this.querySelector('h4').textContent;
+                    console.log('Opening popular post:', title);
+                    // In a real app, this would navigate to the article
+                });
+
+                post.style.cursor = 'pointer';
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Market data update simulation
+            function updateMarketData() {
+                const marketWidgets = document.querySelectorAll('.sidebar-widget');
+                const marketWidget = Array.from(marketWidgets).find(widget => 
+                    widget.querySelector('.widget-title').textContent === 'Market Snapshot'
+                );
+                
+                if (marketWidget) {
+                    const changeElements = marketWidget.querySelectorAll('[style*="color: #4CAF50"], [style*="color: #f44336"]');
+                    changeElements.forEach(el => {
+                        const isPositive = Math.random() > 0.5;
+                        const change = (Math.random() * 2).toFixed(2);
+                        el.textContent = (isPositive ? '+' : '-') + change + '%';
+                        el.style.color = isPositive ? '#4CAF50' : '#f44336';
+                    });
+                }
+            }
+
+            // Update market data every 30 seconds
+            setInterval(updateMarketData, 30000);
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe sidebar widgets for animations
+            document.querySelectorAll('.sidebar-widget').forEach(widget => {
+                widget.style.opacity = '0';
+                widget.style.transform = 'translateY(20px)';
+                widget.style.transition = 'all 0.6s ease-out';
+                observer.observe(widget);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partners - GuruFocus Investment Research Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-item.active a {
+            color: #ffc107;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Partnership Stats */
+        .partner-stats {
+            background: white;
+            padding: 60px 0;
+            margin-top: -30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            padding: 80px 0;
+        }
+
+        .partners-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .partners-category {
+            margin-bottom: 80px;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .category-description {
+            font-size: 16px;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .partner-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4a6cf7, #667eea);
+        }
+
+        .partner-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.15);
+        }
+
+        .partner-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .partner-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .partner-type {
+            display: inline-block;
+            background: rgba(74, 108, 247, 0.1);
+            color: #4a6cf7;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .partner-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .partner-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .partner-features li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .partner-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .partner-link {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+
+        .partner-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Logos Grid */
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .logo-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .logo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #666;
+            margin: 0 auto 15px;
+        }
+
+        .logo-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background: #ffc107;
+            color: #333;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background: #ffca2c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .partner-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .partner-card:nth-child(2) { animation-delay: 0.1s; }
+        .partner-card:nth-child(3) { animation-delay: 0.2s; }
+        .partner-card:nth-child(4) { animation-delay: 0.3s; }
+        .partner-card:nth-child(5) { animation-delay: 0.4s; }
+        .partner-card:nth-child(6) { animation-delay: 0.5s; }
+
+        .logo-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item active"><a href="#">Partners</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Strategic Partnerships</h1>
+                <p>Discover our network of trusted partners who help us deliver comprehensive investment solutions and enhanced market data to professionals worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Stats -->
+    <section class="partner-stats">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Global Partners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Data Providers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Technology Partners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Countries Covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Sections -->
+    <main class="partners-section">
+        <div class="partners-container">
+            <div class="section-header">
+                <h2>Our Partner Ecosystem</h2>
+                <p>We collaborate with leading organizations across technology, finance, and data to provide you with the most comprehensive investment platform.</p>
+            </div>
+
+            <!-- Data Partners -->
+            <div class="partners-category">
+                <div class="category-header">
+                    <h3 class="category-title">Data & Market Intelligence Partners</h3>
+                    <p class="category-description">Premium financial data providers ensuring real-time, accurate market information</p>
+                </div>
+                
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <div class="partner-logo">R</div>
+                        <div class="partner-name">Refinitiv</div>
+                        <div class="partner-type">Data Provider</div>
+                        <p class="partner-description">Global financial market data and infrastructure provider delivering real-time and historical market data across all asset classes.</p>
+                        <ul class="partner-features">
+                            <li>Real-time market data feeds</li>
+                            <li>Historical price data</li>
+                            <li>Corporate fundamentals</li>
+                            <li>ESG data & analytics</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">B</div>
+                        <div class="partner-name">Bloomberg</div>
+                        <div class="partner-type">Data Provider</div>
+                        <p class="partner-description">Leading provider of financial software tools and enterprise applications for financial professionals.</p>
+                        <ul class="partner-features">
+                            <li>Terminal data integration</li>
+                            <li>News & analytics</li>
+                            <li>Fixed income data</li>
+                            <li>Alternative data sets</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">F</div>
+                        <div class="partner-name">FactSet</div>
+                        <div class="partner-type">Data Provider</div>
+                        <p class="partner-description">Integrated data and software solutions for investment professionals providing comprehensive market coverage.</p>
+                        <ul class="partner-features">
+                            <li>Global equity data</li>
+                            <li>Portfolio analytics</li>
+                            <li>Risk management tools</li>
+                            <li>Economic indicators</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Partners -->
+            <div class="partners-category">
+                <div class="category-header">
+                    <h3 class="category-title">Technology & Infrastructure Partners</h3>
+                    <p class="category-description">Cutting-edge technology partners powering our platform's performance and reliability</p>
+                </div>
+                
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <div class="partner-logo">AWS</div>
+                        <div class="partner-name">Amazon Web Services</div>
+                        <div class="partner-type">Cloud Infrastructure</div>
+                        <p class="partner-description">Scalable cloud computing platform providing secure, reliable infrastructure for our global operations.</p>
+                        <ul class="partner-features">
+                            <li>Global CDN network</li>
+                            <li>Auto-scaling capabilities</li>
+                            <li>Enterprise security</li>
+                            <li>99.99% uptime SLA</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">SF</div>
+                        <div class="partner-name">Salesforce</div>
+                        <div class="partner-type">CRM Platform</div>
+                        <p class="partner-description">Customer relationship management platform enabling seamless client interactions and support.</p>
+                        <ul class="partner-features">
+                            <li>Customer support tools</li>
+                            <li>Sales automation</li>
+                            <li>Analytics & reporting</li>
+                            <li>Mobile accessibility</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">MS</div>
+                        <div class="partner-name">Microsoft Azure</div>
+                        <div class="partner-type">Cloud Services</div>
+                        <p class="partner-description">Hybrid cloud platform providing AI-powered analytics and machine learning capabilities.</p>
+                        <ul class="partner-features">
+                            <li>AI & machine learning</li>
+                            <li>Data analytics tools</li>
+                            <li>Security compliance</li>
+                            <li>Global presence</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Partners -->
+            <div class="partners-category">
+                <div class="category-header">
+                    <h3 class="category-title">Financial Institution Partners</h3>
+                    <p class="category-description">Leading banks and financial institutions integrating our solutions</p>
+                </div>
+                
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <div class="partner-logo">JPM</div>
+                        <div class="partner-name">JPMorgan Chase</div>
+                        <div class="partner-type">Investment Bank</div>
+                        <p class="partner-description">Strategic partnership providing institutional-grade trading infrastructure and market insights.</p>
+                        <ul class="partner-features">
+                            <li>Prime brokerage services</li>
+                            <li>Execution algorithms</li>
+                            <li>Research collaboration</li>
+                            <li>Risk management tools</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">GS</div>
+                        <div class="partner-name">Goldman Sachs</div>
+                        <div class="partner-type">Investment Bank</div>
+                        <p class="partner-description">Collaboration on alternative data and quantitative research methodologies for institutional clients.</p>
+                        <ul class="partner-features">
+                            <li>Alternative data access</li>
+                            <li>Quantitative research</li>
+                            <li>Portfolio optimization</li>
+                            <li>Market structure insights</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">CS</div>
+                        <div class="partner-name">Credit Suisse</div>
+                        <div class="partner-type">Investment Bank</div>
+                        <p class="partner-description">Partnership focusing on wealth management solutions and high-net-worth client services.</p>
+                        <ul class="partner-features">
+                            <li>Wealth management tools</li>
+                            <li>Private banking integration</li>
+                            <li>Custom reporting</li>
+                            <li>Multi-currency support</li>
+                        </ul>
+                        <a href="#" class="partner-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integration Partners -->
+            <div class="partners-category">
+                <div class="category-header">
+                    <h3 class="category-title">Integration & API Partners</h3>
+                    <p class="category-description">Seamless integrations with popular trading platforms and portfolio management systems</p>
+                </div>
+                
+                <div class="logos-grid">
+                    <div class="logo-card">
+                        <div class="logo-placeholder">TD</div>
+                        <div class="logo-name">TD Ameritrade</div>
+                    </div>
+                    <div class="logo-card">
+                        <div class="logo-placeholder">E*T</div>
+                        <div class="logo-name">E*TRADE</div>
+                    </div>
+                    <div class="logo-card">
+                        <div class="logo-placeholder">IB</div>
+                        <div class="logo-name">Interactive Brokers</div>
+                    </div>
+                    <div class="logo-card">
+                        <div class="logo-placeholder">CS</div>
+                        <div class="logo-name">Charles Schwab</div>
+                    </div>
+                    <div class="logo-card">
+                        <div class="logo-placeholder">F</div>
+                        <div class="logo-name">Fidelity</div>
+                    </div>
+                    <div class="logo-card">
+                        <div class="logo-placeholder">RH</div>
+                        <div class="logo-name">Robinhood</div>
+                    </div>
+                    <div class="logo-card">
+                        <div class="logo-placeholder">TW</div>
+                        <div class="logo-name">Tradier</div>
+                    </div>
+                    <div class="logo-card">
+                        <div class="logo-placeholder">A</div>
+                        <div class="logo-name">Alpaca</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Become a Partner</h2>
+            <p>Join our growing ecosystem of partners and help shape the future of investment technology. We're always looking for innovative companies to collaborate with.</p>
+            <a href="#" class="btn-cta">Partner With Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html" style="color: #4a6cf7;">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add some interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate numbers on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.classList.contains('stat-number')) {
+                            animateNumber(element);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.stat-number').forEach(el => {
+                observer.observe(el);
+            });
+
+            function animateNumber(element) {
+                const text = element.textContent;
+                const number = parseFloat(text.replace(/[^0-9.]/g, ''));
+                const suffix = text.replace(/[0-9.,]/g, '');
+                
+                if (!isNaN(number)) {
+                    let current = 0;
+                    const increment = number / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= number) {
+                            element.textContent = text;
+                            clearInterval(timer);
+                        } else {
+                            element.textContent = Math.floor(current).toLocaleString() + suffix;
+                        }
+                    }, 30);
+                }
+            }
+
+            // Add hover effects to table rows
+            document.querySelectorAll('.stock-table tr').forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.01)';
+                    this.style.transition = 'transform 0.2s ease';
+                });
+
+                row.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Simulate real-time price updates
+            setInterval(() => {
+                document.querySelectorAll('.stock-change-positive, .stock-change-negative').forEach(el => {
+                    const isPositive = Math.random() > 0.5;
+                    const change = (Math.random() * 5).toFixed(2);
+                    el.textContent = (isPositive ? '+' : '-') + change + '%';
+                    el.className = isPositive ? 'stock-change-positive' : 'stock-change-negative';
+                });
+            }, 5000);
+
+            // Tool card hover effects
+            document.querySelectorAll('.tool-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

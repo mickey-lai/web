@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Reports - GuruFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover, .nav-item a.active {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Page Header */
+        .page-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .page-hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .page-hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Filters Section */
+        .filters-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .filters-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .clear-filters {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .filter-group select, .filter-group input {
+            padding: 10px 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .filter-group select:focus, .filter-group input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .btn-filter {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-filter:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+        }
+
+        .btn-reset {
+            background: transparent;
+            color: #6c757d;
+            padding: 10px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-reset:hover {
+            border-color: #4a6cf7;
+            color: #4a6cf7;
+        }
+
+        /* Reports Grid */
+        .reports-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .reports-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .sort-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .sort-label {
+            font-size: 14px;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .report-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .report-header {
+            padding: 25px 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .report-type {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .report-date {
+            color: #6c757d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .report-content {
+            padding: 25px;
+        }
+
+        .report-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .report-company {
+            color: #4a6cf7;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .report-summary {
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .report-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .report-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4a6cf7;
+            border: 2px solid #4a6cf7;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-secondary:hover {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        /* Premium Badge */
+        .premium-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 40px 0;
+        }
+
+        .pagination button {
+            padding: 10px 16px;
+            border: 2px solid #e9ecef;
+            background: white;
+            color: #6c757d;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            border-color: #4a6cf7;
+            color: #4a6cf7;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination button.active {
+            background: #4a6cf7;
+            border-color: #4a6cf7;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .report-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .report-card:nth-child(2) { animation-delay: 0.1s; }
+        .report-card:nth-child(3) { animation-delay: 0.2s; }
+        .report-card:nth-child(4) { animation-delay: 0.3s; }
+        .report-card:nth-child(5) { animation-delay: 0.4s; }
+        .report-card:nth-child(6) { animation-delay: 0.5s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-actions {
+                justify-content: stretch;
+            }
+
+            .filter-actions button {
+                flex: 1;
+            }
+
+            .reports-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .report-metrics {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .report-actions {
+                flex-direction: column;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#" class="active">Research</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-container">
+            <h1>Professional Research Reports</h1>
+            <p>In-depth analysis, comprehensive market research, and expert insights to power your investment decisions with professional-grade research and data-driven recommendations.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filters-header">
+                <h2 class="filters-title">Filter Research Reports</h2>
+                <a href="#" class="clear-filters" onclick="clearAllFilters()">Clear All Filters</a>
+            </div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="report-type">Report Type</label>
+                    <select id="report-type">
+                        <option value="">All Types</option>
+                        <option value="company">Company Analysis</option>
+                        <option value="industry">Industry Research</option>
+                        <option value="market">Market Outlook</option>
+                        <option value="technical">Technical Analysis</option>
+                        <option value="earnings">Earnings Reports</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sector">Sector</label>
+                    <select id="sector">
+                        <option value="">All Sectors</option>
+                        <option value="technology">Technology</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Financial</option>
+                        <option value="energy">Energy</option>
+                        <option value="consumer">Consumer Goods</option>
+                        <option value="industrial">Industrial</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="analyst">Analyst</label>
+                    <select id="analyst">
+                        <option value="">All Analysts</option>
+                        <option value="sarah-chen">Sarah Chen</option>
+                        <option value="michael-rodriguez">Michael Rodriguez</option>
+                        <option value="jennifer-kim">Jennifer Kim</option>
+                        <option value="david-thompson">David Thompson</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="rating">Investment Rating</label>
+                    <select id="rating">
+                        <option value="">All Ratings</option>
+                        <option value="strong-buy">Strong Buy</option>
+                        <option value="buy">Buy</option>
+                        <option value="hold">Hold</option>
+                        <option value="sell">Sell</option>
+                        <option value="strong-sell">Strong Sell</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="date-range">Date Range</label>
+                    <select id="date-range">
+                        <option value="">All Time</option>
+                        <option value="7days">Last 7 Days</option>
+                        <option value="30days">Last 30 Days</option>
+                        <option value="90days">Last 90 Days</option>
+                        <option value="1year">Last Year</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="search">Search Keywords</label>
+                    <input type="text" id="search" placeholder="Company name, ticker, or keywords">
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button class="btn-reset" onclick="resetFilters()">Reset Filters</button>
+                <button class="btn-filter" onclick="applyFilters()">Apply Filters</button>
+            </div>
+        </div>
+
+        <!-- Reports Section -->
+        <div class="reports-header">
+            <h2 class="reports-title">Latest Research Reports (247 results)</h2>
+            <div class="sort-controls">
+                <span class="sort-label">Sort by:</span>
+                <select onchange="sortReports(this.value)">
+                    <option value="date">Latest First</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="company">Company Name</option>
+                    <option value="analyst">Analyst Name</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="reports-grid">
+            <!-- Report Card 1 -->
+            <div class="report-card">
+                <div class="premium-badge">Premium</div>
+                <div class="report-header">
+                    <span class="report-type">Company Analysis</span>
+                    <span class="report-date">June 10, 2025</span>
+                </div>
+                <div class="report-content">
+                    <h3 class="report-title">NVIDIA: AI Leadership Driving Unprecedented Growth</h3>
+                    <p class="report-company">NVIDIA Corporation (NVDA)</p>
+                    <p class="report-summary">Comprehensive analysis of NVIDIA's dominant position in AI chip market, data center growth trajectory, and long-term competitive advantages in artificial intelligence infrastructure.</p>
+                    <div class="report-metrics">
+                        <div class="metric">
+                            <div class="metric-value">Strong Buy</div>
+                            <div class="metric-label">Rating</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$165</div>
+                            <div class="metric-label">Price Target</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">+18%</div>
+                            <div class="metric-label">Upside</div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="#" class="btn-primary">Read Full Report</a>
+                        <a href="#" class="btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Card 2 -->
+            <div class="report-card">
+                <div class="report-header">
+                    <span class="report-type">Industry Research</span>
+                    <span class="report-date">June 9, 2025</span>
+                </div>
+                <div class="report-content">
+                    <h3 class="report-title">Electric Vehicle Market: Battery Technology Revolution</h3>
+                    <p class="report-company">Automotive & Clean Energy Sector</p>
+                    <p class="report-summary">Deep dive into EV market dynamics, solid-state battery breakthroughs, and investment opportunities across the electric vehicle supply chain ecosystem.</p>
+                    <div class="report-metrics">
+                        <div class="metric">
+                            <div class="metric-value">Bullish</div>
+                            <div class="metric-label">Outlook</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">35%</div>
+                            <div class="metric-label">CAGR</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">High</div>
+                            <div class="metric-label">Opportunity</div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="#" class="btn-primary">Read Full Report</a>
+                        <a href="#" class="btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Card 3 -->
+            <div class="report-card">
+                <div class="premium-badge">Premium</div>
+                <div class="report-header">
+                    <span class="report-type">Market Outlook</span>
+                    <span class="report-date">June 8, 2025</span>
+                </div>
+                <div class="report-content">
+                    <h3 class="report-title">Q3 2025 Market Outlook: Fed Policy & Tech Earnings</h3>
+                    <p class="report-company">S&P 500 & Nasdaq Analysis</p>
+                    <p class="report-summary">Comprehensive market analysis covering Federal Reserve policy implications, Q2 earnings review, and strategic positioning for the second half of 2025.</p>
+                    <div class="report-metrics">
+                        <div class="metric">
+                            <div class="metric-value">Bullish</div>
+                            <div class="metric-label">Sentiment</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">5,750</div>
+                            <div class="metric-label">S&P Target</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Tech</div>
+                            <div class="metric-label">Top Sector</div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="#" class="btn-primary">Read Full Report</a>
+                        <a href="#" class="btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Card 4 -->
+            <div class="report-card">
+                <div class="report-header">
+                    <span class="report-type">Company Analysis</span>
+                    <span class="report-date">June 7, 2025</span>
+                </div>
+                <div class="report-content">
+                    <h3 class="report-title">Microsoft: Cloud Dominance & AI Integration</h3>
+                    <p class="report-company">Microsoft Corporation (MSFT)</p>
+                    <p class="report-summary">Analysis of Microsoft's Azure growth, AI copilot adoption across enterprise software, and competitive positioning in the cloud infrastructure market.</p>
+                    <div class="report-metrics">
+                        <div class="metric">
+                            <div class="metric-value">Buy</div>
+                            <div class="metric-label">Rating</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$485</div>
+                            <div class="metric-label">Price Target</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">+6%</div>
+                            <div class="metric-label">Upside</div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="#" class="btn-primary">Read Full Report</a>
+                        <a href="#" class="btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Card 5 -->
+            <div class="report-card">
+                <div class="report-header">
+                    <span class="report-type">Technical Analysis</span>
+                    <span class="report-date">June 6, 2025</span>
+                </div>
+                <div class="report-content">
+                    <h3 class="report-title">S&P 500 Technical Outlook: Key Support & Resistance</h3>
+                    <p class="report-company">S&P 500 Index (SPX)</p>
+                    <p class="report-summary">Detailed technical analysis using multiple timeframes, momentum indicators, and volume analysis to identify critical trading levels and market direction.</p>
+                    <div class="report-metrics">
+                        <div class="metric">
+                            <div class="metric-value">Bullish</div>
+                            <div class="metric-label">Trend</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">5,650</div>
+                            <div class="metric-label">Support</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">5,800</div>
+                            <div class="metric-label">Resistance</div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="#" class="btn-primary">Read Full Report</a>
+                        <a href="#" class="btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Card 6 -->
+            <div class="report-card">
+                <div class="premium-badge">Premium</div>
+                <div class="report-header">
+                    <span class="report-type">Company Analysis</span>
+                    <span class="report-date">June 5, 2025</span>
+                </div>
+                <div class="report-content">
+                    <h3 class="report-title">Tesla: Autonomous Driving & Energy Storage Growth</h3>
+                    <p class="report-company">Tesla Inc (TSLA)</p>
+                    <p class="report-summary">Comprehensive analysis of Tesla's FSD progress, energy storage business expansion, and competitive positioning in autonomous vehicle technology.</p>
+                    <div class="report-metrics">
+                        <div class="metric">
+                            <div class="metric-value">Hold</div>
+                            <div class="metric-label">Rating</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$380</div>
+                            <div class="metric-label">Price Target</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">+6%</div>
+                            <div class="metric-label">Upside</div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="#" class="btn-primary">Read Full Report</a>
+                        <a href="#" class="btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Card 7 -->
+            <div class="report-card">
+                <div class="report-header">
+                    <span class="report-type">Industry Research</span>
+                    <span class="report-date">June 4, 2025</span>
+                </div>
+                <div class="report-content">
+                    <h3 class="report-title">Cybersecurity Sector: Zero Trust Architecture Adoption</h3>
+                    <p class="report-company">Cybersecurity Industry</p>
+                    <p class="report-summary">Analysis of cybersecurity market trends, zero trust security model adoption, and investment opportunities in enterprise security solutions.</p>
+                    <div class="report-metrics">
+                        <div class="metric">
+                            <div class="metric-value">Positive</div>
+                            <div class="metric-label">Outlook</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">12%</div>
+                            <div class="metric-label">Growth Rate</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Medium</div>
+                            <div class="metric-label">Risk Level</div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="#" class="btn-primary">Read Full Report</a>
+                        <a href="#" class="btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Card 8 -->
+            <div class="report-card">
+                <div class="report-header">
+                    <span class="report-type">Earnings Report</span>
+                    <span class="report-date">June 3, 2025</span>
+                </div>
+                <div class="report-content">
+                    <h3 class="report-title">Apple Q2 2025 Earnings: Services Growth Continues</h3>
+                    <p class="report-company">Apple Inc (AAPL)</p>
+                    <p class="report-summary">Detailed analysis of Apple's Q2 earnings results, services revenue growth, iPhone sales trends, and Vision Pro adoption metrics.</p>
+                    <div class="report-metrics">
+                        <div class="metric">
+                            <div class="metric-value">Beat</div>
+                            <div class="metric-label">EPS Result</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$1.64</div>
+                            <div class="metric-label">EPS</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">+2.1%</div>
+                            <div class="metric-label">Revenue Growth</div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="#" class="btn-primary">Read Full Report</a>
+                        <a href="#" class="btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button onclick="changePage('prev')" id="prev-btn">← Previous</button>
+            <button class="active" onclick="changePage(1)">1</button>
+            <button onclick="changePage(2)">2</button>
+            <button onclick="changePage(3)">3</button>
+            <button onclick="changePage(4)">4</button>
+            <button onclick="changePage(5)">5</button>
+            <button onclick="changePage('next')" id="next-btn">Next →</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html" style="color: #4a6cf7;">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 5;
+
+        // Filter functionality
+        function applyFilters() {
+            const reportType = document.getElementById('report-type').value;
+            const sector = document.getElementById('sector').value;
+            const analyst = document.getElementById('analyst').value;
+            const rating = document.getElementById('rating').value;
+            const dateRange = document.getElementById('date-range').value;
+            const search = document.getElementById('search').value;
+            
+            console.log('Applying filters:', { reportType, sector, analyst, rating, dateRange, search });
+            
+            // Simulate loading
+            const grid = document.querySelector('.reports-grid');
+            grid.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                grid.style.opacity = '1';
+                // Update results count
+                const randomCount = Math.floor(Math.random() * 200) + 50;
+                document.querySelector('.reports-title').textContent = `Latest Research Reports (${randomCount} results)`;
+            }, 1000);
+        }
+
+        function resetFilters() {
+            document.getElementById('report-type').value = '';
+            document.getElementById('sector').value = '';
+            document.getElementById('analyst').value = '';
+            document.getElementById('rating').value = '';
+            document.getElementById('date-range').value = '';
+            document.getElementById('search').value = '';
+            
+            document.querySelector('.reports-title').textContent = 'Latest Research Reports (247 results)';
+        }
+
+        function clearAllFilters() {
+            resetFilters();
+        }
+
+        function sortReports(sortBy) {
+            console.log('Sorting by:', sortBy);
+            const grid = document.querySelector('.reports-grid');
+            grid.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                grid.style.opacity = '1';
+            }, 500);
+        }
+
+        // Pagination functionality
+        function changePage(page) {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const buttons = document.querySelectorAll('.pagination button');
+            
+            if (page === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (page === 'next' && currentPage < totalPages) {
+                currentPage++;
+            } else if (typeof page === 'number' && page >= 1 && page <= totalPages) {
+                currentPage = page;
+            }
+            
+            // Update button states
+            buttons.forEach(btn => btn.classList.remove('active'));
+            buttons[currentPage].classList.add('active');
+            
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            
+            // Simulate loading new content
+            const grid = document.querySelector('.reports-grid');
+            grid.style.opacity = '0.7';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            setTimeout(() => {
+                grid.style.opacity = '1';
+            }, 500);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial pagination state
+            changePage(1);
+            
+            // Add hover effects to report cards
+            document.querySelectorAll('.report-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add search functionality on Enter key
+            document.getElementById('search').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    applyFilters();
+                }
+            });
+
+            // Auto-apply filters when dropdowns change
+            const filterSelects = document.querySelectorAll('.filter-group select');
+            filterSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    // Optional: auto-apply filters on change
+                    // applyFilters();
+                });
+            });
+
+            // Animate cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.report-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

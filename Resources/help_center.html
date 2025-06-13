@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - GuruFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover, .nav-item a.active {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .page-hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .page-hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Search Section */
+        .search-section {
+            margin-top: -30px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 40px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+        }
+
+        .popular-searches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .popular-tag {
+            background: #f8f9fa;
+            color: #495057;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .popular-tag:hover {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .action-card.support {
+            border-top-color: #4CAF50;
+        }
+
+        .action-card.contact {
+            border-top-color: #4a6cf7;
+        }
+
+        .action-card.community {
+            border-top-color: #ff9800;
+        }
+
+        .action-card.training {
+            border-top-color: #9c27b0;
+        }
+
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .action-card.support .action-icon {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .action-card.contact .action-icon {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+        }
+
+        .action-card.community .action-icon {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+
+        .action-card.training .action-icon {
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+        }
+
+        .action-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .action-card p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+        }
+
+        /* Help Categories */
+        .help-categories {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6c757d;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .category-header {
+            padding: 25px 25px 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .category-description {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .category-content {
+            padding: 0;
+        }
+
+        .help-topic {
+            padding: 15px 25px;
+            border-bottom: 1px solid #f8f9fa;
+            transition: all 0.3s;
+        }
+
+        .help-topic:last-child {
+            border-bottom: none;
+        }
+
+        .help-topic:hover {
+            background: #f8f9fa;
+        }
+
+        .help-topic a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .help-topic a:hover {
+            color: #4a6cf7;
+        }
+
+        .topic-arrow {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 20px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #4a6cf7;
+        }
+
+        .faq-toggle {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a6cf7;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            color: #6c757d;
+            padding: 15px 0;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Contact Support */
+        .contact-support {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-support h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .contact-support p {
+            color: #6c757d;
+            margin-bottom: 25px;
+        }
+
+        .contact-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-option {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+
+        .contact-option:hover {
+            border-color: #4a6cf7;
+            color: #4a6cf7;
+            transform: translateY(-2px);
+        }
+
+        .contact-option-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .contact-option-text {
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .action-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .action-card:nth-child(2) { animation-delay: 0.1s; }
+        .action-card:nth-child(3) { animation-delay: 0.2s; }
+        .action-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .category-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .category-card:nth-child(2) { animation-delay: 0.1s; }
+        .category-card:nth-child(3) { animation-delay: 0.2s; }
+        .category-card:nth-child(4) { animation-delay: 0.3s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .search-container {
+                padding: 30px 20px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-options {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Ideas</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-container">
+            <h1>Help Center</h1>
+            <p>Find answers to your questions, learn how to use our platform effectively, and get the support you need to make informed investment decisions.</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for help articles, tutorials, or features..." id="helpSearch">
+                <button class="search-btn" onclick="performSearch()">Search</button>
+            </div>
+            <div class="popular-searches">
+                <span style="color: #6c757d; font-size: 14px; margin-right: 10px;">Popular searches:</span>
+                <a href="#" class="popular-tag">Getting Started</a>
+                <a href="#" class="popular-tag">Stock Screener</a>
+                <a href="#" class="popular-tag">Portfolio Setup</a>
+                <a href="#" class="popular-tag">API Access</a>
+                <a href="#" class="popular-tag">Billing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="action-card support">
+                <div class="action-icon">💬</div>
+                <h3>Live Chat Support</h3>
+                <p>Get instant help from our support team. Available 24/7 for premium users, business hours for free users.</p>
+                <a href="#" class="action-btn">Start Chat</a>
+            </div>
+
+            <div class="action-card contact">
+                <div class="action-icon">📧</div>
+                <h3>Contact Support</h3>
+                <p>Send us a detailed message about your issue and we'll get back to you within 24 hours.</p>
+                <a href="#" class="action-btn">Send Message</a>
+            </div>
+
+            <div class="action-card community">
+                <div class="action-icon">👥</div>
+                <h3>Community Forum</h3>
+                <p>Join discussions with other investors, share insights, and learn from the community.</p>
+                <a href="#" class="action-btn">Visit Forum</a>
+            </div>
+
+            <div class="action-card training">
+                <div class="action-icon">🎓</div>
+                <h3>Video Tutorials</h3>
+                <p>Watch step-by-step video guides to master all features of the GuruFocus platform.</p>
+                <a href="#" class="action-btn">Watch Now</a>
+            </div>
+        </div>
+
+        <!-- Help Categories -->
+        <section class="help-categories">
+            <h2 class="section-title">Help Categories</h2>
+            <p class="section-subtitle">Browse our comprehensive help documentation organized by topic</p>
+            
+            <div class="categories-grid">
+                <!-- Getting Started -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🚀</div>
+                        <h3 class="category-title">Getting Started</h3>
+                        <p class="category-description">New to GuruFocus? Start here for the basics</p>
+                    </div>
+                    <div class="category-content">
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Creating Your Account</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Platform Overview & Navigation</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Setting Up Your First Watchlist</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Understanding Premium Features</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Free Trial Guide</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stock Screener -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🔍</div>
+                        <h3 class="category-title">Stock Screener</h3>
+                        <p class="category-description">Master our powerful screening tools</p>
+                    </div>
+                    <div class="category-content">
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Basic Screening Tutorial</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Advanced Filter Combinations</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Custom Screening Templates</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Fundamental vs Technical Filters</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Saving & Sharing Screen Results</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Analysis -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">📊</div>
+                        <h3 class="category-title">Portfolio Analysis</h3>
+                        <p class="category-description">Analyze and optimize your investments</p>
+                    </div>
+                    <div class="category-content">
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Importing Your Portfolio</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Risk Analysis & Metrics</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Performance Attribution</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Diversification Analysis</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Portfolio Comparison Tools</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backtesting -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">⚡</div>
+                        <h3 class="category-title">Backtesting</h3>
+                        <p class="category-description">Test your investment strategies</p>
+                    </div>
+                    <div class="category-content">
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Creating Your First Backtest</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Strategy Parameter Settings</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Understanding Backtest Results</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Risk-Adjusted Performance Metrics</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Strategy Optimization Tips</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account & Billing -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">💳</div>
+                        <h3 class="category-title">Account & Billing</h3>
+                        <p class="category-description">Manage your subscription and account</p>
+                    </div>
+                    <div class="category-content">
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Subscription Plans & Pricing</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Upgrading Your Account</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Payment Methods & Billing</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Account Settings & Privacy</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Cancellation & Refunds</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API & Integrations -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🔗</div>
+                        <h3 class="category-title">API & Integrations</h3>
+                        <p class="category-description">Connect with third-party tools and data</p>
+                    </div>
+                    <div class="category-content">
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>API Documentation & Setup</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Data Export Options</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Broker Integrations</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Excel & Google Sheets Add-ins</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                        <div class="help-topic">
+                            <a href="#">
+                                <span>Webhook Notifications</span>
+                                <span class="topic-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Quick answers to the most common questions</p>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How do I start my 7-day free trial?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Simply click the "7-Day Free Trial" button in the top navigation or on any pricing page. You'll need to create an account with your email address. No credit card is required for the trial, and you'll have full access to all premium features for 7 days.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What's included in the free trial?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    The free trial includes access to all premium features: advanced stock screener with 500+ filters, portfolio analysis tools, backtesting engine, guru tracking, real-time data, custom alerts, and API access. You can also export data and use all professional tools without any limitations.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How accurate is your financial data?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    We source our data from multiple tier-1 financial data providers including Reuters, Bloomberg, and S&P Global. Our data is updated in real-time during market hours and undergoes rigorous quality checks. We maintain 99.9% data accuracy and provide timestamps for all data points.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can I import my existing portfolio?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! You can import your portfolio in several ways: upload a CSV file with your holdings, connect directly to supported brokers (TD Ameritrade, E*TRADE, Schwab), or manually enter your positions. We support stocks, ETFs, mutual funds, and options across multiple exchanges.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How does the stock screener work?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Our stock screener allows you to filter stocks based on 500+ criteria including fundamental metrics (P/E, revenue growth, debt levels), technical indicators (RSI, moving averages, volume), and custom combinations. You can save screens, set up alerts, and even backtest your screening strategies to see historical performance.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What payment methods do you accept?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for annual subscriptions. All payments are processed securely through Stripe. You can update your payment method anytime in your account settings.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is there an API available?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, we offer a comprehensive RESTful API for premium users. You can access real-time and historical stock data, screening results, portfolio analytics, and more. The API includes detailed documentation, code examples in multiple languages, and generous rate limits. Perfect for algorithmic trading and custom applications.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can I cancel my subscription anytime?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! You can cancel your subscription at any time from your account settings. There are no cancellation fees, and you'll continue to have access to premium features until the end of your current billing period. We also offer a 30-day money-back guarantee for new subscribers.
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Support -->
+        <section class="contact-support">
+            <h3>Still Need Help?</h3>
+            <p>Our support team is here to help you succeed. Choose the option that works best for you:</p>
+            
+            <div class="contact-options">
+                <a href="#" class="contact-option">
+                    <span class="contact-option-icon">💬</span>
+                    <span class="contact-option-text">Live Chat</span>
+                </a>
+                <a href="#" class="contact-option">
+                    <span class="contact-option-icon">📧</span>
+                    <span class="contact-option-text">Email Support</span>
+                </a>
+                <a href="#" class="contact-option">
+                    <span class="contact-option-icon">📞</span>
+                    <span class="contact-option-text">Phone Support</span>
+                </a>
+                <a href="#" class="contact-option">
+                    <span class="contact-option-icon">📅</span>
+                    <span class="contact-option-text">Book Demo</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml" style="color: #4a6cf7;">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('helpSearch').value;
+            if (searchTerm.trim()) {
+                // Simulate search functionality
+                console.log('Searching for:', searchTerm);
+                
+                // Show loading state
+                const searchBtn = document.querySelector('.search-btn');
+                const originalText = searchBtn.textContent;
+                searchBtn.textContent = 'Searching...';
+                searchBtn.disabled = true;
+                
+                // Simulate search delay
+                setTimeout(() => {
+                    searchBtn.textContent = originalText;
+                    searchBtn.disabled = false;
+                    alert(`Showing results for: "${searchTerm}"`);
+                }, 1000);
+            }
+        }
+
+        // FAQ toggle functionality
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').classList.remove('active');
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                faqItem.classList.add('active');
+                faqAnswer.classList.add('active');
+            }
+        }
+
+        // Popular search tag functionality
+        document.querySelectorAll('.popular-tag').forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.preventDefault();
+                const searchInput = document.getElementById('helpSearch');
+                searchInput.value = this.textContent;
+                performSearch();
+            });
+        });
+
+        // Search on Enter key
+        document.getElementById('helpSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to action cards
+            document.querySelectorAll('.action-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add hover effects to category cards
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add click tracking for help topics
+            document.querySelectorAll('.help-topic a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const topicName = this.querySelector('span').textContent;
+                    console.log('Help topic clicked:', topicName);
+                    
+                    // Simulate navigation
+                    this.style.opacity = '0.7';
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                        alert(`Opening help article: "${topicName}"`);
+                    }, 200);
+                });
+            });
+
+            // Add contact option click tracking
+            document.querySelectorAll('.contact-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const optionType = this.querySelector('.contact-option-text').textContent;
+                    console.log('Contact option clicked:', optionType);
+                    
+                    // Simulate different actions based on option
+                    if (optionType === 'Live Chat') {
+                        alert('Opening live chat window...');
+                    } else if (optionType === 'Email Support') {
+                        alert('Opening email composer...');
+                    } else if (optionType === 'Phone Support') {
+                        alert('Phone support: +1 (555) 123-4567');
+                    } else if (optionType === 'Book Demo') {
+                        alert('Opening calendar booking...');
+                    }
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add loading animation for action buttons
+            document.querySelectorAll('.action-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const originalText = this.textContent;
+                    this.textContent = 'Loading...';
+                    this.style.opacity = '0.7';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.opacity = '1';
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

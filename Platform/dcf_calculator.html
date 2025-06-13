@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCF Calculator - GuruFocus Investment Research Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .page-header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* DCF Calculator Container */
+        .dcf-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .dcf-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .calculator-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .calculator-header {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .calculator-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .calculator-header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .calculator-content {
+            padding: 30px;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+        }
+
+        .input-unit {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.4);
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .results-header {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .results-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .results-content {
+            padding: 30px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .fair-value {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .fair-value h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .fair-value .value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        /* Cash Flow Table */
+        .cashflow-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .cashflow-header {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .cashflow-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cashflow-table th,
+        .cashflow-table td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .cashflow-table th:first-child,
+        .cashflow-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .cashflow-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .cashflow-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Sensitivity Analysis */
+        .sensitivity-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .sensitivity-header {
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .sensitivity-grid {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1px;
+            background: #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .sensitivity-cell {
+            background: white;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .sensitivity-header-cell {
+            background: #f8f9fa;
+            color: #666;
+        }
+
+        .sensitivity-value {
+            color: #333;
+        }
+
+        .sensitivity-positive {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .sensitivity-negative {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-left: 4px solid #4a6cf7;
+        }
+
+        .info-card h4 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .info-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .info-card ul {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        .info-card li {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        /* Footer (Same as main page) */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .dcf-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .sensitivity-grid {
+                grid-template-columns: repeat(3, 1fr);
+                font-size: 10px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calculator-section,
+        .results-panel,
+        .cashflow-section,
+        .sensitivity-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .results-panel {
+            animation-delay: 0.1s;
+        }
+
+        .cashflow-section {
+            animation-delay: 0.2s;
+        }
+
+        .sensitivity-section {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-container">
+            <h1>💰 DCF Valuation Calculator</h1>
+            <p>Professional discounted cash flow calculator with customizable assumptions, sensitivity analysis, and fair value estimation for comprehensive investment analysis.</p>
+        </div>
+    </section>
+
+    <!-- DCF Calculator Content -->
+    <main class="dcf-container">
+        <div class="dcf-grid">
+            <!-- Calculator Input Section -->
+            <div class="calculator-section">
+                <div class="calculator-header">
+                    <h2>DCF Model Inputs</h2>
+                    <p>Enter your assumptions and financial projections to calculate intrinsic value</p>
+                </div>
+                <div class="calculator-content">
+                    <!-- Company Information -->
+                    <div class="input-section">
+                        <h3 class="section-title">Company Information</h3>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label class="input-label">Company Ticker</label>
+                                <input type="text" class="input-field" id="ticker" placeholder="e.g., AAPL" value="AAPL">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Current Stock Price</label>
+                                <input type="number" class="input-field" id="currentPrice" placeholder="199.95" value="199.95">
+                                <div class="input-unit">USD per share</div>
+                            </div>
+                        </div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label class="input-label">Shares Outstanding</label>
+                                <input type="number" class="input-field" id="sharesOutstanding" placeholder="15,441" value="15441">
+                                <div class="input-unit">Millions of shares</div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Market Cap</label>
+                                <input type="number" class="input-field" id="marketCap" placeholder="3,088" value="3088" readonly>
+                                <div class="input-unit">Billions USD (auto-calculated)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Projections -->
+                    <div class="input-section">
+                        <h3 class="section-title">Financial Projections</h3>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label class="input-label">Current Year FCF</label>
+                                <input type="number" class="input-field" id="currentFCF" placeholder="99,584" value="99584">
+                                <div class="input-unit">Millions USD</div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">FCF Growth Rate (5 years)</label>
+                                <input type="number" class="input-field" id="growthRate" placeholder="8.5" value="8.5">
+                                <div class="input-unit">Percentage (%)</div>
+                            </div>
+                        </div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label class="input-label">Terminal Growth Rate</label>
+                                <input type="number" class="input-field" id="terminalGrowth" placeholder="3.0" value="3.0">
+                                <div class="input-unit">Percentage (%)</div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Projection Years</label>
+                                <input type="number" class="input-field" id="projectionYears" placeholder="5" value="5" min="3" max="10">
+                                <div class="input-unit">Years (3-10)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WACC Components -->
+                    <div class="input-section">
+                        <h3 class="section-title">WACC Components</h3>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label class="input-label">Risk-Free Rate</label>
+                                <input type="number" class="input-field" id="riskFreeRate" placeholder="4.5" value="4.5">
+                                <div class="input-unit">Percentage (%)</div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Market Risk Premium</label>
+                                <input type="number" class="input-field" id="marketRiskPremium" placeholder="6.0" value="6.0">
+                                <div class="input-unit">Percentage (%)</div>
+                            </div>
+                        </div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label class="input-label">Beta</label>
+                                <input type="number" class="input-field" id="beta" placeholder="1.25" value="1.25">
+                                <div class="input-unit">Risk measure</div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Tax Rate</label>
+                                <input type="number" class="input-field" id="taxRate" placeholder="21" value="21">
+                                <div class="input-unit">Percentage (%)</div>
+                            </div>
+                        </div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label class="input-label">Debt/Equity Ratio</label>
+                                <input type="number" class="input-field" id="debtEquityRatio" placeholder="0.15" value="0.15">
+                                <div class="input-unit">Ratio</div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Cost of Debt</label>
+                                <input type="number" class="input-field" id="costOfDebt" placeholder="3.5" value="3.5">
+                                <div class="input-unit">Percentage (%)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="calculateDCF()">Calculate Fair Value</button>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="results-panel">
+                <div class="results-header">
+                    <h3>Valuation Results</h3>
+                    <p>Fair value estimation based on your inputs</p>
+                </div>
+                <div class="results-content">
+                    <div class="result-item">
+                        <span class="result-label">WACC</span>
+                        <span class="result-value" id="waccResult">12.0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Enterprise Value</span>
+                        <span class="result-value" id="enterpriseValue">$3,245B</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Equity Value</span>
+                        <span class="result-value" id="equityValue">$3,088B</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Terminal Value</span>
+                        <span class="result-value" id="terminalValue">$2,456B</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">PV of FCF (5Y)</span>
+                        <span class="result-value" id="pvFCF">$632B</span>
+                    </div>
+                    
+                    <div class="fair-value">
+                        <h4>Fair Value Per Share</h4>
+                        <div class="value" id="fairValuePerShare">$199.95</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cash Flow Projections Table -->
+        <div class="cashflow-section">
+            <div class="cashflow-header">
+                <h3>📊 Free Cash Flow Projections</h3>
+                <p>Year-by-year breakdown of projected cash flows and present values</p>
+            </div>
+            <div style="overflow-x: auto; padding: 30px;">
+                <table class="cashflow-table" id="cashflowTable">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>2025</th>
+                            <th>2026</th>
+                            <th>2027</th>
+                            <th>2028</th>
+                            <th>2029</th>
+                            <th>Terminal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Free Cash Flow ($M)</td>
+                            <td>108,098</td>
+                            <td>117,287</td>
+                            <td>127,256</td>
+                            <td>138,073</td>
+                            <td>149,809</td>
+                            <td>154,303</td>
+                        </tr>
+                        <tr>
+                            <td>Discount Factor</td>
+                            <td>0.893</td>
+                            <td>0.797</td>
+                            <td>0.712</td>
+                            <td>0.636</td>
+                            <td>0.568</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Present Value ($M)</td>
+                            <td>96,532</td>
+                            <td>93,500</td>
+                            <td>90,606</td>
+                            <td>87,842</td>
+                            <td>85,203</td>
+                            <td>1,546,250</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sensitivity Analysis -->
+        <div class="sensitivity-section">
+            <div class="sensitivity-header">
+                <h3>🔄 Sensitivity Analysis</h3>
+                <p>Fair value sensitivity to changes in WACC and terminal growth rate</p>
+            </div>
+            <div style="padding: 30px;">
+                <div class="sensitivity-grid" id="sensitivityGrid">
+                    <div class="sensitivity-cell sensitivity-header-cell">WACC / Terminal</div>
+                    <div class="sensitivity-cell sensitivity-header-cell">2.0%</div>
+                    <div class="sensitivity-cell sensitivity-header-cell">2.5%</div>
+                    <div class="sensitivity-cell sensitivity-header-cell">3.0%</div>
+                    <div class="sensitivity-cell sensitivity-header-cell">3.5%</div>
+                    <div class="sensitivity-cell sensitivity-header-cell">4.0%</div>
+                    
+                    <div class="sensitivity-cell sensitivity-header-cell">10.0%</div>
+                    <div class="sensitivity-cell sensitivity-positive">$234</div>
+                    <div class="sensitivity-cell sensitivity-positive">$251</div>
+                    <div class="sensitivity-cell sensitivity-positive">$271</div>
+                    <div class="sensitivity-cell sensitivity-positive">$296</div>
+                    <div class="sensitivity-cell sensitivity-positive">$327</div>
+                    
+                    <div class="sensitivity-cell sensitivity-header-cell">11.0%</div>
+                    <div class="sensitivity-cell sensitivity-positive">$210</div>
+                    <div class="sensitivity-cell sensitivity-positive">$224</div>
+                    <div class="sensitivity-cell sensitivity-positive">$240</div>
+                    <div class="sensitivity-cell sensitivity-positive">$259</div>
+                    <div class="sensitivity-cell sensitivity-positive">$282</div>
+                    
+                    <div class="sensitivity-cell sensitivity-header-cell">12.0%</div>
+                    <div class="sensitivity-cell sensitivity-value">$190</div>
+                    <div class="sensitivity-cell sensitivity-value">$200</div>
+                    <div class="sensitivity-cell sensitivity-value">$214</div>
+                    <div class="sensitivity-cell sensitivity-value">$229</div>
+                    <div class="sensitivity-cell sensitivity-positive">$247</div>
+                    
+                    <div class="sensitivity-cell sensitivity-header-cell">13.0%</div>
+                    <div class="sensitivity-cell sensitivity-negative">$173</div>
+                    <div class="sensitivity-cell sensitivity-negative">$182</div>
+                    <div class="sensitivity-cell sensitivity-value">$192</div>
+                    <div class="sensitivity-cell sensitivity-value">$204</div>
+                    <div class="sensitivity-cell sensitivity-value">$218</div>
+                    
+                    <div class="sensitivity-cell sensitivity-header-cell">14.0%</div>
+                    <div class="sensitivity-cell sensitivity-negative">$158</div>
+                    <div class="sensitivity-cell sensitivity-negative">$166</div>
+                    <div class="sensitivity-cell sensitivity-negative">$175</div>
+                    <div class="sensitivity-cell sensitivity-negative">$185</div>
+                    <div class="sensitivity-cell sensitivity-value">$196</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Cards -->
+        <div class="info-cards">
+            <div class="info-card">
+                <h4>📈 DCF Model Overview</h4>
+                <p>The Discounted Cash Flow (DCF) model estimates a company's intrinsic value by projecting future free cash flows and discounting them to present value using the Weighted Average Cost of Capital (WACC).</p>
+                <ul>
+                    <li>Projects free cash flows for 5-10 years</li>
+                    <li>Calculates terminal value using perpetual growth</li>
+                    <li>Discounts all cash flows to present value</li>
+                    <li>Provides fair value per share estimate</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h4>⚖️ Key Assumptions</h4>
+                <p>DCF models are highly sensitive to key assumptions. Small changes in growth rates or discount rates can significantly impact valuation results.</p>
+                <ul>
+                    <li>Free cash flow growth rate (typically 5-15%)</li>
+                    <li>Terminal growth rate (usually 2-4%)</li>
+                    <li>WACC discount rate (varies by company risk)</li>
+                    <li>Projection period (commonly 5-10 years)</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h4>🎯 Best Practices</h4>
+                <p>To improve DCF accuracy, use conservative assumptions, conduct sensitivity analysis, and compare results with other valuation methods.</p>
+                <ul>
+                    <li>Use multiple scenarios (bull, base, bear)</li>
+                    <li>Cross-check with comparable company analysis</li>
+                    <li>Consider industry-specific factors</li>
+                    <li>Update assumptions regularly</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html" style="color: #4a6cf7;">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DCF Calculator Logic
+        function calculateDCF() {
+            // Get input values
+            const ticker = document.getElementById('ticker').value || 'AAPL';
+            const currentPrice = parseFloat(document.getElementById('currentPrice').value) || 199.95;
+            const sharesOutstanding = parseFloat(document.getElementById('sharesOutstanding').value) || 15441;
+            const currentFCF = parseFloat(document.getElementById('currentFCF').value) || 99584;
+            const growthRate = parseFloat(document.getElementById('growthRate').value) || 8.5;
+            const terminalGrowth = parseFloat(document.getElementById('terminalGrowth').value) || 3.0;
+            const projectionYears = parseInt(document.getElementById('projectionYears').value) || 5;
+            
+            // WACC components
+            const riskFreeRate = parseFloat(document.getElementById('riskFreeRate').value) || 4.5;
+            const marketRiskPremium = parseFloat(document.getElementById('marketRiskPremium').value) || 6.0;
+            const beta = parseFloat(document.getElementById('beta').value) || 1.25;
+            const taxRate = parseFloat(document.getElementById('taxRate').value) || 21;
+            const debtEquityRatio = parseFloat(document.getElementById('debtEquityRatio').value) || 0.15;
+            const costOfDebt = parseFloat(document.getElementById('costOfDebt').value) || 3.5;
+
+            // Calculate WACC
+            const costOfEquity = riskFreeRate + (beta * marketRiskPremium);
+            const weightOfEquity = 1 / (1 + debtEquityRatio);
+            const weightOfDebt = debtEquityRatio / (1 + debtEquityRatio);
+            const afterTaxCostOfDebt = costOfDebt * (1 - taxRate / 100);
+            const wacc = (weightOfEquity * costOfEquity) + (weightOfDebt * afterTaxCostOfDebt);
+
+            // Project future cash flows
+            let projectedFCFs = [];
+            let presentValues = [];
+            let totalPVFCF = 0;
+
+            for (let year = 1; year <= projectionYears; year++) {
+                const fcf = currentFCF * Math.pow(1 + growthRate / 100, year);
+                const discountFactor = Math.pow(1 + wacc / 100, year);
+                const pv = fcf / discountFactor;
+                
+                projectedFCFs.push(fcf);
+                presentValues.push(pv);
+                totalPVFCF += pv;
+            }
+
+            // Calculate terminal value
+            const terminalFCF = projectedFCFs[projectionYears - 1] * (1 + terminalGrowth / 100);
+            const terminalValue = terminalFCF / ((wacc / 100) - (terminalGrowth / 100));
+            const pvTerminalValue = terminalValue / Math.pow(1 + wacc / 100, projectionYears);
+
+            // Calculate enterprise and equity value
+            const enterpriseValue = totalPVFCF + pvTerminalValue;
+            const equityValue = enterpriseValue; // Assuming no net debt for simplicity
+            const fairValuePerShare = equityValue / sharesOutstanding;
+
+            // Update market cap calculation
+            document.getElementById('marketCap').value = ((currentPrice * sharesOutstanding) / 1000).toFixed(0);
+
+            // Update results
+            document.getElementById('waccResult').textContent = wacc.toFixed(1) + '%';
+            document.getElementById('enterpriseValue').textContent = ' + (enterpriseValue / 1000).toFixed(0) + 'B';
+            document.getElementById('equityValue').textContent = ' + (equityValue / 1000).toFixed(0) + 'B';
+            document.getElementById('terminalValue').textContent = ' + (pvTerminalValue / 1000).toFixed(0) + 'B';
+            document.getElementById('pvFCF').textContent = ' + (totalPVFCF / 1000).toFixed(0) + 'B';
+            document.getElementById('fairValuePerShare').textContent = ' + fairValuePerShare.toFixed(2);
+
+            // Update cash flow table
+            updateCashFlowTable(projectedFCFs, presentValues, wacc, terminalFCF);
+            
+            // Update sensitivity analysis
+            updateSensitivityAnalysis(currentFCF, growthRate, projectionYears, sharesOutstanding);
+
+            // Add animation to results
+            document.querySelector('.results-panel').style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                document.querySelector('.results-panel').style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        function updateCashFlowTable(projectedFCFs, presentValues, wacc, terminalFCF) {
+            const table = document.getElementById('cashflowTable');
+            const tbody = table.querySelector('tbody');
+            
+            // Clear existing rows
+            tbody.innerHTML = '';
+
+            // FCF Row
+            let fcfRow = '<tr><td>Free Cash Flow ($M)</td>';
+            for (let i = 0; i < projectedFCFs.length; i++) {
+                fcfRow += `<td>${Math.round(projectedFCFs[i]).toLocaleString()}</td>`;
+            }
+            fcfRow += `<td>${Math.round(terminalFCF).toLocaleString()}</td></tr>`;
+
+            // Discount Factor Row
+            let discountRow = '<tr><td>Discount Factor</td>';
+            for (let i = 1; i <= projectedFCFs.length; i++) {
+                const factor = 1 / Math.pow(1 + wacc / 100, i);
+                discountRow += `<td>${factor.toFixed(3)}</td>`;
+            }
+            discountRow += '<td>-</td></tr>';
+
+            // Present Value Row
+            let pvRow = '<tr><td>Present Value ($M)</td>';
+            for (let i = 0; i < presentValues.length; i++) {
+                pvRow += `<td>${Math.round(presentValues[i]).toLocaleString()}</td>`;
+            }
+            const terminalPV = terminalFCF / Math.pow(1 + wacc / 100, projectedFCFs.length) / ((wacc / 100) - 0.03);
+            pvRow += `<td>${Math.round(terminalPV).toLocaleString()}</td></tr>`;
+
+            tbody.innerHTML = fcfRow + discountRow + pvRow;
+        }
+
+        function updateSensitivityAnalysis(currentFCF, growthRate, projectionYears, sharesOutstanding) {
+            const waccRates = [10.0, 11.0, 12.0, 13.0, 14.0];
+            const terminalRates = [2.0, 2.5, 3.0, 3.5, 4.0];
+            
+            // This is a simplified sensitivity calculation for display purposes
+            // In practice, you'd recalculate the full DCF for each scenario
+            const grid = document.getElementById('sensitivityGrid');
+            let cellIndex = 6; // Skip header cells
+            
+            waccRates.forEach(waccRate => {
+                cellIndex++; // Skip WACC label cell
+                terminalRates.forEach(terminalRate => {
+                    // Simplified calculation for demonstration
+                    const approximateFairValue = 150 + (4 - terminalRate) * 20 + (12 - waccRate) * 15;
+                    const cell = grid.children[cellIndex];
+                    if (cell) {
+                        cell.textContent = ' + Math.round(approximateFairValue);
+                        // Update cell styling based on value
+                        if (approximateFairValue > 220) {
+                            cell.className = 'sensitivity-cell sensitivity-positive';
+                        } else if (approximateFairValue < 180) {
+                            cell.className = 'sensitivity-cell sensitivity-negative';
+                        } else {
+                            cell.className = 'sensitivity-cell sensitivity-value';
+                        }
+                    }
+                    cellIndex++;
+                });
+            });
+        }
+
+        // Auto-calculate market cap when price or shares change
+        function updateMarketCap() {
+            const price = parseFloat(document.getElementById('currentPrice').value) || 0;
+            const shares = parseFloat(document.getElementById('sharesOutstanding').value) || 0;
+            const marketCap = (price * shares) / 1000; // Convert to billions
+            document.getElementById('marketCap').value = marketCap.toFixed(0);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-calculate market cap on input change
+            document.getElementById('currentPrice').addEventListener('input', updateMarketCap);
+            document.getElementById('sharesOutstanding').addEventListener('input', updateMarketCap);
+
+            // Initial calculation
+            calculateDCF();
+
+            // Add interactive features
+            document.querySelectorAll('.input-field').forEach(field => {
+                field.addEventListener('focus', function() {
+                    this.style.borderColor = '#4a6cf7';
+                    this.style.boxShadow = '0 0 0 3px rgba(74, 108, 247, 0.1)';
+                });
+
+                field.addEventListener('blur', function() {
+                    this.style.borderColor = '#e9ecef';
+                    this.style.boxShadow = 'none';
+                });
+
+                // Auto-calculate on input change
+                field.addEventListener('input', function() {
+                    // Debounce the calculation
+                    clearTimeout(this.calcTimeout);
+                    this.calcTimeout = setTimeout(calculateDCF, 500);
+                });
+            });
+
+            // Animate cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.info-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Add hover effects to sensitivity grid
+            document.querySelectorAll('.sensitivity-cell:not(.sensitivity-header-cell)').forEach(cell => {
+                cell.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                    this.style.zIndex = '10';
+                    this.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
+                });
+
+                cell.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.zIndex = '1';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

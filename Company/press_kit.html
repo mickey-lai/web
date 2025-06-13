@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Kit - GuruFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Company Overview */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .overview-content {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+        }
+
+        .overview-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .overview-content p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+        }
+
+        .stats-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #4a6cf7;
+        }
+
+        /* Brand Assets */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .brand-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.15);
+        }
+
+        .brand-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .logo-preview {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .logo-dark {
+            background: #1a1a2e;
+        }
+
+        .logo-light {
+            background: white;
+            color: #4a6cf7;
+            border: 2px solid #e9ecef;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.4);
+        }
+
+        /* Press Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.15);
+        }
+
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .resource-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .resource-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Media Coverage */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .media-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .media-logo {
+            width: 80px;
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .media-quote {
+            font-style: italic;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 60px 0;
+            border-radius: 20px;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+        }
+
+        .contact-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .contact-link {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .brand-grid,
+            .resources-grid,
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brand-card,
+        .resource-card,
+        .media-card,
+        .contact-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .brand-card:nth-child(2) { animation-delay: 0.1s; }
+        .brand-card:nth-child(3) { animation-delay: 0.2s; }
+        .brand-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .resource-card:nth-child(2) { animation-delay: 0.1s; }
+        .resource-card:nth-child(3) { animation-delay: 0.2s; }
+        .resource-card:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        📰 Press Kit & Media Resources - Updated June 2025
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Press Kit & Media Resources</h1>
+                <p>Everything you need to cover GuruFocus - from brand assets to company information, executive bios, and the latest news.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Company Overview -->
+        <section class="section">
+            <h2 class="section-title">Company Overview</h2>
+            <p class="section-subtitle">Learn about GuruFocus, our mission, and our impact on the investment research industry.</p>
+            
+            <div class="overview-grid">
+                <div class="overview-content">
+                    <h3>About GuruFocus</h3>
+                    <p>GuruFocus is a leading investment research platform that empowers both professional and individual investors with advanced screening tools, comprehensive market analysis, and data-driven insights. Founded in 2018, we've revolutionized how investors discover opportunities and make informed decisions.</p>
+                    
+                    <p>Our platform combines cutting-edge technology with institutional-grade research capabilities, offering over 500 screening filters, real-time backtesting, portfolio analysis, and expert guru tracking. We serve over 15,000 active users worldwide, from individual retail investors to professional fund managers.</p>
+                    
+                    <p>At GuruFocus, we believe that every investor deserves access to professional-grade tools and insights. Our mission is to democratize investment research by making sophisticated analysis accessible, affordable, and actionable for everyone.</p>
+                    
+                    <h3>Key Differentiators</h3>
+                    <p>What sets GuruFocus apart is our comprehensive approach to investment research. Unlike competitors who focus on single aspects of analysis, we provide an all-in-one platform that covers screening, backtesting, portfolio optimization, and market intelligence in one unified interface.</p>
+                </div>
+                
+                <div class="stats-card">
+                    <h3>Key Statistics</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Active Users</span>
+                        <span class="stat-value">15,000+</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Stocks Tracked</span>
+                        <span class="stat-value">25,847</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Screening Filters</span>
+                        <span class="stat-value">500+</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Founded</span>
+                        <span class="stat-value">2018</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Uptime</span>
+                        <span class="stat-value">99.9%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Markets Covered</span>
+                        <span class="stat-value">15+</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Assets -->
+        <section class="section">
+            <h2 class="section-title">Brand Assets</h2>
+            <p class="section-subtitle">Download our official logos, brand colors, and style guidelines for your coverage.</p>
+            
+            <div class="brand-grid">
+                <div class="brand-card">
+                    <div class="logo-preview">IF</div>
+                    <h3>Primary Logo</h3>
+                    <p>Our primary logo in full color. Use this version whenever possible for maximum brand recognition.</p>
+                    <a href="#" class="download-btn">Download PNG</a>
+                </div>
+                
+                <div class="brand-card">
+                    <div class="logo-preview logo-dark">IF</div>
+                    <h3>Dark Version</h3>
+                    <p>Dark version of our logo for use on light backgrounds and in monochrome applications.</p>
+                    <a href="#" class="download-btn">Download PNG</a>
+                </div>
+                
+                <div class="brand-card">
+                    <div class="logo-preview logo-light">IF</div>
+                    <h3>Light Version</h3>
+                    <p>Light version for use on dark backgrounds. Maintains visibility while preserving brand identity.</p>
+                    <a href="#" class="download-btn">Download PNG</a>
+                </div>
+                
+                <div class="brand-card">
+                    <div class="logo-preview" style="background: linear-gradient(45deg, #4a6cf7, #667eea, #764ba2);">📱</div>
+                    <h3>Brand Guidelines</h3>
+                    <p>Complete brand guidelines including colors, typography, usage rules, and examples.</p>
+                    <a href="#" class="download-btn">Download PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Press Resources -->
+        <section class="section">
+            <h2 class="section-title">Press Resources</h2>
+            <p class="section-subtitle">Access executive bios, press releases, product screenshots, and other media materials.</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">👥</div>
+                    <h3>Executive Bios</h3>
+                    <p>Professional biographies and high-resolution photos of our leadership team and key executives.</p>
+                    <a href="#" class="download-btn">Download Package</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">📄</div>
+                    <h3>Press Releases</h3>
+                    <p>Latest press releases, product announcements, and company milestones in various formats.</p>
+                    <a href="#" class="download-btn">View Archive</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">📸</div>
+                    <h3>Product Screenshots</h3>
+                    <p>High-quality screenshots of our platform, tools, and key features for editorial use.</p>
+                    <a href="#" class="download-btn">Download ZIP</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">📊</div>
+                    <h3>Financial Data</h3>
+                    <p>Company metrics, growth statistics, and performance data for analytical coverage.</p>
+                    <a href="#" class="download-btn">Request Access</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🎥</div>
+                    <h3>Video Assets</h3>
+                    <p>Product demos, executive interviews, and promotional videos available for media use.</p>
+                    <a href="#" class="download-btn">Media Library</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <h3>Fact Sheets</h3>
+                    <p>One-page company overview, product summaries, and quick reference materials.</p>
+                    <a href="#" class="download-btn">Download PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Coverage -->
+        <section class="section">
+            <h2 class="section-title">Media Coverage</h2>
+            <p class="section-subtitle">Recent press coverage and testimonials from industry publications and analysts.</p>
+            
+            <div class="media-grid">
+                <div class="media-card">
+                    <div class="media-logo">TechCrunch</div>
+                    <p class="media-quote">"GuruFocus is democratizing professional-grade investment tools for everyday investors."</p>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-logo">Forbes</div>
+                    <p class="media-quote">"A comprehensive platform that rivals tools used by institutional investors."</p>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-logo">WSJ</div>
+                    <p class="media-quote">"GuruFocus bridges the gap between retail and professional investment research."</p>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-logo">MarketWatch</div>
+                    <p class="media-quote">"500+ screening filters make GuruFocus a standout in the crowded fintech space."</p>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-logo">Barron's</div>
+                    <p class="media-quote">"The backtesting capabilities alone justify the subscription cost."</p>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-logo">Yahoo Finance</div>
+                    <p class="media-quote">"GuruFocus is changing how individual investors approach market research."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="contact-container">
+                <h2 class="section-title">Press Contacts</h2>
+                <p class="section-subtitle">Get in touch with our media relations team for interviews, quotes, or additional information.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h4>Media Inquiries</h4>
+                        <div class="contact-info">Sarah Chen</div>
+                        <div class="contact-info">Director of Communications</div>
+                        <div class="contact-info">
+                            <a href="mailto:press@investfocus.com" class="contact-link">press@investfocus.com</a>
+                        </div>
+                        <div class="contact-info">+1 (555) 123-4567</div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Product & Partnerships</h4>
+                        <div class="contact-info">Michael Rodriguez</div>
+                        <div class="contact-info">VP of Business Development</div>
+                        <div class="contact-info">
+                            <a href="mailto:partnerships@investfocus.com" class="contact-link">partnerships@investfocus.com</a>
+                        </div>
+                        <div class="contact-info">+1 (555) 234-5678</div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Executive Interviews</h4>
+                        <div class="contact-info">Jennifer Park</div>
+                        <div class="contact-info">Executive Assistant</div>
+                        <div class="contact-info">
+                            <a href="mailto:executive@investfocus.com" class="contact-link">executive@investfocus.com</a>
+                        </div>
+                        <div class="contact-info">+1 (555) 345-6789</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html" style="color: #4a6cf7;">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

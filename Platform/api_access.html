@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Access - GuruFocus Investment Research Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Hero Section */
+        .api-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .api-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-container h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-container p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .api-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .api-feature {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .api-feature h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .api-feature p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .api-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* API Plans Grid */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card.featured {
+            border: 2px solid #4a6cf7;
+            transform: scale(1.05);
+        }
+
+        .plan-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #4a6cf7;
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.15);
+        }
+
+        .plan-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 5px;
+        }
+
+        .plan-period {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .plan-description {
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .plan-features li.unavailable {
+            color: #ccc;
+        }
+
+        .plan-features li.unavailable::before {
+            content: '✗';
+            color: #f44336;
+        }
+
+        .plan-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 15px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .plan-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.4);
+        }
+
+        .plan-btn.secondary {
+            background: white;
+            color: #4a6cf7;
+            border: 2px solid #4a6cf7;
+        }
+
+        .plan-btn.secondary:hover {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        /* Documentation Section */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .doc-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .doc-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .doc-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .doc-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .doc-link {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .doc-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Code Example Section */
+        .code-example {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 50px;
+        }
+
+        .code-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .code-tab {
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .code-tab.active {
+            color: #4a6cf7;
+            border-bottom-color: #4a6cf7;
+        }
+
+        .code-content {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            color: #333;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Rate Limits Section */
+        .limits-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 30px;
+        }
+
+        .limits-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .limits-table th,
+        .limits-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .limits-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .limits-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Footer - Exact copy from main page */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-container h1 {
+                font-size: 36px;
+            }
+
+            .api-features {
+                grid-template-columns: 1fr;
+            }
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-card.featured {
+                transform: none;
+            }
+
+            .plan-card.featured:hover {
+                transform: translateY(-8px);
+            }
+
+            .docs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .plan-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .plan-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .plan-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .doc-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .doc-card:nth-child(2) { animation-delay: 0.1s; }
+        .doc-card:nth-child(3) { animation-delay: 0.2s; }
+        .doc-card:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="api-hero">
+        <div class="hero-container">
+            <h1>Powerful API Access</h1>
+            <p>Integrate GuruFocus data and analytics directly into your applications. Access real-time market data, fundamental analysis, and screening capabilities through our robust RESTful API.</p>
+            
+            <div class="api-features">
+                <div class="api-feature">
+                    <h3>🚀 High Performance</h3>
+                    <p>Ultra-fast response times with global CDN distribution and 99.9% uptime guarantee.</p>
+                </div>
+                <div class="api-feature">
+                    <h3>📊 Rich Data</h3>
+                    <p>Access 25,000+ stocks with fundamental, technical, and alternative data across global markets.</p>
+                </div>
+                <div class="api-feature">
+                    <h3>🔒 Enterprise Security</h3>
+                    <p>Bank-grade security with API keys, OAuth 2.0, and encrypted data transmission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="api-content">
+        <!-- API Plans Section -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Choose Your API Plan</h2>
+                <p>Flexible pricing options designed to scale with your needs, from individual developers to enterprise solutions.</p>
+            </div>
+
+            <div class="plans-grid">
+                <!-- Basic Plan -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <div class="plan-name">Developer</div>
+                        <div class="plan-price">$29</div>
+                        <div class="plan-period">per month</div>
+                    </div>
+                    <div class="plan-description">Perfect for individual developers and small projects</div>
+                    <ul class="plan-features">
+                        <li>1,000 API calls/month</li>
+                        <li>Real-time market data</li>
+                        <li>Basic screening endpoints</li>
+                        <li>Historical data (1 year)</li>
+                        <li>Email support</li>
+                        <li class="unavailable">Custom rate limits</li>
+                        <li class="unavailable">White-label options</li>
+                    </ul>
+                    <button class="plan-btn secondary">Start Free Trial</button>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="plan-card featured">
+                    <div class="plan-header">
+                        <div class="plan-name">Professional</div>
+                        <div class="plan-price">$99</div>
+                        <div class="plan-period">per month</div>
+                    </div>
+                    <div class="plan-description">Ideal for growing businesses and financial applications</div>
+                    <ul class="plan-features">
+                        <li>10,000 API calls/month</li>
+                        <li>Real-time market data</li>
+                        <li>Advanced screening endpoints</li>
+                        <li>Historical data (5 years)</li>
+                        <li>Priority email & chat support</li>
+                        <li>Custom rate limits</li>
+                        <li class="unavailable">White-label options</li>
+                    </ul>
+                    <button class="plan-btn">Get Started</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <div class="plan-name">Enterprise</div>
+                        <div class="plan-price">Custom</div>
+                        <div class="plan-period">pricing</div>
+                    </div>
+                    <div class="plan-description">Tailored solutions for large-scale implementations</div>
+                    <ul class="plan-features">
+                        <li>Unlimited API calls</li>
+                        <li>Real-time market data</li>
+                        <li>Full screening capabilities</li>
+                        <li>Historical data (20+ years)</li>
+                        <li>Dedicated account manager</li>
+                        <li>Custom rate limits</li>
+                        <li>White-label options</li>
+                    </ul>
+                    <button class="plan-btn secondary">Contact Sales</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rate Limits Section -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2>API Rate Limits & Usage</h2>
+                <p>Understand your API usage limits and optimize your integration for best performance.</p>
+            </div>
+
+            <div class="limits-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Endpoint Category</th>
+                            <th>Developer</th>
+                            <th>Professional</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Market Data</td>
+                            <td>5 requests/sec</td>
+                            <td>20 requests/sec</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Screening</td>
+                            <td>2 requests/sec</td>
+                            <td>10 requests/sec</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Portfolio Analysis</td>
+                            <td>1 request/sec</td>
+                            <td>5 requests/sec</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Historical Data</td>
+                            <td>1 request/sec</td>
+                            <td>3 requests/sec</td>
+                            <td>Unlimited</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Documentation Section -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2>API Documentation</h2>
+                <p>Comprehensive guides and references to help you integrate quickly and efficiently.</p>
+            </div>
+
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">🚀</div>
+                    <h3>Quick Start Guide</h3>
+                    <p>Get up and running in minutes with our step-by-step integration guide and sample code.</p>
+                    <a href="#" class="doc-link">View Guide →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">📚</div>
+                    <h3>API Reference</h3>
+                    <p>Complete documentation of all endpoints, parameters, and response formats.</p>
+                    <a href="#" class="doc-link">Browse Docs →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">💡</div>
+                    <h3>Code Examples</h3>
+                    <p>Ready-to-use code samples in Python, JavaScript, PHP, and other popular languages.</p>
+                    <a href="#" class="doc-link">View Examples →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">🔧</div>
+                    <h3>SDKs & Libraries</h3>
+                    <p>Official SDKs and community-maintained libraries to accelerate your development.</p>
+                    <a href="#" class="doc-link">Download SDKs →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Example Section -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Get Started with Sample Code</h2>
+                <p>Simple examples to help you make your first API call and understand the response format.</p>
+            </div>
+
+            <div class="code-example">
+                <div class="code-tabs">
+                    <button class="code-tab active" onclick="showCode('python')">Python</button>
+                    <button class="code-tab" onclick="showCode('javascript')">JavaScript</button>
+                    <button class="code-tab" onclick="showCode('curl')">cURL</button>
+                    <button class="code-tab" onclick="showCode('php')">PHP</button>
+                </div>
+
+                <div class="code-content">
+                    <pre id="python-code">import requests
+
+# Set your API key
+api_key = "your_api_key_here"
+headers = {
+    "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json"
+}
+
+# Get stock data for Apple
+response = requests.get(
+    "https://api.investfocus.com/v1/stocks/AAPL",
+    headers=headers
+)
+
+data = response.json()
+print(f"Stock: {data['symbol']}")
+print(f"Price: ${data['price']}")
+print(f"Change: {data['change']}%")</pre>
+
+                    <pre id="javascript-code" style="display: none;">const axios = require('axios');
+
+// Set your API key
+const apiKey = 'your_api_key_here';
+const headers = {
+    'Authorization': `Bearer ${apiKey}`,
+    'Content-Type': 'application/json'
+};
+
+// Get stock data for Apple
+axios.get('https://api.investfocus.com/v1/stocks/AAPL', { headers })
+    .then(response => {
+        const data = response.data;
+        console.log(`Stock: ${data.symbol}`);
+        console.log(`Price: $${data.price}`);
+        console.log(`Change: ${data.change}%`);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });</pre>
+
+                    <pre id="curl-code" style="display: none;">curl -X GET \
+  https://api.investfocus.com/v1/stocks/AAPL \
+  -H 'Authorization: Bearer your_api_key_here' \
+  -H 'Content-Type: application/json'
+
+# Response:
+{
+  "symbol": "AAPL",
+  "name": "Apple Inc.",
+  "price": 199.95,
+  "change": -0.23,
+  "market_cap": 2986000000000,
+  "volume": 45892000
+}</pre>
+
+                    <pre id="php-code" style="display: none;"><?php
+$api_key = 'your_api_key_here';
+$headers = [
+    'Authorization: Bearer ' . $api_key,
+    'Content-Type: application/json'
+];
+
+// Get stock data for Apple
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://api.investfocus.com/v1/stocks/AAPL');
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+$data = json_decode($response, true);
+echo "Stock: " . $data['symbol'] . "\n";
+echo "Price: $" . $data['price'] . "\n";
+echo "Change: " . $data['change'] . "%\n";
+?></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Developer Support</h2>
+                <p>Get help when you need it with our comprehensive support resources and dedicated developer assistance.</p>
+            </div>
+
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">💬</div>
+                    <h3>Developer Community</h3>
+                    <p>Join our active community forum to get help, share ideas, and connect with other developers.</p>
+                    <a href="#" class="doc-link">Join Community →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">📧</div>
+                    <h3>Email Support</h3>
+                    <p>Get direct support from our technical team with guaranteed response times based on your plan.</p>
+                    <a href="#" class="doc-link">Contact Support →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">🎥</div>
+                    <h3>Video Tutorials</h3>
+                    <p>Learn through comprehensive video tutorials covering integration patterns and best practices.</p>
+                    <a href="#" class="doc-link">Watch Tutorials →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">🔄</div>
+                    <h3>Status Page</h3>
+                    <p>Monitor API status, planned maintenance, and historical uptime metrics in real-time.</p>
+                    <a href="#" class="doc-link">Check Status →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Examples -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Popular Use Cases</h2>
+                <p>Discover how developers and businesses are using our API to build powerful financial applications.</p>
+            </div>
+
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">📱</div>
+                    <h3>Mobile Trading Apps</h3>
+                    <p>Build real-time trading applications with live market data, screening tools, and portfolio analytics.</p>
+                    <a href="#" class="doc-link">View Example →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">🤖</div>
+                    <h3>Algorithmic Trading</h3>
+                    <p>Power your trading algorithms with high-frequency data feeds and advanced screening capabilities.</p>
+                    <a href="#" class="doc-link">View Example →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">📊</div>
+                    <h3>Financial Dashboards</h3>
+                    <p>Create custom dashboards and reporting tools with comprehensive market and fundamental data.</p>
+                    <a href="#" class="doc-link">View Example →</a>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">🏦</div>
+                    <h3>Wealth Management</h3>
+                    <p>Integrate portfolio analysis and client reporting features into wealth management platforms.</p>
+                    <a href="#" class="doc-link">View Example →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html" style="color: #4a6cf7;">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Code tab switching functionality
+        function showCode(language) {
+            // Hide all code blocks
+            document.querySelectorAll('[id$="-code"]').forEach(block => {
+                block.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.code-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected code block
+            document.getElementById(language + '-code').style.display = 'block';
+            
+            // Add active class to selected tab
+            event.target.classList.add('active');
+        }
+
+        // Initialize page interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate numbers on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards for animation
+            document.querySelectorAll('.plan-card, .doc-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Plan card hover effects
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('featured')) {
+                        this.style.transform = 'translateY(-8px)';
+                    } else {
+                        this.style.transform = 'scale(1.05) translateY(-8px)';
+                    }
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('featured')) {
+                        this.style.transform = 'translateY(0)';
+                    } else {
+                        this.style.transform = 'scale(1.05)';
+                    }
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Copy code functionality (for future enhancement)
+            document.querySelectorAll('pre').forEach(pre => {
+                pre.addEventListener('click', function() {
+                    // Future: Add copy to clipboard functionality
+                    console.log('Code block clicked - copy functionality can be added here');
+                });
+            });
+
+            // Dynamic plan button text based on scroll position
+            const handleScroll = () => {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.api-hero');
+                const speed = scrolled * 0.5;
+                
+                if (parallax) {
+                    parallax.style.transform = `translateY(${speed}px)`;
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            // Add loading states to buttons
+            document.querySelectorAll('.plan-btn, .btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.textContent.includes('Trial') || this.textContent.includes('Started')) {
+                        e.preventDefault();
+                        const originalText = this.textContent;
+                        this.textContent = 'Loading...';
+                        this.style.opacity = '0.7';
+                        
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.opacity = '1';
+                        }, 2000);
+                    }
+                });
+            });
+        });
+
+        // API Usage Calculator (for future enhancement)
+        function calculateUsage(plan, requests) {
+            const limits = {
+                developer: 1000,
+                professional: 10000,
+                enterprise: Infinity
+            };
+            
+            return requests <= limits[plan];
+        }
+
+        // Price calculator for dynamic pricing (for future enhancement)
+        function calculatePrice(basePrice, usage, overage = 0) {
+            return basePrice + (overage * 0.01); // $0.01 per extra request
+        }
+    </script>
+</body>
+</html>

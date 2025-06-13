@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum - GuruFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header - Same as main site */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-item.active a {
+            color: #ffc107;
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Forum Page Specific Styles */
+        .forum-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .forum-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .forum-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .forum-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .forum-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .forum-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .forum-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+
+        /* Forum Content */
+        .forum-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .forum-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .forum-search {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-input {
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 300px;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .sort-dropdown {
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .btn-new-post {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-new-post:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.4);
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .category-tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .category-tab.active {
+            background: #f8f9fa;
+            border-bottom-color: #4a6cf7;
+            color: #4a6cf7;
+        }
+
+        .category-tab:hover {
+            background: #f8f9fa;
+        }
+
+        /* Forum Posts */
+        .forum-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .forum-post {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .forum-post:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .post-header {
+            padding: 20px 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .post-info {
+            flex: 1;
+        }
+
+        .post-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-decoration: none;
+        }
+
+        .post-title:hover {
+            color: #4a6cf7;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .post-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .post-tag {
+            background: #e9ecef;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .post-tag.hot {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .post-tag.trending {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .post-tag.solved {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .post-excerpt {
+            padding: 0 20px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .post-stats {
+            padding: 15px 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 15px;
+        }
+
+        .post-engagement {
+            display: flex;
+            gap: 20px;
+        }
+
+        .engagement-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .engagement-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.7;
+        }
+
+        .post-time {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Sidebar */
+        .forum-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .widget-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .widget-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .widget-content {
+            padding: 20px;
+        }
+
+        /* Top Contributors */
+        .contributor-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .contributor-item:last-child {
+            border-bottom: none;
+        }
+
+        .contributor-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .contributor-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .contributor-stats {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .contributor-badge {
+            background: #4a6cf7;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        /* Popular Topics */
+        .topic-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .topic-item:last-child {
+            border-bottom: none;
+        }
+
+        .topic-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .topic-link:hover {
+            color: #4a6cf7;
+        }
+
+        .topic-count {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        /* Recent Activity */
+        .activity-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        /* Forum Guidelines */
+        .guidelines-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .guidelines-list li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .guidelines-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #4a6cf7;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .forum-title {
+                font-size: 36px;
+            }
+
+            .forum-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .forum-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .forum-controls {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .forum-search {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+            }
+
+            .post-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .post-stats {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .forum-post {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .forum-post:nth-child(2) { animation-delay: 0.1s; }
+        .forum-post:nth-child(3) { animation-delay: 0.2s; }
+        .forum-post:nth-child(4) { animation-delay: 0.3s; }
+        .forum-post:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item active"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Forum Header -->
+    <section class="forum-header">
+        <div class="forum-header-content">
+            <h1 class="forum-title">Community Forum</h1>
+            <p class="forum-subtitle">Connect with fellow investors, share insights, and learn from the community</p>
+            <div class="forum-stats">
+                <div class="stat-item">
+                    <div class="stat-number">15,847</div>
+                    <div class="stat-label">Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2,439</div>
+                    <div class="stat-label">Discussions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">18,692</div>
+                    <div class="stat-label">Posts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">342</div>
+                    <div class="stat-label">Online Now</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Forum Content -->
+    <div class="forum-container">
+        <main class="forum-content">
+            <!-- Forum Controls -->
+            <div class="forum-controls">
+                <div class="forum-search">
+                    <input type="text" class="search-input" placeholder="Search discussions, topics, or users...">
+                    <select class="sort-dropdown">
+                        <option>Latest Activity</option>
+                        <option>Most Popular</option>
+                        <option>Most Replies</option>
+                        <option>Newest</option>
+                    </select>
+                </div>
+                <a href="#" class="btn-new-post">+ New Discussion</a>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="category-tab active">All Topics</button>
+                <button class="category-tab">Stock Analysis</button>
+                <button class="category-tab">Portfolio Review</button>
+                <button class="category-tab">Market Discussion</button>
+                <button class="category-tab">Q&A</button>
+                <button class="category-tab">General</button>
+            </div>
+
+            <!-- Forum Posts -->
+            <div class="forum-posts">
+                <!-- Featured Post -->
+                <div class="forum-post">
+                    <div class="post-header">
+                        <div class="post-info">
+                            <a href="#" class="post-title">📌 Q1 2025 Market Outlook: Tech Stocks Analysis & Discussion</a>
+                            <div class="post-meta">
+                                <div class="post-author">
+                                    <div class="author-avatar">JD</div>
+                                    <span>John Davis</span>
+                                </div>
+                                <span>•</span>
+                                <span>Featured Discussion</span>
+                                <span>•</span>
+                                <span>Pinned</span>
+                            </div>
+                            <div class="post-tags">
+                                <span class="post-tag hot">Hot</span>
+                                <span class="post-tag">Tech Stocks</span>
+                                <span class="post-tag">Analysis</span>
+                                <span class="post-tag">Q1 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-excerpt">
+                        Let's discuss the current tech stock landscape and potential opportunities for Q1 2025. I've been analyzing NVIDIA, Microsoft, and Apple's recent earnings and would love to hear your thoughts on valuation metrics and growth prospects...
+                    </div>
+                    <div class="post-stats">
+                        <div class="post-engagement">
+                            <div class="engagement-item">
+                                <span class="engagement-icon">💬</span>
+                                <span>47 replies</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👁️</span>
+                                <span>1.2k views</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👍</span>
+                                <span>89 likes</span>
+                            </div>
+                        </div>
+                        <div class="post-time">2 hours ago</div>
+                    </div>
+                </div>
+
+                <!-- Regular Posts -->
+                <div class="forum-post">
+                    <div class="post-header">
+                        <div class="post-info">
+                            <a href="#" class="post-title">Portfolio Review: 25-year-old seeking feedback on aggressive growth strategy</a>
+                            <div class="post-meta">
+                                <div class="post-author">
+                                    <div class="author-avatar">SM</div>
+                                    <span>Sarah Miller</span>
+                                </div>
+                                <span>•</span>
+                                <span>Portfolio Review</span>
+                            </div>
+                            <div class="post-tags">
+                                <span class="post-tag">Portfolio</span>
+                                <span class="post-tag">Growth</span>
+                                <span class="post-tag">Young Investor</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-excerpt">
+                        Hi everyone! I'm 25 and just started investing seriously. I've allocated 80% to growth stocks (heavy on tech) and 20% to index funds. Currently holding TSLA, GOOGL, AMZN, and some smaller positions. Looking for constructive feedback...
+                    </div>
+                    <div class="post-stats">
+                        <div class="post-engagement">
+                            <div class="engagement-item">
+                                <span class="engagement-icon">💬</span>
+                                <span>23 replies</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👁️</span>
+                                <span>456 views</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👍</span>
+                                <span>34 likes</span>
+                            </div>
+                        </div>
+                        <div class="post-time">4 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="forum-post">
+                    <div class="post-header">
+                        <div class="post-info">
+                            <a href="#" class="post-title">DCF Analysis: Is META undervalued at current levels?</a>
+                            <div class="post-meta">
+                                <div class="post-author">
+                                    <div class="author-avatar">RL</div>
+                                    <span>Robert Lee</span>
+                                </div>
+                                <span>•</span>
+                                <span>Stock Analysis</span>
+                            </div>
+                            <div class="post-tags">
+                                <span class="post-tag trending">Trending</span>
+                                <span class="post-tag">META</span>
+                                <span class="post-tag">DCF</span>
+                                <span class="post-tag">Valuation</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-excerpt">
+                        I've been running a DCF model on Meta and getting some interesting results. With their AI investments and Reality Labs burning cash, I'm trying to model out the next 5-10 years. Share shows my assumptions and calculations...
+                    </div>
+                    <div class="post-stats">
+                        <div class="post-engagement">
+                            <div class="engagement-item">
+                                <span class="engagement-icon">💬</span>
+                                <span>18 replies</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👁️</span>
+                                <span>312 views</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👍</span>
+                                <span>27 likes</span>
+                            </div>
+                        </div>
+                        <div class="post-time">6 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="forum-post">
+                    <div class="post-header">
+                        <div class="post-info">
+                            <a href="#" class="post-title">Question: Best screener settings for finding dividend growth stocks?</a>
+                            <div class="post-meta">
+                                <div class="post-author">
+                                    <div class="author-avatar">MJ</div>
+                                    <span>Mike Johnson</span>
+                                </div>
+                                <span>•</span>
+                                <span>Q&A</span>
+                            </div>
+                            <div class="post-tags">
+                                <span class="post-tag solved">Solved</span>
+                                <span class="post-tag">Dividends</span>
+                                <span class="post-tag">Screener</span>
+                                <span class="post-tag">Question</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-excerpt">
+                        I'm looking to build a dividend growth portfolio and wondering what filters work best in the GuruFocus screener. Specifically interested in companies with 10+ years of consecutive dividend increases...
+                    </div>
+                    <div class="post-stats">
+                        <div class="post-engagement">
+                            <div class="engagement-item">
+                                <span class="engagement-icon">💬</span>
+                                <span>15 replies</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👁️</span>
+                                <span>289 views</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👍</span>
+                                <span>19 likes</span>
+                            </div>
+                        </div>
+                        <div class="post-time">8 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="forum-post">
+                    <div class="post-header">
+                        <div class="post-info">
+                            <a href="#" class="post-title">Fed Rate Decision Impact: What sectors will benefit most?</a>
+                            <div class="post-meta">
+                                <div class="post-author">
+                                    <div class="author-avatar">AB</div>
+                                    <span>Anna Brown</span>
+                                </div>
+                                <span>•</span>
+                                <span>Market Discussion</span>
+                            </div>
+                            <div class="post-tags">
+                                <span class="post-tag">Fed</span>
+                                <span class="post-tag">Interest Rates</span>
+                                <span class="post-tag">Sectors</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-excerpt">
+                        With the Fed meeting next week, I'm curious about everyone's thoughts on which sectors might benefit from potential rate changes. Banking stocks seem obvious, but what about REITs and utilities?
+                    </div>
+                    <div class="post-stats">
+                        <div class="post-engagement">
+                            <div class="engagement-item">
+                                <span class="engagement-icon">💬</span>
+                                <span>32 replies</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👁️</span>
+                                <span>567 views</span>
+                            </div>
+                            <div class="engagement-item">
+                                <span class="engagement-icon">👍</span>
+                                <span>41 likes</span>
+                            </div>
+                        </div>
+                        <div class="post-time">12 hours ago</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="forum-sidebar">
+            <!-- Top Contributors -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3 class="widget-title">Top Contributors</h3>
+                </div>
+                <div class="widget-content">
+                    <div class="contributor-item">
+                        <div class="contributor-avatar">WB</div>
+                        <div class="contributor-info">
+                            <h4>Warren Buffett Jr.</h4>
+                            <div class="contributor-stats">2,847 posts • 15k reputation</div>
+                        </div>
+                        <div class="contributor-badge">Expert</div>
+                    </div>
+                    <div class="contributor-item">
+                        <div class="contributor-avatar">JD</div>
+                        <div class="contributor-info">
+                            <h4>John Davis</h4>
+                            <div class="contributor-stats">1,923 posts • 12k reputation</div>
+                        </div>
+                        <div class="contributor-badge">Mentor</div>
+                    </div>
+                    <div class="contributor-item">
+                        <div class="contributor-avatar">SM</div>
+                        <div class="contributor-info">
+                            <h4>Sarah Miller</h4>
+                            <div class="contributor-stats">1,456 posts • 9k reputation</div>
+                        </div>
+                        <div class="contributor-badge">Pro</div>
+                    </div>
+                    <div class="contributor-item">
+                        <div class="contributor-avatar">RL</div>
+                        <div class="contributor-info">
+                            <h4>Robert Lee</h4>
+                            <div class="contributor-stats">1,234 posts • 8k reputation</div>
+                        </div>
+                        <div class="contributor-badge">Pro</div>
+                    </div>
+                    <div class="contributor-item">
+                        <div class="contributor-avatar">AB</div>
+                        <div class="contributor-info">
+                            <h4>Anna Brown</h4>
+                            <div class="contributor-stats">987 posts • 6k reputation</div>
+                        </div>
+                        <div class="contributor-badge">Active</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Topics -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3 class="widget-title">Popular Topics</h3>
+                </div>
+                <div class="widget-content">
+                    <div class="topic-item">
+                        <a href="#" class="topic-link">Tech Stock Valuations</a>
+                        <div class="topic-count">147 discussions</div>
+                    </div>
+                    <div class="topic-item">
+                        <a href="#" class="topic-link">Dividend Investing</a>
+                        <div class="topic-count">89 discussions</div>
+                    </div>
+                    <div class="topic-item">
+                        <a href="#" class="topic-link">Market Analysis</a>
+                        <div class="topic-count">76 discussions</div>
+                    </div>
+                    <div class="topic-item">
+                        <a href="#" class="topic-link">Portfolio Strategy</a>
+                        <div class="topic-count">64 discussions</div>
+                    </div>
+                    <div class="topic-item">
+                        <a href="#" class="topic-link">Options Trading</a>
+                        <div class="topic-count">52 discussions</div>
+                    </div>
+                    <div class="topic-item">
+                        <a href="#" class="topic-link">Value Investing</a>
+                        <div class="topic-count">41 discussions</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3 class="widget-title">Recent Activity</h3>
+                </div>
+                <div class="widget-content">
+                    <div class="activity-item">
+                        <div class="activity-text">
+                            <strong>Mike Johnson</strong> replied to "Best screener settings for dividend growth stocks?"
+                        </div>
+                        <div class="activity-time">5 minutes ago</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-text">
+                            <strong>Emma Wilson</strong> started a new discussion in Stock Analysis
+                        </div>
+                        <div class="activity-time">12 minutes ago</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-text">
+                            <strong>David Chen</strong> liked "DCF Analysis: Is META undervalued?"
+                        </div>
+                        <div class="activity-time">18 minutes ago</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-text">
+                            <strong>Lisa Thompson</strong> replied to "Q1 2025 Market Outlook"
+                        </div>
+                        <div class="activity-time">23 minutes ago</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-text">
+                            <strong>Alex Rodriguez</strong> joined the community
+                        </div>
+                        <div class="activity-time">1 hour ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forum Guidelines -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3 class="widget-title">Community Guidelines</h3>
+                </div>
+                <div class="widget-content">
+                    <ul class="guidelines-list">
+                        <li>Be respectful and constructive in discussions</li>
+                        <li>Share factual information and cite sources</li>
+                        <li>No spam, self-promotion, or off-topic posts</li>
+                        <li>Use search before posting duplicate questions</li>
+                        <li>Keep investment advice general, not personal</li>
+                        <li>Report inappropriate content to moderators</li>
+                    </ul>
+                    <div style="margin-top: 15px;">
+                        <a href="#" style="color: #4a6cf7; text-decoration: none; font-size: 14px; font-weight: 500;">View full guidelines →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3 class="widget-title">Forum Stats</h3>
+                </div>
+                <div class="widget-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;">
+                        <div>
+                            <div style="font-size: 24px; font-weight: 700; color: #4a6cf7;">342</div>
+                            <div style="font-size: 12px; color: #666;">Online Now</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; font-weight: 700; color: #4CAF50;">1,247</div>
+                            <div style="font-size: 12px; color: #666;">Today's Posts</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; font-weight: 700; color: #ffc107;">89</div>
+                            <div style="font-size: 12px; color: #666;">New Members</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; font-weight: 700; color: #f44336;">23</div>
+                            <div style="font-size: 12px; color: #666;">Hot Topics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html" style="color: #4a6cf7;">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Forum functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category tab switching
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Here you would filter posts based on category
+                    console.log('Switching to category:', this.textContent);
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const posts = document.querySelectorAll('.forum-post');
+                
+                posts.forEach(post => {
+                    const title = post.querySelector('.post-title').textContent.toLowerCase();
+                    const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = searchTerm === '' ? 'block' : 'none';
+                    }
+                });
+            });
+
+            // Sort functionality
+            const sortDropdown = document.querySelector('.sort-dropdown');
+            sortDropdown.addEventListener('change', function() {
+                console.log('Sorting by:', this.value);
+                // Here you would implement actual sorting logic
+            });
+
+            // Animate stats on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.classList.contains('stat-number')) {
+                            animateNumber(element);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.stat-number').forEach(el => {
+                observer.observe(el);
+            });
+
+            function animateNumber(element) {
+                const text = element.textContent;
+                const number = parseFloat(text.replace(/[^0-9.]/g, ''));
+                const suffix = text.replace(/[0-9.,]/g, '');
+                
+                if (!isNaN(number) && number > 0) {
+                    let current = 0;
+                    const increment = number / 30;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= number) {
+                            element.textContent = text;
+                            clearInterval(timer);
+                        } else {
+                            if (number >= 1000) {
+                                element.textContent = Math.floor(current).toLocaleString() + suffix;
+                            } else {
+                                element.textContent = Math.floor(current) + suffix;
+                            }
+                        }
+                    }, 30);
+                }
+            }
+
+            // Post interaction effects
+            document.querySelectorAll('.forum-post').forEach(post => {
+                post.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+
+                post.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Simulate real-time updates
+            function updateActivityFeed() {
+                const activities = [
+                    'replied to "Best screener settings for dividend growth stocks?"',
+                    'started a new discussion in Stock Analysis',
+                    'liked "DCF Analysis: Is META undervalued?"',
+                    'replied to "Q1 2025 Market Outlook"',
+                    'joined the community'
+                ];
+
+                const names = ['Mike Johnson', 'Emma Wilson', 'David Chen', 'Lisa Thompson', 'Alex Rodriguez'];
+                
+                // This would update the activity feed with real data
+                console.log('Activity feed updated');
+            }
+
+            // Update activity every 30 seconds
+            setInterval(updateActivityFeed, 30000);
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // New post button interaction
+            const newPostBtn = document.querySelector('.btn-new-post');
+            newPostBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Here you would open a new post modal or redirect to post creation page
+                console.log('Opening new post form...');
+            });
+
+            // Engagement tracking (likes, views, etc.)
+            document.querySelectorAll('.engagement-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    if (this.textContent.includes('likes')) {
+                        const likeCount = this.querySelector('span:last-child');
+                        const currentLikes = parseInt(likeCount.textContent.split(' ')[0]);
+                        likeCount.textContent = (currentLikes + 1) + ' likes';
+                        this.style.color = '#4a6cf7';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+                

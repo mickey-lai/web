@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer - GuruFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb span {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .disclaimer-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            padding: 50px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .disclaimer-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4a6cf7, #667eea);
+        }
+
+        .disclaimer-section {
+            margin-bottom: 40px;
+        }
+
+        .disclaimer-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .disclaimer-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .disclaimer-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4a6cf7;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        .disclaimer-section p {
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .disclaimer-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .disclaimer-section li {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .disclaimer-section strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '⚠️';
+            font-size: 24px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .highlight-box h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 10px;
+            margin-left: 40px;
+        }
+
+        .highlight-box p {
+            color: #856404;
+            margin-left: 40px;
+            margin-bottom: 0;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 1px solid #2196f3;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Table of Contents */
+        .table-of-contents {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            position: sticky;
+            top: 20px;
+            z-index: 10;
+        }
+
+        .table-of-contents h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-of-contents h3::before {
+            content: '📋';
+            font-size: 16px;
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .table-of-contents li {
+            margin-bottom: 8px;
+        }
+
+        .table-of-contents a {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 6px;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .table-of-contents a:hover {
+            background: rgba(74, 108, 247, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-legal a.active {
+            color: #4a6cf7;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .disclaimer-container {
+                padding: 30px 25px;
+            }
+
+            .main-content {
+                padding: 40px 15px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .disclaimer-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .disclaimer-section:nth-child(2) { animation-delay: 0.1s; }
+        .disclaimer-section:nth-child(3) { animation-delay: 0.2s; }
+        .disclaimer-section:nth-child(4) { animation-delay: 0.3s; }
+        .disclaimer-section:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="pricing.html">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>></span>
+                <span>Disclaimer</span>
+            </div>
+            <h1>Legal Disclaimer</h1>
+            <p>Important information regarding the use of GuruFocus platform and investment decisions</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="disclaimer-container">
+            
+            <!-- General Disclaimer -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">⚖️</span>
+                    General Disclaimer
+                </h2>
+                <p>The information provided by GuruFocus ("we," "us," or "our") on this website and through our platform is for general informational and educational purposes only. All information on the site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on the site or our platform.</p>
+                
+                <div class="highlight-box">
+                    <h4>Important Notice</h4>
+                    <p>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of the site or our platform or reliance on any information provided on the site and our platform. Your use of the site and our platform and your reliance on any information on the site and our platform is solely at your own risk.</p>
+                </div>
+            </section>
+
+            <!-- Investment Advisory Disclaimer -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">📊</span>
+                    Investment Advisory Disclaimer
+                </h2>
+                <h3>Not Financial Advice</h3>
+                <p>The information provided through GuruFocus does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the website's content as such. GuruFocus does not recommend that any cryptocurrency, security, portfolio of securities, transaction, or investment strategy is suitable for any specific person.</p>
+                
+                <h3>No Investment Recommendations</h3>
+                <p>We do not provide personalized investment recommendations or investment advice. All tools, screeners, and analysis provided are for informational purposes only. Users should:</p>
+                <ul>
+                    <li>Conduct their own research and due diligence</li>
+                    <li>Consult with qualified financial advisors</li>
+                    <li>Consider their individual financial situation and risk tolerance</li>
+                    <li>Understand that past performance does not guarantee future results</li>
+                </ul>
+
+                <h3>Risk Acknowledgment</h3>
+                <p>All investments involve risk, including the potential loss of principal. Securities prices fluctuate and may decline below the price at which you purchased them. There can be no assurance that investment strategies will be successful or that investment objectives will be achieved.</p>
+            </section>
+
+            <!-- Data Accuracy Disclaimer -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">📈</span>
+                    Data Accuracy & Sources
+                </h2>
+                <h3>Third-Party Data Sources</h3>
+                <p>GuruFocus aggregates data from various third-party sources including but not limited to financial data providers, exchanges, and regulatory filings. While we strive to ensure accuracy, we cannot guarantee that all data is complete, accurate, or up-to-date at all times.</p>
+
+                <h3>Data Delays and Errors</h3>
+                <p>Market data may be delayed and subject to the terms and conditions of the data providers. Real-time data may not be available for all securities. Users should verify all information independently before making investment decisions.</p>
+
+                <h3>Technical Analysis Tools</h3>
+                <p>Technical analysis tools and indicators provided on our platform are based on historical price and volume data. These tools are for educational and research purposes only and should not be relied upon as the sole basis for investment decisions.</p>
+            </section>
+
+            <!-- Backtesting & Historical Data -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">⚡</span>
+                    Backtesting & Historical Analysis
+                </h2>
+                <h3>Hypothetical Performance</h3>
+                <p>Backtesting results represent hypothetical performance and do not represent actual trading results. Hypothetical performance results have several inherent limitations:</p>
+                <ul>
+                    <li>They do not reflect the impact of economic and market factors on decision-making</li>
+                    <li>They do not account for transaction costs, taxes, or slippage</li>
+                    <li>They assume perfect execution of trades</li>
+                    <li>They may be prepared with the benefit of hindsight</li>
+                </ul>
+
+                <h3>No Guarantee of Future Performance</h3>
+                <p>Past performance, whether actual or indicated by historical tests of strategies, is not indicative of future results. Investment strategies that were profitable in the past may not be profitable in the future.</p>
+            </section>
+
+            <!-- Portfolio Analysis Tools -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">💼</span>
+                    Portfolio Analysis & Modeling
+                </h2>
+                <h3>Risk Metrics and Models</h3>
+                <p>Portfolio analysis tools, risk metrics, and financial models provided are based on mathematical calculations and assumptions that may not accurately reflect real-world conditions. Users should understand the limitations of these models and not rely solely on their output for investment decisions.</p>
+
+                <h3>Diversification and Correlation</h3>
+                <p>Diversification and correlation analysis are based on historical data and may not predict future relationships between securities. Market conditions can change rapidly, potentially rendering historical correlations irrelevant.</p>
+            </section>
+
+            <!-- Regulatory Compliance -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">🏛️</span>
+                    Regulatory Compliance
+                </h2>
+                <h3>Not a Registered Investment Advisor</h3>
+                <p>GuruFocus is not a registered investment advisor, broker-dealer, or investment company under applicable securities laws. We do not provide personalized investment advice or portfolio management services.</p>
+
+                <h3>Jurisdictional Limitations</h3>
+                <p>Our services may not be available in all jurisdictions. Users are responsible for ensuring compliance with applicable local laws and regulations in their jurisdiction of residence.</p>
+
+                <h3>Professional Licensing</h3>
+                <p>Users seeking investment advice should consult with licensed financial professionals who can provide guidance appropriate to their specific circumstances and jurisdiction.</p>
+            </section>
+
+            <!-- Technology and System Limitations -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">⚙️</span>
+                    Technology Limitations
+                </h2>
+                <h3>System Availability</h3>
+                <p>While we strive to maintain high system availability, our platform may experience occasional downtime, technical issues, or maintenance periods that could affect access to data and tools.</p>
+
+                <h3>Software Bugs and Errors</h3>
+                <p>Our platform and tools may contain bugs, errors, or inaccuracies. Users should verify all calculations and data independently and report any suspected errors to our support team.</p>
+
+                <h3>Internet and Connectivity Risks</h3>
+                <p>Use of our platform requires internet connectivity, which may be subject to interruptions, delays, or security risks beyond our control.</p>
+            </section>
+
+            <!-- Limitation of Liability -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">🛡️</span>
+                    Limitation of Liability
+                </h2>
+                <p>In no event shall GuruFocus, its officers, directors, employees, or agents, be liable to you for any direct, indirect, incidental, special, punitive, or consequential damages whatsoever resulting from any:</p>
+                <ul>
+                    <li>Errors, mistakes, or inaccuracies of content and materials</li>
+                    <li>Personal injury or property damage resulting from your access to and use of our platform</li>
+                    <li>Any unauthorized access to or use of our secure servers and/or any personal information stored therein</li>
+                    <li>Any interruption or cessation of transmission to or from our platform</li>
+                    <li>Investment decisions made based on information or tools provided through our platform</li>
+                </ul>
+            </section>
+
+            <!-- User Responsibilities -->
+            <section class="disclaimer-section">
+                <h2>
+                    <span class="section-icon">👤</span>
+                    User Responsibilities
+                </h2>
+                <h3>Due Diligence</h3>
+                <p>Users are solely responsible for conducting their own research and due diligence before making any investment decisions. This includes verifying all data and information independently.</p>
+
+                <h3>Risk Assessment</h3>
+                <p>Users must assess their own financial situation, investment objectives, and risk tolerance before making investment decisions. Consider consulting with qualified financial professionals.</p>
+
+                <h3>Compliance with Laws</h3>
+                <p>Users are responsible for ensuring their use of our platform and any investment activities comply with applicable laws and regulations in their jurisdiction.</p>
+            </section>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h4>Questions About This Disclaimer?</h4>
+                <p>If you have any questions about this disclaimer or need clarification on any points, please contact us:</p>
+                <p><strong>Email:</strong> <a href="mailto:legal@investfocus.com">legal@investfocus.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+1-555-123-4567">+1 (555) 123-4567</a></p>
+                <p><strong>Address:</strong> 123 Finance Street, Suite 500, New York, NY 10001</p>
+            </div>
+
+            <div class="last-updated">
+                <p><strong>Last Updated:</strong> June 11, 2025</p>
+                <p>This disclaimer may be updated from time to time. Please check this page regularly for the most current version.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html" style="color: #4a6cf7;">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add smooth animations for sections on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.disclaimer-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Highlight current page in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const disclaimerLink = document.querySelector('.footer-legal a[href="#"]');
+            if (disclaimerLink && disclaimerLink.textContent.includes('Disclaimer')) {
+                disclaimerLink.classList.add('active');
+            }
+
+            // Add hover effects to section cards
+            document.querySelectorAll('.disclaimer-section').forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Smooth reveal animation for highlight boxes
+            const highlightBoxes = document.querySelectorAll('.highlight-box, .contact-info');
+            highlightBoxes.forEach((box, index) => {
+                box.style.opacity = '0';
+                box.style.transform = 'scale(0.95)';
+                box.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    box.style.opacity = '1';
+                    box.style.transform = 'scale(1)';
+                }, 200 + (index * 100));
+            });
+
+            // Add copy-to-clipboard functionality for contact info
+            const emailLink = document.querySelector('a[href^="mailto:"]');
+            if (emailLink) {
+                emailLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const email = this.textContent;
+                    navigator.clipboard.writeText(email).then(() => {
+                        // Create temporary tooltip
+                        const tooltip = document.createElement('div');
+                        tooltip.textContent = 'Email copied to clipboard!';
+                        tooltip.style.cssText = `
+                            position: absolute;
+                            background: #4a6cf7;
+                            color: white;
+                            padding: 8px 12px;
+                            border-radius: 6px;
+                            font-size: 12px;
+                            z-index: 1000;
+                            pointer-events: none;
+                        `;
+                        
+                        const rect = this.getBoundingClientRect();
+                        tooltip.style.left = rect.left + 'px';
+                        tooltip.style.top = (rect.top - 40) + 'px';
+                        
+                        document.body.appendChild(tooltip);
+                        
+                        setTimeout(() => {
+                            tooltip.remove();
+                        }, 2000);
+                    });
+                });
+            }
+
+            // Add section navigation (auto-generate table of contents)
+            const sections = document.querySelectorAll('.disclaimer-section h2');
+            if (sections.length > 3) {
+                const toc = document.createElement('div');
+                toc.className = 'table-of-contents';
+                toc.innerHTML = `
+                    <h3>Quick Navigation</h3>
+                    <ul></ul>
+                `;
+                
+                const tocList = toc.querySelector('ul');
+                sections.forEach((heading, index) => {
+                    const text = heading.textContent.trim();
+                    const id = 'section-' + index;
+                    heading.parentElement.id = id;
+                    
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="#${id}">${text}</a>`;
+                    tocList.appendChild(li);
+                });
+                
+                // Insert TOC after first section
+                const firstSection = document.querySelector('.disclaimer-section');
+                if (firstSection) {
+                    firstSection.insertAdjacentElement('afterend', toc);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

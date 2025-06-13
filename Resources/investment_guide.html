@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Guide - GuruFocus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 60px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+
+        .sidebar-nav {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 30px 0;
+        }
+
+        .sidebar-nav h3 {
+            padding: 0 30px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 20px 0 0;
+        }
+
+        .nav-list li {
+            margin: 0;
+        }
+
+        .nav-list a {
+            display: block;
+            padding: 12px 30px;
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-list a:hover,
+        .nav-list a.active {
+            color: #4a6cf7;
+            background: rgba(74, 108, 247, 0.05);
+            border-left-color: #4a6cf7;
+        }
+
+        /* Content Area */
+        .content-area {
+            min-height: 800px;
+        }
+
+        .guide-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .guide-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #4a6cf7;
+        }
+
+        .guide-section h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin: 30px 0 15px;
+        }
+
+        .guide-section h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4a6cf7;
+            margin: 25px 0 10px;
+        }
+
+        .guide-section p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .guide-section ul,
+        .guide-section ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .guide-section li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border: 1px solid #4a6cf7;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '💡';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 20px;
+        }
+
+        .highlight-box h4 {
+            margin: 0 0 15px 30px;
+            color: #4a6cf7;
+        }
+
+        .highlight-box p {
+            margin: 0 0 0 30px;
+            color: #333;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0, #ffebee);
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 20px;
+        }
+
+        .warning-box h4 {
+            margin: 0 0 15px 30px;
+            color: #ff9800;
+        }
+
+        .warning-box p {
+            margin: 0 0 0 30px;
+            color: #333;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .example-box::before {
+            content: '📊';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 20px;
+        }
+
+        .example-box h4 {
+            margin: 0 0 15px 30px;
+            color: #333;
+        }
+
+        .example-box p {
+            margin: 0 0 10px 30px;
+            color: #555;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #4a6cf7, #667eea);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 12px;
+            margin: 60px 0;
+        }
+
+        .cta-section h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background: #ffc107;
+            color: #333;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background: #ffca2c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .comparison-table th {
+            background: #4a6cf7;
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .sidebar {
+                order: 2;
+                position: static;
+            }
+
+            .content-area {
+                order: 1;
+            }
+
+            .guide-section {
+                padding: 25px;
+            }
+
+            .guide-section h2 {
+                font-size: 28px;
+            }
+
+            .cta-section {
+                padding: 40px 25px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .guide-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .guide-section:nth-child(2) { animation-delay: 0.1s; }
+        .guide-section:nth-child(3) { animation-delay: 0.2s; }
+        .guide-section:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Investment Guide</h1>
+        <p>Comprehensive investment education from fundamentals to advanced strategies. Learn how to build wealth through smart investing decisions.</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <h3>Guide Contents</h3>
+                <ul class="nav-list">
+                    <li><a href="#basics" class="active">Investment Basics</a></li>
+                    <li><a href="#analysis">Fundamental Analysis</a></li>
+                    <li><a href="#portfolio">Portfolio Building</a></li>
+                    <li><a href="#strategies">Investment Strategies</a></li>
+                    <li><a href="#risk">Risk Management</a></li>
+                    <li><a href="#tools">Using Our Tools</a></li>
+                    <li><a href="#advanced">Advanced Topics</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content-area">
+            <!-- Investment Basics -->
+            <section id="basics" class="guide-section">
+                <h2>Investment Basics</h2>
+                
+                <h3>What is Investing?</h3>
+                <p>Investing is the practice of allocating money or capital to various financial instruments, assets, or ventures with the expectation of generating income or profit over time. Unlike saving, which typically involves preserving capital in low-risk accounts, investing involves taking calculated risks to potentially grow your wealth faster than inflation.</p>
+
+                <h4>Key Investment Principles</h4>
+                <ol>
+                    <li><strong>Start Early:</strong> Time is your greatest ally in investing due to compound growth</li>
+                    <li><strong>Diversification:</strong> Don't put all your eggs in one basket</li>
+                    <li><strong>Risk vs. Return:</strong> Higher potential returns usually come with higher risk</li>
+                    <li><strong>Stay Disciplined:</strong> Emotional decisions often lead to poor investment outcomes</li>
+                    <li><strong>Think Long-term:</strong> Short-term market fluctuations are normal and expected</li>
+                </ol>
+
+                <div class="highlight-box">
+                    <h4>Pro Tip: The Power of Compound Interest</h4>
+                    <p>Albert Einstein allegedly called compound interest "the eighth wonder of the world." A $10,000 investment at 7% annual return becomes $76,123 after 30 years, with $56,123 coming from compound growth alone.</p>
+                </div>
+
+                <h3>Types of Investments</h3>
+                
+                <h4>Stocks (Equities)</h4>
+                <p>Stocks represent ownership shares in public companies. When you buy stock, you become a partial owner of that company and have a claim on its assets and earnings.</p>
+                
+                <h4>Bonds (Fixed Income)</h4>
+                <p>Bonds are debt securities where you lend money to corporations or governments in exchange for regular interest payments and the return of principal at maturity.</p>
+                
+                <h4>Real Estate Investment Trusts (REITs)</h4>
+                <p>REITs allow you to invest in real estate without directly owning property. They typically pay high dividends and provide diversification benefits.</p>
+                
+                <h4>Exchange-Traded Funds (ETFs) and Mutual Funds</h4>
+                <p>These funds pool money from many investors to buy a diversified portfolio of stocks, bonds, or other assets. ETFs trade like stocks, while mutual funds are priced once daily.</p>
+
+                <div class="example-box">
+                    <h4>Example: Building Your First Portfolio</h4>
+                    <p><strong>Conservative Beginner Portfolio:</strong></p>
+                    <p>• 60% Stock Market ETF (VTI)</p>
+                    <p>• 30% Bond ETF (BND)</p>
+                    <p>• 10% International ETF (VXUS)</p>
+                    <p>This simple three-fund portfolio provides broad diversification with moderate risk.</p>
+                </div>
+            </section>
+
+            <!-- Fundamental Analysis -->
+            <section id="analysis" class="guide-section">
+                <h2>Fundamental Analysis</h2>
+                
+                <h3>Understanding Financial Statements</h3>
+                <p>Fundamental analysis involves evaluating a company's financial health and growth prospects by examining its financial statements, business model, competitive position, and market conditions.</p>
+
+                <h4>The Three Key Financial Statements</h4>
+                
+                <p><strong>1. Income Statement (P&L)</strong></p>
+                <p>Shows a company's revenues, expenses, and profits over a specific period. Key metrics include:</p>
+                <ul>
+                    <li>Revenue/Sales growth</li>
+                    <li>Gross margin</li>
+                    <li>Operating margin</li>
+                    <li>Net profit margin</li>
+                    <li>Earnings per share (EPS)</li>
+                </ul>
+
+                <p><strong>2. Balance Sheet</strong></p>
+                <p>Provides a snapshot of a company's assets, liabilities, and shareholders' equity at a point in time:</p>
+                <ul>
+                    <li>Total assets and their composition</li>
+                    <li>Debt levels and structure</li>
+                    <li>Cash and cash equivalents</li>
+                    <li>Book value per share</li>
+                </ul>
+
+                <p><strong>3. Cash Flow Statement</strong></p>
+                <p>Shows how cash moves in and out of the business:</p>
+                <ul>
+                    <li>Operating cash flow</li>
+                    <li>Investing cash flow</li>
+                    <li>Financing cash flow</li>
+                    <li>Free cash flow</li>
+                </ul>
+
+                <h3>Key Valuation Metrics</h3>
+                
+                <div class="table-responsive">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Ratio</th>
+                                <th>Formula</th>
+                                <th>What It Measures</th>
+                                <th>Good Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>P/E Ratio</td>
+                                <td>Price ÷ Earnings per Share</td>
+                                <td>How much investors pay per dollar of earnings</td>
+                                <td>10-25 (varies by industry)</td>
+                            </tr>
+                            <tr>
+                                <td>P/B Ratio</td>
+                                <td>Price ÷ Book Value per Share</td>
+                                <td>Market value vs. book value</td>
+                                <td>1-3</td>
+                            </tr>
+                            <tr>
+                                <td>ROE</td>
+                                <td>Net Income ÷ Shareholders' Equity</td>
+                                <td>How efficiently company uses equity</td>
+                                <td>>15%</td>
+                            </tr>
+                            <tr>
+                                <td>Debt-to-Equity</td>
+                                <td>Total Debt ÷ Total Equity</td>
+                                <td>Financial leverage</td>
+                                <td><0.5</td>
+                            </tr>
+                            <tr>
+                                <td>Current Ratio</td>
+                                <td>Current Assets ÷ Current Liabilities</td>
+                                <td>Short-term liquidity</td>
+                                <td>1.5-3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>Important Note</h4>
+                    <p>Financial ratios should never be used in isolation. Always compare ratios to industry averages, historical performance, and consider the business context. A high P/E ratio might be justified for a fast-growing technology company but concerning for a mature utility.</p>
+                </div>
+            </section>
+
+            <!-- Portfolio Building -->
+            <section id="portfolio" class="guide-section">
+                <h2>Portfolio Building</h2>
+                
+                <h3>Asset Allocation Strategies</h3>
+                <p>Asset allocation is arguably the most important decision in portfolio construction. It determines how you divide your investments among different asset classes like stocks, bonds, real estate, and cash.</p>
+
+                <h4>Age-Based Allocation Rules</h4>
+                <p><strong>Traditional Rule:</strong> Subtract your age from 100 to get your stock allocation percentage. For example, a 30-year-old would have 70% in stocks and 30% in bonds.</p>
+                
+                <p><strong>Modern Rule:</strong> Subtract your age from 110 or 120 to account for longer life expectancies and low interest rates.</p>
+
+                <h4>Risk-Based Allocation</h4>
+                <ul>
+                    <li><strong>Conservative (Low Risk):</strong> 30% stocks, 60% bonds, 10% cash</li>
+                    <li><strong>Moderate (Medium Risk):</strong> 60% stocks, 35% bonds, 5% cash</li>
+                    <li><strong>Aggressive (High Risk):</strong> 80% stocks, 15% bonds, 5% cash</li>
+                    <li><strong>Very Aggressive:</strong> 90%+ stocks, minimal bonds/cash</li>
+                </ul>
+
+                <h3>Diversification Strategies</h3>
+                
+                <h4>Geographic Diversification</h4>
+                <ul>
+                    <li>U.S. Large Cap: 40-50%</li>
+                    <li>U.S. Small/Mid Cap: 10-15%</li>
+                    <li>International Developed: 20-25%</li>
+                    <li>Emerging Markets: 5-10%</li>
+                </ul>
+
+                <h4>Sector Diversification</h4>
+                <p>Avoid overconcentration in any single sector. Technology stocks, while attractive, shouldn't represent more than 20-25% of your portfolio unless you have strong conviction and higher risk tolerance.</p>
+
+                <div class="example-box">
+                    <h4>Sample Portfolio: The "Core-Satellite" Approach</h4>
+                    <p><strong>Core Holdings (80% of portfolio):</strong></p>
+                    <p>• 50% Total Stock Market Index (VTI)</p>
+                    <p>• 20% International Stock Index (VTIAX)</p>
+                    <p>• 10% Bond Index (BND)</p>
+                    <p><strong>Satellite Holdings (20% of portfolio):</strong></p>
+                    <p>• 10% Individual stocks or sector ETFs</p>
+                    <p>• 5% REITs</p>
+                    <p>• 5% Commodities or alternative investments</p>
+                </div>
+
+                <h3>Rebalancing Your Portfolio</h3>
+                <p>Rebalancing involves periodically adjusting your portfolio back to your target allocation. This forces you to sell high-performing assets and buy underperforming ones, implementing a disciplined "buy low, sell high" strategy.</p>
+
+                <h4>Rebalancing Methods</h4>
+                <ul>
+                    <li><strong>Time-based:</strong> Rebalance quarterly, semi-annually, or annually</li>
+                    <li><strong>Threshold-based:</strong> Rebalance when any asset class deviates by 5-10% from target</li>
+                    <li><strong>Hybrid approach:</strong> Check quarterly, rebalance if thresholds are exceeded</li>
+                </ul>
+            </section>
+
+            <!-- Investment Strategies -->
+            <section id="strategies" class="guide-section">
+                <h2>Investment Strategies</h2>
+                
+                <h3>Dollar-Cost Averaging (DCA)</h3>
+                <p>Dollar-cost averaging involves investing a fixed amount of money at regular intervals, regardless of market conditions. This strategy helps reduce the impact of market volatility and removes the pressure of trying to time the market.</p>
+
+                <h4>Benefits of Dollar-Cost Averaging</h4>
+                <ul>
+                    <li>Reduces average cost per share over time</li>
+                    <li>Eliminates need to time the market</li>
+                    <li>Creates disciplined investing habit</li>
+                    <li>Reduces emotional stress of investing</li>
+                </ul>
+
+                <h3>Value Investing</h3>
+                <p>Value investing, popularized by Benjamin Graham and Warren Buffett, focuses on buying undervalued companies trading below their intrinsic value. Value investors look for companies with strong fundamentals but temporarily depressed stock prices.</p>
+
+                <h4>Value Investing Criteria</h4>
+                <ul>
+                    <li>Low P/E ratios compared to industry peers</li>
+                    <li>Price-to-Book ratio below 1.5</li>
+                    <li>Strong balance sheet with low debt</li>
+                    <li>Consistent earnings and cash flow</li>
+                    <li>Competitive moats (sustainable advantages)</li>
+                </ul>
+
+                <h3>Growth Investing</h3>
+                <p>Growth investing focuses on companies expected to grow faster than the overall market. Growth investors are willing to pay premium prices for companies with strong earnings growth potential.</p>
+
+                <h4>Growth Stock Characteristics</h4>
+                <ul>
+                    <li>Revenue growth of 15%+ annually</li>
+                    <li>Expanding profit margins</li>
+                    <li>Large addressable markets</li>
+                    <li>Strong competitive positions</li>
+                    <li>Innovative products or services</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>Strategy Comparison: Value vs. Growth</h4>
+                    <p>Historically, value and growth strategies have performed well in different market cycles. Value tends to outperform in rising interest rate environments and economic recoveries, while growth excels during low interest rate periods and economic expansion phases.</p>
+                </div>
+
+                <h3>Income Investing</h3>
+                <p>Income investing focuses on generating regular income through dividends, interest, and distributions. This strategy is popular among retirees and conservative investors seeking steady cash flow.</p>
+
+                <h4>Income Investment Options</h4>
+                <ul>
+                    <li><strong>Dividend Stocks:</strong> Companies with consistent dividend payment history</li>
+                    <li><strong>REITs:</strong> Real estate investment trusts with high dividend yields</li>
+                    <li><strong>Bond Funds:</strong> Government and corporate bond portfolios</li>
+                    <li><strong>Preferred Stocks:</strong> Hybrid securities with fixed dividend payments</li>
+                    <li><strong>Utility Stocks:</strong> Stable companies with predictable cash flows</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4>Dividend Yield Warning</h4>
+                    <p>While high dividend yields can be attractive, be cautious of yields above 8-10%. Extremely high yields often indicate financial distress or an unsustainable dividend policy. Always analyze the dividend payout ratio and cash flow coverage.</p>
+                </div>
+            </section>
+
+            <!-- Risk Management -->
+            <section id="risk" class="guide-section">
+                <h2>Risk Management</h2>
+                
+                <h3>Understanding Investment Risk</h3>
+                <p>Risk in investing refers to the possibility that actual returns will differ from expected returns. All investments carry some level of risk, and understanding different types of risk helps you make informed decisions.</p>
+
+                <h4>Types of Investment Risk</h4>
+                
+                <p><strong>Market Risk (Systematic Risk)</strong></p>
+                <p>The risk that affects the entire market or a large segment of the market. Examples include economic recessions, interest rate changes, and geopolitical events.</p>
+
+                <p><strong>Company-Specific Risk (Unsystematic Risk)</strong></p>
+                <p>Risk that affects individual companies or sectors. This can be diversified away by holding a variety of investments.</p>
+
+                <p><strong>Inflation Risk</strong></p>
+                <p>The risk that inflation will erode the purchasing power of your returns. Cash and bonds are particularly vulnerable to inflation risk.</p>
+
+                <p><strong>Liquidity Risk</strong></p>
+                <p>The risk that you won't be able to sell an investment quickly without affecting its price significantly.</p>
+
+                <p><strong>Interest Rate Risk</strong></p>
+                <p>The risk that changes in interest rates will affect investment values, particularly bonds and interest-sensitive stocks.</p>
+
+                <h3>Risk Management Techniques</h3>
+                
+                <h4>Position Sizing</h4>
+                <p>Never put more than 5-10% of your portfolio in any single stock, regardless of how confident you are. For speculative investments, limit exposure to 1-2% of your portfolio.</p>
+
+                <h4>Stop-Loss Orders</h4>
+                <p>Set predetermined exit points to limit losses. A common approach is setting stop-losses at 15-20% below your purchase price for individual stocks.</p>
+
+                <h4>Asset Allocation</h4>
+                <p>Proper asset allocation across different asset classes is your primary defense against market volatility.</p>
+
+                <h4>Emergency Fund</h4>
+                <p>Maintain 3-6 months of living expenses in cash before investing. This prevents you from selling investments at inopportune times.</p>
+
+                <div class="example-box">
+                    <h4>Risk Assessment Example</h4>
+                    <p><strong>Conservative Investor (Age 60):</strong></p>
+                    <p>• Risk Tolerance: Low</p>
+                    <p>• Time Horizon: 5-10 years</p>
+                    <p>• Allocation: 40% stocks, 50% bonds, 10% cash</p>
+                    <p>• Focus: Capital preservation and income</p>
+                    <p><strong>Aggressive Investor (Age 25):</strong></p>
+                    <p>• Risk Tolerance: High</p>
+                    <p>• Time Horizon: 30+ years</p>
+                    <p>• Allocation: 90% stocks, 10% bonds</p>
+                    <p>• Focus: Long-term growth</p>
+                </div>
+            </section>
+
+            <!-- Using Our Tools -->
+            <section id="tools" class="guide-section">
+                <h2>Using GuruFocus Tools</h2>
+                
+                <h3>Stock Screener Pro</h3>
+                <p>Our advanced stock screener helps you find investment opportunities that match your specific criteria using over 500 different filters.</p>
+
+                <h4>Popular Screening Strategies</h4>
+                
+                <p><strong>Value Screening:</strong></p>
+                <ul>
+                    <li>P/E Ratio: 5-15</li>
+                    <li>P/B Ratio: 0.5-1.5</li>
+                    <li>Debt-to-Equity: <0.5</li>
+                    <li>Return on Equity: >15%</li>
+                    <li>Current Ratio: >1.5</li>
+                </ul>
+
+                <p><strong>Growth Screening:</strong></p>
+                <ul>
+                    <li>Revenue Growth: >15% (5-year average)</li>
+                    <li>EPS Growth: >20% (quarterly)</li>
+                    <li>Profit Margin: Increasing trend</li>
+                    <li>Return on Assets: >10%</li>
+                    <li>Market Cap: >$1 billion</li>
+                </ul>
+
+                <p><strong>Dividend Screening:</strong></p>
+                <ul>
+                    <li>Dividend Yield: 3-6%</li>
+                    <li>Dividend Growth: >5% annually</li>
+                    <li>Payout Ratio: <60%</li>
+                    <li>Consecutive Years of Payments: >10</li>
+                    <li>Free Cash Flow Yield: >5%</li>
+                </ul>
+
+                <h3>Portfolio Analyzer</h3>
+                <p>Track your portfolio's performance, risk metrics, and asset allocation with our comprehensive analysis tools.</p>
+
+                <h4>Key Metrics to Monitor</h4>
+                <ul>
+                    <li><strong>Total Return:</strong> Including dividends and capital gains</li>
+                    <li><strong>Alpha:</strong> Excess return compared to benchmark</li>
+                    <li><strong>Beta:</strong> Volatility compared to market</li>
+                    <li><strong>Sharpe Ratio:</strong> Risk-adjusted returns</li>
+                    <li><strong>Maximum Drawdown:</strong> Largest peak-to-trough decline</li>
+                </ul>
+
+                <h3>Backtesting Engine</h3>
+                <p>Test your investment strategies using historical data to understand how they would have performed in different market conditions.</p>
+
+                <h4>Backtesting Best Practices</h4>
+                <ul>
+                    <li>Use at least 10 years of historical data</li>
+                    <li>Include transaction costs in calculations</li>
+                    <li>Test across different market cycles</li>
+                    <li>Avoid overfitting to historical data</li>
+                    <li>Consider survivorship bias</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>Pro Tip: Paper Trading</h4>
+                    <p>Before implementing a new strategy with real money, practice with our paper trading feature. This allows you to test strategies in real-time without financial risk and build confidence in your approach.</p>
+                </div>
+            </section>
+
+            <!-- Advanced Topics -->
+            <section id="advanced" class="guide-section">
+                <h2>Advanced Investment Topics</h2>
+                
+                <h3>Options Strategies</h3>
+                <p>Options can be used for hedging, income generation, or speculation. However, they require substantial knowledge and carry significant risks.</p>
+
+                <h4>Basic Options Strategies</h4>
+                
+                <p><strong>Covered Calls:</strong> Own the stock and sell call options to generate income. Limited upside potential but provides downside protection.</p>
+                
+                <p><strong>Protective Puts:</strong> Own the stock and buy put options as insurance against price declines.</p>
+                
+                <p><strong>Cash-Secured Puts:</strong> Sell put options while holding cash to purchase the stock if assigned.</p>
+
+                <h3>International Investing</h3>
+                <p>International diversification can reduce risk and provide exposure to different economic cycles and growth opportunities.</p>
+
+                <h4>International Investment Options</h4>
+                <ul>
+                    <li><strong>Foreign ETFs:</strong> Broad exposure to international markets</li>
+                    <li><strong>American Depositary Receipts (ADRs):</strong> Foreign stocks trading on U.S. exchanges</li>
+                    <li><strong>Global Mutual Funds:</strong> Professional management of international investments</li>
+                    <li><strong>Currency-Hedged Funds:</strong> Eliminate foreign exchange risk</li>
+                </ul>
+
+                <h3>Tax-Efficient Investing</h3>
+                <p>Understanding the tax implications of your investments can significantly impact your after-tax returns.</p>
+
+                <h4>Tax-Advantaged Strategies</h4>
+                <ul>
+                    <li><strong>Asset Location:</strong> Hold tax-inefficient investments in tax-advantaged accounts</li>
+                    <li><strong>Tax-Loss Harvesting:</strong> Realize losses to offset gains</li>
+                    <li><strong>Hold Periods:</strong> Hold investments >1 year for lower capital gains tax</li>
+                    <li><strong>Index Funds:</strong> More tax-efficient than actively managed funds</li>
+                    <li><strong>Municipal Bonds:</strong> Tax-free interest for high-income investors</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4>Advanced Strategy Warning</h4>
+                    <p>Advanced strategies like options, margin trading, and complex derivatives can amplify both gains and losses. Only use these strategies after thorough education and with money you can afford to lose. Consider consulting with a qualified financial advisor.</p>
+                </div>
+
+                <h3>Market Psychology and Behavioral Finance</h3>
+                <p>Understanding common behavioral biases can help you make better investment decisions and avoid costly mistakes.</p>
+
+                <h4>Common Investment Biases</h4>
+                <ul>
+                    <li><strong>Loss Aversion:</strong> Feeling losses more acutely than equivalent gains</li>
+                    <li><strong>Confirmation Bias:</strong> Seeking information that confirms existing beliefs</li>
+                    <li><strong>Anchoring:</strong> Over-relying on the first piece of information encountered</li>
+                    <li><strong>Herd Mentality:</strong> Following the crowd instead of independent analysis</li>
+                    <li><strong>Overconfidence:</strong> Overestimating one's ability to predict market movements</li>
+                </ul>
+            </section>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h3>Ready to Start Your Investment Journey?</h3>
+                <p>Put your knowledge into practice with GuruFocus's comprehensive suite of investment tools. Start your free trial today and access professional-grade analysis tools.</p>
+                <a href="#" class="btn-cta">Start 7-Day Free Trial</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html" style="color: #4a6cf7;">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for sidebar navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-list a');
+            const sections = document.querySelectorAll('.guide-section');
+
+            // Smooth scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Active section highlighting
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Update active link on scroll
+            window.addEventListener('scroll', updateActiveLink);
+
+            // Animate sections on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Table responsive behavior
+            const tables = document.querySelectorAll('.comparison-table');
+            tables.forEach(table => {
+                const wrapper = table.closest('.table-responsive');
+                if (wrapper) {
+                    wrapper.addEventListener('scroll', function() {
+                        const scrollPercentage = (this.scrollLeft / (this.scrollWidth - this.clientWidth)) * 100;
+                        // You could add scroll indicators here if needed
+                    });
+                }
+            });
+
+            // Add hover effects to guide sections
+            sections.forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 8px 30px rgba(0,0,0,0.12)';
+                });
+
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

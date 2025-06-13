@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Screener - GuruFocus Professional Investment Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .promo-banner {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4a6cf7, #3b5998);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item a:hover,
+        .nav-item.active a {
+            opacity: 0.8;
+            border-bottom: 2px solid white;
+            padding-bottom: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+
+        .btn-trial {
+            background: #ffc107;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .btn-trial:hover {
+            background: #ffca2c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-demo {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-demo:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Screener Layout */
+        .screener-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Filter Sidebar */
+        .filter-sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 25px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .filter-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .clear-filters {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-section h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .filter-section h4::after {
+            content: '▼';
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+
+        .filter-section.collapsed h4::after {
+            transform: rotate(-90deg);
+        }
+
+        .filter-content {
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .filter-section.collapsed .filter-content {
+            display: none;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.1);
+        }
+
+        .filter-range {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .filter-range span {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #4a6cf7;
+        }
+
+        .checkbox-item label {
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        /* Results Area */
+        .results-area {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .results-header {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .results-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .results-count {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .export-btn {
+            background: #4a6cf7;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .export-btn:hover {
+            background: #3b5998;
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+        }
+
+        /* Results Table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 15px 12px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .results-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .results-table th:hover {
+            background: #e9ecef;
+        }
+
+        .results-table th::after {
+            content: '↕';
+            position: absolute;
+            right: 8px;
+            opacity: 0.5;
+            font-size: 12px;
+        }
+
+        .results-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .stock-symbol {
+            font-weight: 600;
+            color: #4a6cf7;
+            text-decoration: none;
+        }
+
+        .stock-symbol:hover {
+            text-decoration: underline;
+        }
+
+        .positive {
+            color: #4CAF50;
+            font-weight: 500;
+        }
+
+        .negative {
+            color: #f44336;
+            font-weight: 500;
+        }
+
+        .neutral {
+            color: #666;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .pagination button {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .pagination button:hover {
+            background: #4a6cf7;
+            color: white;
+            border-color: #4a6cf7;
+        }
+
+        .pagination button.active {
+            background: #4a6cf7;
+            color: white;
+            border-color: #4a6cf7;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Loading State */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f0f0f0;
+            border-left: 3px solid #4a6cf7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Quick Filters */
+        .quick-filters {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .quick-filters h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .quick-filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .quick-filter-btn {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .quick-filter-btn:hover {
+            background: #4a6cf7;
+            color: white;
+            border-color: #4a6cf7;
+        }
+
+        .quick-filter-btn.active {
+            background: #4a6cf7;
+            color: white;
+            border-color: #4a6cf7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .screener-layout {
+                grid-template-columns: 280px 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-actions {
+                gap: 10px;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 13px;
+                min-width: 100px;
+            }
+
+            .screener-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .filter-sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .results-area {
+                order: 1;
+            }
+
+            .results-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .results-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .results-table {
+                font-size: 12px;
+            }
+
+            .results-table th,
+            .results-table td {
+                padding: 10px 8px;
+            }
+
+            .quick-filter-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .nav-actions {
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 6px 10px;
+                font-size: 12px;
+                min-width: 80px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .page-header p {
+                font-size: 16px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .filter-sidebar,
+        .results-area,
+        .quick-filters {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .results-area {
+            animation-delay: 0.1s;
+        }
+
+        .filter-sidebar {
+            animation-delay: 0.2s;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 108, 247, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #4a6cf7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-legal a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #4a6cf7;
+        }
+
+        /* Stock Table CSS */
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .stock-table th {
+            background: #f8f9fa;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #666;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e9ecef;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            user-select: none;
+        }
+
+        .stock-table th:hover {
+            background: #e9ecef;
+        }
+
+        .stock-table th.sorted-asc::after {
+            content: ' ↑';
+            color: #4a6cf7;
+        }
+
+        .stock-table th.sorted-desc::after {
+            content: ' ↓';
+            color: #4a6cf7;
+        }
+
+        .stock-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .stock-table tr:hover {
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .stock-table tr.selected {
+            background: #e3f2fd;
+            border-left: 4px solid #4a6cf7;
+        }
+
+        .stock-symbol {
+            font-weight: 700;
+            color: #4a6cf7;
+            text-decoration: none;
+        }
+
+        .stock-symbol:hover {
+            text-decoration: underline;
+        }
+
+        .stock-name {
+            color: #666;
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        .metric-positive {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .metric-negative {
+            color: #f44336;
+            font-weight: 600;
+        }
+
+        .metric-neutral {
+            color: #666;
+        }
+
+        /* Loading Animation */
+        .loading-row {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4a6cf7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .stock-table {
+                font-size: 12px;
+            }
+
+            .stock-table th,
+            .stock-table td {
+                padding: 10px 8px;
+            }
+
+            .stock-table th {
+                font-size: 11px;
+            }
+
+            .stock-name {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stock-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .stock-table thead,
+            .stock-table tbody,
+            .stock-table th,
+            .stock-table td,
+            .stock-table tr {
+                display: block;
+            }
+
+            .stock-table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            .stock-table tr {
+                border: 1px solid #e9ecef;
+                margin-bottom: 10px;
+                padding: 10px;
+                border-radius: 8px;
+                background: white;
+            }
+
+            .stock-table td {
+                border: none;
+                position: relative;
+                padding: 8px 0 8px 120px;
+                white-space: normal;
+                text-align: left;
+            }
+
+            .stock-table td:before {
+                content: attr(data-label) ": ";
+                position: absolute;
+                left: 6px;
+                width: 110px;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: 600;
+                color: #666;
+                font-size: 12px;
+            }
+        }
+
+        /* Additional Styles */
+        .results-panel {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        #tableView {
+            overflow-x: auto;
+        }
+
+        .pagination {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .pagination-btn {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .pagination-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .pagination-btn.active {
+            background: #4a6cf7;
+            color: white;
+            border-color: #4a6cf7;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <!--
+    <div class="promo-banner">
+        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
+    </div>
+    -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">GuruFocus</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item active"><a href="#">Screeners</a></li>
+                <li class="nav-item"><a href="#">Gurus</a></li>
+                <li class="nav-item"><a href="#">Market</a></li>
+                <li class="nav-item"><a href="#">News</a></li>
+                <li class="nav-item"><a href="#">Tools</a></li>
+                <li class="nav-item"><a href="#">Discussion</a></li>
+                <li class="nav-item"><a href="#">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-trial">7-Day Free Trial</a>
+                <a href="#" class="btn btn-demo">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Professional Stock Screener</h1>
+        <p>Filter through 25,000+ stocks with our advanced screening engine. Over 500 filters including fundamentals, technicals, valuation metrics, and custom criteria.</p>
+    </section>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Quick Filters -->
+        <div class="quick-filters">
+            <h3>Popular Screening Strategies</h3>
+            <div class="quick-filter-grid">
+                <div class="quick-filter-btn" data-filter="dividend-aristocrats">Dividend Aristocrats</div>
+                <div class="quick-filter-btn" data-filter="growth-stocks">High Growth Stocks</div>
+                <div class="quick-filter-btn" data-filter="value-stocks">Undervalued Stocks</div>
+                <div class="quick-filter-btn" data-filter="momentum">Momentum Stocks</div>
+                <div class="quick-filter-btn" data-filter="small-cap">Small Cap Gems</div>
+                <div class="quick-filter-btn" data-filter="low-debt">Low Debt Companies</div>
+                <div class="quick-filter-btn" data-filter="profitable">Consistently Profitable</div>
+                <div class="quick-filter-btn" data-filter="buybacks">Share Buyback Leaders</div>
+            </div>
+        </div>
+
+        <!-- Main Screener Layout -->
+        <div class="screener-layout">
+            <!-- Filter Sidebar -->
+            <div class="filter-sidebar">
+                <div class="filter-header">
+                    <h3>Filters</h3>
+                    <a href="#" class="clear-filters">Clear All</a>
+                </div>
+
+                <!-- Market Cap Section -->
+                <div class="filter-section">
+                    <h4>Market Capitalization</h4>
+                    <div class="filter-content">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mega-cap">
+                                <label for="mega-cap">Mega Cap ($200B+)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="large-cap">
+                                <label for="large-cap">Large Cap ($10B-$200B)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mid-cap">
+                                <label for="mid-cap">Mid Cap ($2B-$10B)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="small-cap">
+                                <label for="small-cap">Small Cap ($300M-$2B)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="micro-cap">
+                                <label for="micro-cap">Micro Cap ($50M-$300M)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Valuation Section -->
+                <div class="filter-section">
+                    <h4>Valuation Metrics</h4>
+                    <div class="filter-content">
+                        <div class="filter-group">
+                            <label>P/E Ratio</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="pe-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="pe-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>P/B Ratio</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="pb-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="pb-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>P/S Ratio</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="ps-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="ps-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>EV/EBITDA</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="ev-ebitda-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="ev-ebitda-max">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Health Section -->
+                <div class="filter-section">
+                    <h4>Financial Health</h4>
+                    <div class="filter-content">
+                        <div class="filter-group">
+                            <label>Debt-to-Equity Ratio</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="de-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="de-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>Current Ratio</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="current-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="current-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>ROE (%)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="roe-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="roe-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>ROA (%)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="roa-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="roa-max">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Growth Section -->
+                <div class="filter-section">
+                    <h4>Growth Metrics</h4>
+                    <div class="filter-content">
+                        <div class="filter-group">
+                            <label>Revenue Growth (%)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="revenue-growth-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="revenue-growth-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>Earnings Growth (%)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="earnings-growth-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="earnings-growth-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>EPS Growth (%)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="eps-growth-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="eps-growth-max">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dividend Section -->
+                <div class="filter-section">
+                    <h4>Dividend Information</h4>
+                    <div class="filter-content">
+                        <div class="filter-group">
+                            <label>Dividend Yield (%)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="div-yield-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="div-yield-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>Payout Ratio (%)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="payout-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="payout-max">
+                            </div>
+                        </div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="dividend-growth">
+                                <label for="dividend-growth">Growing Dividends</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="dividend-aristocrat">
+                                <label for="dividend-aristocrat">Dividend Aristocrat</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Section -->
+                <div class="filter-section">
+                    <h4>Technical Analysis</h4>
+                    <div class="filter-content">
+                        <div class="filter-group">
+                            <label>52-Week Performance (%)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="52w-perf-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="52w-perf-max">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>RSI (14)</label>
+                            <div class="filter-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="rsi-min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="rsi-max">
+                            </div>
+                        </div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="above-sma50">
+                                <label for="above-sma50">Above 50-day SMA</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="above-sma200">
+                                <label for="above-sma200">Above 200-day SMA</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="new-highs">
+                                <label for="new-highs">Near 52-week highs</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Area -->
+            <div class="results-area">
+                <div class="results-header">
+                    <div class="results-info">
+                        <div class="results-count">Found 2,847 stocks</div>
+                        <div style="font-size: 14px; color: #666;">Last updated: 2 minutes ago</div>
+                    </div>
+                    <div class="results-actions">
+                        <button class="export-btn">Export Results</button>
+                        <select class="sort-select">
+                            <option value="market-cap-desc">Market Cap (High to Low)</option>
+                            <option value="market-cap-asc">Market Cap (Low to High)</option>
+                            <option value="pe-ratio-asc">P/E Ratio (Low to High)</option>
+                            <option value="pe-ratio-desc">P/E Ratio (High to Low)</option>
+                            <option value="dividend-yield-desc">Dividend Yield (High to Low)</option>
+                            <option value="performance-desc">Performance (Best to Worst)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Searching through 25,000+ stocks...</p>
+                </div>
+
+                <!-- Table View HTML -->
+                <div class="results-panel">
+                    <div id="tableView">
+                        <table class="stock-table">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortBy('symbol')" data-sort="symbol">Symbol</th>
+                                    <th onclick="sortBy('name')" data-sort="name">Company</th>
+                                    <th onclick="sortBy('price')" data-sort="price">Price</th>
+                                    <th onclick="sortBy('change')" data-sort="change">Change</th>
+                                    <th onclick="sortBy('volume')" data-sort="volume">Volume</th>
+                                    <th onclick="sortBy('marketCap')" data-sort="marketCap">Market Cap</th>
+                                    <th onclick="sortBy('pe')" data-sort="pe">P/E</th>
+                                    <th onclick="sortBy('pb')" data-sort="pb">P/B</th>
+                                    <th onclick="sortBy('roe')" data-sort="roe">ROE</th>
+                                    <th onclick="sortBy('sector')" data-sort="sector">Sector</th>
+                                </tr>
+                            </thead>
+                            <tbody id="stockTableBody">
+                                <!-- Stock data will be populated here -->
+                            </tbody>
+                        </table>
+                        
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="pagination-btn" onclick="changePage('prev')" id="prevBtn">← Previous</button>
+                            <button class="pagination-btn active" onclick="changePage(1)">1</button>
+                            <button class="pagination-btn" onclick="changePage(2)">2</button>
+                            <button class="pagination-btn" onclick="changePage(3)">3</button>
+                            <span>...</span>
+                            <button class="pagination-btn" onclick="changePage(57)">57</button>
+                            <button class="pagination-btn" onclick="changePage('next')" id="nextBtn">Next →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    // Stock data
+                    let stockData = [
+                        {
+                            symbol: 'NVDA',
+                            name: 'NVIDIA Corp',
+                            description: 'Graphics Processing Units',
+                            price: 139.19,
+                            change: 3.24,
+                            volume: 42500000,
+                            marketCap: 3394000000000,
+                            pe: 65.2,
+                            pb: 22.1,
+                            roe: 36.8,
+                            sector: 'Technology'
+                        },
+                        {
+                            symbol: 'MSFT',
+                            name: 'Microsoft Corp',
+                            description: 'Software & Cloud Services',
+                            price: 431.32,
+                            change: 1.87,
+                            volume: 18300000,
+                            marketCap: 3211000000000,
+                            pe: 31.4,
+                            pb: 11.8,
+                            roe: 38.2,
+                            sector: 'Technology'
+                        },
+                        {
+                            symbol: 'AAPL',
+                            name: 'Apple Inc',
+                            description: 'Consumer Electronics',
+                            price: 227.51,
+                            change: -0.89,
+                            volume: 31700000,
+                            marketCap: 3447000000000,
+                            pe: 29.8,
+                            pb: 45.2,
+                            roe: 148.7,
+                            sector: 'Technology'
+                        },
+                        {
+                            symbol: 'GOOGL',
+                            name: 'Alphabet Inc',
+                            description: 'Internet Services & Advertising',
+                            price: 189.53,
+                            change: 2.14,
+                            volume: 24800000,
+                            marketCap: 2298000000000,
+                            pe: 22.7,
+                            pb: 5.8,
+                            roe: 25.6,
+                            sector: 'Technology'
+                        },
+                        {
+                            symbol: 'AMZN',
+                            name: 'Amazon.com Inc',
+                            description: 'E-commerce & Cloud Computing',
+                            price: 195.14,
+                            change: 1.43,
+                            volume: 41200000,
+                            marketCap: 2059000000000,
+                            pe: 44.8,
+                            pb: 8.1,
+                            roe: 18.4,
+                            sector: 'Consumer Discretionary'
+                        },
+                        {
+                            symbol: 'TSLA',
+                            name: 'Tesla Inc',
+                            description: 'Electric Vehicles & Energy',
+                            price: 251.78,
+                            change: 4.67,
+                            volume: 78900000,
+                            marketCap: 803000000000,
+                            pe: 58.9,
+                            pb: 9.3,
+                            roe: 19.3,
+                            sector: 'Consumer Discretionary'
+                        },
+                        {
+                            symbol: 'JPM',
+                            name: 'JPMorgan Chase & Co',
+                            description: 'Financial Services',
+                            price: 205.11,
+                            change: 0.95,
+                            volume: 15500000,
+                            marketCap: 589000000000,
+                            pe: 11.2,
+                            pb: 1.8,
+                            roe: 16.5,
+                            sector: 'Financials'
+                        },
+                        {
+                            symbol: 'V',
+                            name: 'Visa Inc',
+                            description: 'Payment Technology',
+                            price: 278.33,
+                            change: 1.12,
+                            volume: 8900000,
+                            marketCap: 520000000000,
+                            pe: 30.1,
+                            pb: 14.5,
+                            roe: 42.1,
+                            sector: 'Technology'
+                        },
+                        {
+                            symbol: 'UNH',
+                            name: 'UnitedHealth Group Inc',
+                            description: 'Healthcare Services',
+                            price: 525.75,
+                            change: -0.55,
+                            volume: 5100000,
+                            marketCap: 486000000000,
+                            pe: 20.3,
+                            pb: 5.7,
+                            roe: 28.9,
+                            sector: 'Healthcare'
+                        },
+                        {
+                            symbol: 'XOM',
+                            name: 'Exxon Mobil Corp',
+                            description: 'Oil & Gas Exploration',
+                            price: 115.60,
+                            change: -1.23,
+                            volume: 21000000,
+                            marketCap: 450000000000,
+                            pe: 10.5,
+                            pb: 1.9,
+                            roe: 18.1,
+                            sector: 'Energy'
+                        },
+                        {
+                            symbol: 'WMT',
+                            name: 'Walmart Inc',
+                            description: 'Retail & Supercenters',
+                            price: 67.89,
+                            change: 0.78,
+                            volume: 12800000,
+                            marketCap: 545000000000,
+                            pe: 27.5,
+                            pb: 6.2,
+                            roe: 22.3,
+                            sector: 'Consumer Staples'
+                        },
+                        {
+                            symbol: 'JNJ',
+                            name: 'Johnson & Johnson',
+                            description: 'Pharmaceuticals & Consumer Health',
+                            price: 155.40,
+                            change: 0.45,
+                            volume: 7200000,
+                            marketCap: 388000000000,
+                            pe: 22.1,
+                            pb: 4.8,
+                            roe: 20.5,
+                            sector: 'Healthcare'
+                        },
+                        {
+                            symbol: 'PG',
+                            name: 'Procter & Gamble Co',
+                            description: 'Consumer Goods',
+                            price: 170.22,
+                            change: 0.31,
+                            volume: 6800000,
+                            marketCap: 400000000000,
+                            pe: 25.0,
+                            pb: 7.0,
+                            roe: 28.0,
+                            sector: 'Consumer Staples'
+                        },
+                        {
+                            symbol: 'KO',
+                            name: 'Coca-Cola Co',
+                            description: 'Beverages',
+                            price: 63.50,
+                            change: -0.15,
+                            volume: 14000000,
+                            marketCap: 275000000000,
+                            pe: 24.5,
+                            pb: 11.5,
+                            roe: 48.0,
+                            sector: 'Consumer Staples'
+                        },
+                        {
+                            symbol: 'DIS',
+                            name: 'Walt Disney Co',
+                            description: 'Entertainment & Media',
+                            price: 101.88,
+                            change: 1.65,
+                            volume: 11500000,
+                            marketCap: 185000000000,
+                            pe: 60.0,
+                            pb: 2.5,
+                            roe: 4.2,
+                            sector: 'Communication Services'
+                        },
+                        {
+                            symbol: 'NKE',
+                            name: 'Nike Inc',
+                            description: 'Athletic Footwear & Apparel',
+                            price: 95.30,
+                            change: 0.88,
+                            volume: 9800000,
+                            marketCap: 147000000000,
+                            pe: 29.1,
+                            pb: 9.8,
+                            roe: 35.5,
+                            sector: 'Consumer Discretionary'
+                        },
+                        {
+                            symbol: 'T',
+                            name: 'AT&T Inc',
+                            description: 'Telecommunications',
+                            price: 18.25,
+                            change: -0.20,
+                            volume: 35000000,
+                            marketCap: 130000000000,
+                            pe: 7.8,
+                            pb: 1.0,
+                            roe: 13.0,
+                            sector: 'Communication Services'
+                        },
+                        {
+                            symbol: 'CRM',
+                            name: 'Salesforce Inc',
+                            description: 'Cloud-based Software',
+                            price: 245.90,
+                            change: -2.10,
+                            volume: 9200000,
+                            marketCap: 240000000000,
+                            pe: 70.5,
+                            pb: 6.5,
+                            roe: 9.1,
+                            sector: 'Technology'
+                        },
+                        {
+                            symbol: 'BABA',
+                            name: 'Alibaba Group Holding Ltd',
+                            description: 'E-commerce & Fintech',
+                            price: 75.60,
+                            change: 0.50,
+                            volume: 18000000,
+                            marketCap: 190000000000,
+                            pe: 15.2,
+                            pb: 2.3,
+                            roe: 11.5,
+                            sector: 'Consumer Discretionary'
+                        },
+                        {
+                            symbol: 'NFLX',
+                            name: 'Netflix Inc',
+                            description: 'Streaming Entertainment',
+                            price: 680.12,
+                            change: 3.80,
+                            volume: 4500000,
+                            marketCap: 300000000000,
+                            pe: 45.0,
+                            pb: 9.0,
+                            roe: 30.0,
+                            sector: 'Communication Services'
+                        },
+                        {
+                            symbol: 'RY',
+                            name: 'Royal Bank of Canada',
+                            description: 'Banking & Financial Services',
+                            price: 135.70,
+                            change: 0.25,
+                            volume: 3200000,
+                            marketCap: 195000000000,
+                            pe: 12.0,
+                            pb: 1.7,
+                            roe: 14.0,
+                            sector: 'Financials'
+                        },
+                        {
+                            symbol: 'SBUX',
+                            name: 'Starbucks Corp',
+                            description: 'Coffeehouses & Retail',
+                            price: 88.45,
+                            change: -0.30,
+                            volume: 7500000,
+                            marketCap: 100000000000,
+                            pe: 28.0,
+                            pb: 18.0,
+                            roe: 65.0,
+                            sector: 'Consumer Discretionary'
+                        },
+                        {
+                            symbol: 'VZ',
+                            name: 'Verizon Communications Inc',
+                            description: 'Telecommunications Services',
+                            price: 40.50,
+                            change: 0.18,
+                            volume: 25000000,
+                            marketCap: 170000000000,
+                            pe: 9.5,
+                            pb: 1.9,
+                            roe: 20.0,
+                            sector: 'Communication Services'
+                        },
+                        {
+                            symbol: 'HD',
+                            name: 'Home Depot Inc',
+                            description: 'Home Improvement Retail',
+                            price: 350.20,
+                            change: -1.15,
+                            volume: 6000000,
+                            marketCap: 355000000000,
+                            pe: 22.0,
+                            pb: 20.0,
+                            roe: 140.0,
+                            sector: 'Consumer Discretionary'
+                        },
+                        {
+                            symbol: 'INTC',
+                            name: 'Intel Corp',
+                            description: 'Semiconductor Manufacturing',
+                            price: 32.80,
+                            change: -0.55,
+                            volume: 40000000,
+                            marketCap: 140000000000,
+                            pe: 30.0,
+                            pb: 1.2,
+                            roe: 4.5,
+                            sector: 'Technology'
+                        },
+                        // 以下是新增的 5 筆資料
+                        {
+                            symbol: 'MCD',
+                            name: 'McDonald\'s Corp',
+                            description: 'Fast Food Restaurants',
+                            price: 275.50,
+                            change: 0.70,
+                            volume: 5500000,
+                            marketCap: 200000000000,
+                            pe: 26.5,
+                            pb: 35.0,
+                            roe: 80.0,
+                            sector: 'Consumer Discretionary'
+                        },
+                        {
+                            symbol: 'PFE',
+                            name: 'Pfizer Inc',
+                            description: 'Biopharmaceutical Company',
+                            price: 28.90,
+                            change: -0.10,
+                            volume: 30000000,
+                            marketCap: 160000000000,
+                            pe: 12.5,
+                            pb: 1.5,
+                            roe: 10.0,
+                            sector: 'Healthcare'
+                        },
+                        {
+                            symbol: 'ADBE',
+                            name: 'Adobe Inc',
+                            description: 'Creative & Marketing Software',
+                            price: 520.00,
+                            change: 2.50,
+                            volume: 4000000,
+                            marketCap: 235000000000,
+                            pe: 45.0,
+                            pb: 15.0,
+                            roe: 33.0,
+                            sector: 'Technology'
+                        },
+                        {
+                            symbol: 'COST',
+                            name: 'Costco Wholesale Corp',
+                            description: 'Membership Warehouse Clubs',
+                            price: 800.10,
+                            change: 1.20,
+                            volume: 2500000,
+                            marketCap: 350000000000,
+                            pe: 48.0,
+                            pb: 15.0,
+                            roe: 32.0,
+                            sector: 'Consumer Staples'
+                        },
+                        {
+                            symbol: 'CSCO',
+                            name: 'Cisco Systems Inc',
+                            description: 'Networking Hardware & Software',
+                            price: 48.70,
+                            change: -0.35,
+                            volume: 20000000,
+                            marketCap: 200000000000,
+                            pe: 14.0,
+                            pb: 3.5,
+                            roe: 25.0,
+                            sector: 'Technology'
+                        }
+                    ];
+
+                    let currentSort = { field: null, direction: 'asc' };
+                    let currentPage = 1;
+                    let itemsPerPage = 23;
+
+                    // Initialize table
+                    function initializeTable() {
+                        renderTable();
+                        updatePagination();
+                    }
+
+                    // Render table
+                    function renderTable() {
+                        const tbody = document.getElementById('stockTableBody');
+                        tbody.innerHTML = '';
+
+                        const startIndex = (currentPage - 1) * itemsPerPage;
+                        const endIndex = startIndex + itemsPerPage;
+                        const pageData = stockData.slice(startIndex, endIndex);
+
+                        pageData.forEach(stock => {
+                            const row = createTableRow(stock);
+                            tbody.appendChild(row);
+                        });
+                    }
+
+                    // Create table row
+                    function createTableRow(stock) {
+                        const row = document.createElement('tr');
+                        row.onclick = () => viewStock(stock.symbol);
+
+                        row.innerHTML = `
+                            <td data-label="Symbol" class="stock-symbol">${stock.symbol}</td>
+                            <td data-label="Company">
+                                <div>${stock.name}</div>
+                                <div class="stock-name">${stock.description}</div>
+                            </td>
+                            <td data-label="Price">$${stock.price.toFixed(2)}</td>
+                            <td data-label="Change" class="${stock.change >= 0 ? 'metric-positive' : 'metric-negative'}">
+                                ${stock.change >= 0 ? '+' : ''}${stock.change.toFixed(2)}%
+                            </td>
+                            <td data-label="Volume">${formatVolume(stock.volume)}</td>
+                            <td data-label="Market Cap">$${formatMarketCap(stock.marketCap)}</td>
+                            <td data-label="P/E" class="metric-neutral">${stock.pe.toFixed(1)}</td>
+                            <td data-label="P/B" class="metric-neutral">${stock.pb.toFixed(1)}</td>
+                            <td data-label="ROE" class="${stock.roe >= 0 ? 'metric-positive' : 'metric-negative'}">
+                                ${stock.roe.toFixed(1)}%
+                            </td>
+                            <td data-label="Sector">${stock.sector}</td>
+                        `;
+
+                        return row;
+                    }
+
+                    // Sort functionality
+                    function sortBy(field) {
+                        const headers = document.querySelectorAll('.stock-table th');
+                        headers.forEach(th => th.classList.remove('sorted-asc', 'sorted-desc'));
+
+                        if (currentSort.field === field) {
+                            currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                        } else {
+                            currentSort.field = field;
+                            currentSort.direction = 'asc';
+                        }
+
+                        const header = document.querySelector(`th[data-sort="${field}"]`);
+                        header.classList.add(currentSort.direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
+
+                        stockData.sort((a, b) => {
+                            let aValue = a[field];
+                            let bValue = b[field];
+
+                            if (typeof aValue === 'string') {
+                                aValue = aValue.toLowerCase();
+                                bValue = bValue.toLowerCase();
+                            }
+
+                            if (currentSort.direction === 'asc') {
+                                return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+                            } else {
+                                return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+                            }
+                        });
+
+                        renderTable();
+                    }
+
+                    // Pagination
+                    function changePage(page) {
+                        if (page === 'prev' && currentPage > 1) {
+                            currentPage--;
+                        } else if (page === 'next' && currentPage < Math.ceil(stockData.length / itemsPerPage)) {
+                            currentPage++;
+                        } else if (typeof page === 'number') {
+                            currentPage = page;
+                        }
+
+                        renderTable();
+                        updatePagination();
+                    }
+
+                    function updatePagination() {
+                        const totalPages = Math.ceil(stockData.length / itemsPerPage);
+                        const prevBtn = document.getElementById('prevBtn');
+                        const nextBtn = document.getElementById('nextBtn');
+
+                        prevBtn.disabled = currentPage === 1;
+                        nextBtn.disabled = currentPage === totalPages;
+
+                        // Update active page button
+                        document.querySelectorAll('.pagination-btn').forEach(btn => {
+                            btn.classList.remove('active');
+                            if (btn.textContent == currentPage && !isNaN(btn.textContent)) {
+                                btn.classList.add('active');
+                            }
+                        });
+                    }
+
+                    // Utility functions
+                    function formatVolume(volume) {
+                        if (volume >= 1000000) {
+                            return (volume / 1000000).toFixed(1) + 'M';
+                        } else if (volume >= 1000) {
+                            return (volume / 1000).toFixed(1) + 'K';
+                        }
+                        return volume.toString();
+                    }
+
+                    function formatMarketCap(marketCap) {
+                        if (marketCap >= 1000000000000) {
+                            return (marketCap / 1000000000000).toFixed(0) + 'T';
+                        } else if (marketCap >= 1000000000) {
+                            return (marketCap / 1000000000).toFixed(0) + 'B';
+                        } else if (marketCap >= 1000000) {
+                            return (marketCap / 1000000).toFixed(0) + 'M';
+                        }
+                        return marketCap.toString();
+                    }
+
+                    // Stock interaction
+                    // function viewStock(symbol) {
+                    //     console.log('Viewing stock:', symbol);
+                    //     // Add your stock detail view logic here
+                    //     alert(`Viewing details for ${symbol}`);
+                    // }
+
+                    // Filter functions (to be connected with your filter panel)
+                    function applyFilters() {
+                        // Add your filter logic here
+                        console.log('Applying filters...');
+                        renderTable();
+                    }
+
+                    function clearFilters() {
+                        // Add your clear filter logic here
+                        console.log('Clearing filters...');
+                        renderTable();
+                    }
+
+                    // Sort dropdown
+                    function sortResults(value) {
+                        switch(value) {
+                            case 'marketCap':
+                                sortBy('marketCap');
+                                break;
+                            case 'price':
+                                sortBy('price');
+                                break;
+                            case 'change':
+                                sortBy('change');
+                                break;
+                            case 'volume':
+                                sortBy('volume');
+                                break;
+                            case 'pe':
+                                sortBy('pe');
+                                break;
+                            default:
+                                sortBy('symbol');
+                        }
+                    }
+
+                    // View toggle (between table and cards)
+                    function toggleView(view) {
+                        const tableView = document.getElementById('tableView');
+                        const buttons = document.querySelectorAll('.view-btn');
+                        
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        event.target.classList.add('active');
+
+                        if (view === 'table') {
+                            tableView.style.display = 'block';
+                            // Hide card view if exists
+                        } else {
+                            // Show card view, hide table view
+                            console.log('Switching to card view');
+                        }
+                    }
+
+                    // Initialize on page load
+                    document.addEventListener('DOMContentLoaded', function() {
+                        initializeTable();
+                    });
+
+                    // Loading state
+                    function showLoading() {
+                        const tbody = document.getElementById('stockTableBody');
+                        tbody.innerHTML = `
+                            <tr>
+                                <td colspan="10" class="loading-row">
+                                    <div class="loading-spinner"></div>
+                                    <div>Loading stocks...</div>
+                                </td>
+                            </tr>
+                        `;
+                    }
+
+                    function hideLoading() {
+                        renderTable();
+                    }
+
+                    // Export functions for external use
+                    window.stockTable = {
+                        sortBy,
+                        changePage,
+                        viewStock,
+                        applyFilters,
+                        clearFilters,
+                        sortResults,
+                        toggleView,
+                        showLoading,
+                        hideLoading
+                    };
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">GuruFocus</div>
+                    <p class="footer-description">
+                        Professional investment research platform providing advanced screening tools, portfolio analysis, and market insights to help investors make informed decisions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">yt</a>
+                    </div>
+                </div>
+
+                <!-- Platform Section -->
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="Platform/stock_screener.html" style="color: #4a6cf7;">Stock Screener</a></li>
+                        <li><a href="Platform/portfolio_analyzer.html">Portfolio Analyzer</a></li>
+                        <li><a href="Platform/backtesting.html">Backtesting</a></li>
+                        <li><a href="Platform/dcf_calculator.html">DCF Calculator</a></li>
+                        <li><a href="Platform/options_tools.html">Options Tools</a></li>
+                        <li><a href="Platform/market_data.html">Market Data</a></li>
+                        <li><a href="Platform/api_access.html">API Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research Section -->
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="Research/guru_tracking.html">Guru Tracking</a></li>
+                        <li><a href="Research/analyst_ratings.html">Analyst Ratings</a></li>
+                        <li><a href="Research/market_news.html">Market News</a></li>
+                        <li><a href="Research/economic_calendar.html">Economic Calendar</a></li>
+                        <li><a href="Research/earnings_reports.html">Earnings Reports</a></li>
+                        <li><a href="Research/research_reports.html">Research Reports</a></li>
+                        <li><a href="Research/investment_Ideas.html">Investment Ideas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="Resources/help_center.thml">Help Center</a></li>
+                        <li><a href="Resources/video_tutorials.thml">Video Tutorials</a></li>
+                        <li><a href="Resources/webinars.html">Webinars</a></li>
+                        <li><a href="Resources/investment_guide.html">Investment Guide</a></li>
+                        <li><a href="Resources/blog.html">Blog</a></li>
+                        <li><a href="Resources/community_forum.html">Community Forum</a></li>
+                        <li><a href="Resources/knowledge_base.thml">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="Company/about_us.html">About Us</a></li>
+                        <li><a href="Company/careers.html">Careers</a></li>
+                        <li><a href="Company/contact.html">Contact</a></li>
+                        <li><a href="Company/pricing.html">Pricing</a></li>
+                        <li><a href="Company/enterprise.html">Enterprise</a></li>
+                        <li><a href="Company/partners.html">Partners</a></li>
+                        <li><a href="Company/press_kit.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 GuruFocus. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="terms_of_service.html">Terms of Service</a>
+                    <a href="cookie_policy.html">Cookie Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter section collapsing
+            document.querySelectorAll('.filter-section h4').forEach(header => {
+                header.addEventListener('click', function() {
+                    const section = this.parentElement;
+                    section.classList.toggle('collapsed');
+                });
+            });
+
+            // Quick filter buttons
+            document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.quick-filter-btn').forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Apply preset filters based on selection
+                    applyPresetFilter(this.dataset.filter);
+                });
+            });
+
+            // Clear filters functionality
+            document.querySelector('.clear-filters').addEventListener('click', function(e) {
+                e.preventDefault();
+                clearAllFilters();
+            });
+
+            // Export functionality
+            document.querySelector('.export-btn').addEventListener('click', function() {
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    alert('Export functionality would be implemented here. Results would be downloaded as CSV/Excel file.');
+                }, 1500);
+            });
+
+            // Sort functionality
+            document.querySelector('.sort-select').addEventListener('change', function() {
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    // Sort logic would be implemented here
+                }, 1000);
+            });
+
+            // Table sorting
+            document.querySelectorAll('.results-table th').forEach(header => {
+                header.addEventListener('click', function() {
+                    showLoading();
+                    setTimeout(() => {
+                        hideLoading();
+                        // Sorting logic would be implemented here
+                    }, 800);
+                });
+            });
+
+            // Pagination
+            document.querySelectorAll('.pagination button').forEach(btn => {
+                if (!btn.disabled && !btn.classList.contains('active')) {
+                    btn.addEventListener('click', function() {
+                        showLoading();
+                        setTimeout(() => {
+                            hideLoading();
+                            // Update active page
+                            document.querySelectorAll('.pagination button').forEach(b => b.classList.remove('active'));
+                            if (!this.textContent.includes('Previous') && !this.textContent.includes('Next') && !this.textContent.includes('...')) {
+                                this.classList.add('active');
+                            }
+                        }, 1200);
+                    });
+                }
+            });
+
+            // Filter inputs
+            document.querySelectorAll('.filter-input, input[type="checkbox"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    debounce(updateResults, 500)();
+                });
+            });
+
+            // Real-time stock price updates
+            setInterval(updateStockPrices, 10000); // Update every 10 seconds
+
+            function applyPresetFilter(filterType) {
+                clearAllFilters();
+                
+                switch(filterType) {
+                    case 'dividend-aristocrats':
+                        document.getElementById('dividend-aristocrat').checked = true;
+                        document.getElementById('div-yield-min').value = '2';
+                        break;
+                    case 'growth-stocks':
+                        document.getElementById('revenue-growth-min').value = '20';
+                        document.getElementById('earnings-growth-min').value = '15';
+                        break;
+                    case 'value-stocks':
+                        document.getElementById('pe-max').value = '15';
+                        document.getElementById('pb-max').value = '2';
+                        break;
+                    case 'momentum':
+                        document.getElementById('52w-perf-min').value = '20';
+                        document.getElementById('above-sma50').checked = true;
+                        document.getElementById('above-sma200').checked = true;
+                        break;
+                    case 'small-cap':
+                        document.getElementById('small-cap').checked = true;
+                        break;
+                    case 'low-debt':
+                        document.getElementById('de-max').value = '0.3';
+                        break;
+                    case 'profitable':
+                        document.getElementById('roe-min').value = '15';
+                        document.getElementById('roa-min').value = '5';
+                        break;
+                    case 'buybacks':
+                        // This would require additional filter options in a real implementation
+                        break;
+                }
+                
+                updateResults();
+            }
+
+            function clearAllFilters() {
+                // Clear all input fields
+                document.querySelectorAll('.filter-input').forEach(input => {
+                    input.value = '';
+                });
+                
+                // Uncheck all checkboxes
+                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                // Remove active state from quick filters
+                document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                updateResults();
+            }
+
+            function updateResults() {
+                showLoading();
+                
+                // Simulate API call
+                setTimeout(() => {
+                    hideLoading();
+                    
+                    // Update results count
+                    const randomCount = Math.floor(Math.random() * 5000) + 500;
+                    document.querySelector('.results-count').textContent = `Found ${randomCount.toLocaleString()} stocks`;
+                    
+                    // In a real implementation, this would update the table with new data
+                }, Math.random() * 2000 + 1000);
+            }
+
+            function showLoading() {
+                document.querySelector('.loading').classList.add('active');
+                document.querySelector('.results-table').style.opacity = '0.5';
+            }
+
+            function hideLoading() {
+                document.querySelector('.loading').classList.remove('active');
+                document.querySelector('.results-table').style.opacity = '1';
+            }
+
+            function updateStockPrices() {
+                document.querySelectorAll('.results-table tbody tr').forEach(row => {
+                    const priceCell = row.children[2];
+                    const perfCell = row.children[6];
+                    
+                    // Simulate price changes
+                    if (Math.random() > 0.7) { // 30% chance of price change
+                        const currentPrice = parseFloat(priceCell.textContent.replace(', ''));
+                        const changePercent = (Math.random() - 0.5) * 0.04; // ±2% max change
+                        const newPrice = currentPrice * (1 + changePercent);
+                        
+                        priceCell.textContent = `${newPrice.toFixed(2)}`;
+                        
+                        // Add flash effect
+                        priceCell.style.backgroundColor = changePercent > 0 ? '#4CAF50' : '#f44336';
+                        priceCell.style.color = 'white';
+                        priceCell.style.transition = 'all 0.3s ease';
+                        
+                        setTimeout(() => {
+                            priceCell.style.backgroundColor = '';
+                            priceCell.style.color = '';
+                        }, 1000);
+                    }
+                });
+            }
+
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Row hover effects
+            document.querySelectorAll('.results-table tbody tr').forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.01)';
+                    this.style.transition = 'transform 0.2s ease';
+                    this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                });
+
+                row.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = '';
+                });
+            });
+
+            // Initialize with some random data variation
+            setTimeout(updateStockPrices, 2000);
+        });
+    </script>
+</body>
+</html>
