@@ -19,15 +19,6 @@
         }
 
         /* Header */
-        .promo-banner {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            color: #333;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
         .navbar {
             background: linear-gradient(135deg, #4a6cf7, #3b5998);
             padding: 0;
@@ -64,9 +55,8 @@
             transition: opacity 0.3s;
         }
 
-        .nav-item a:hover, .nav-item a.active {
+        .nav-item a:hover {
             opacity: 0.8;
-            text-decoration: underline;
         }
 
         .nav-actions {
@@ -108,16 +98,16 @@
             background: rgba(255,255,255,0.3);
         }
 
-        /* Page Hero */
-        .page-hero {
+        /* Hero Section */
+        .hero-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 80px 0 60px;
+            padding: 80px 0;
             color: white;
             position: relative;
             overflow: hidden;
         }
 
-        .page-hero::before {
+        .hero-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -127,7 +117,7 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
         }
 
-        .page-hero-container {
+        .hero-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
@@ -136,411 +126,409 @@
             z-index: 1;
         }
 
-        .page-hero h1 {
-            font-size: 48px;
+        .hero-section h1 {
+            font-size: 56px;
             font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            margin-bottom: 24px;
+            line-height: 1.1;
         }
 
-        .page-hero p {
-            font-size: 18px;
+        .hero-section p {
+            font-size: 20px;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 40px;
         }
 
-        /* Search Section */
-        .search-section {
-            margin-top: -30px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .search-container {
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
             max-width: 800px;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            padding: 40px;
         }
 
-        .search-box {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+        .hero-stat {
+            text-align: center;
         }
 
-        .search-input {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
+        .hero-stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffc107;
+        }
+
+        .hero-stat-label {
             font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #4a6cf7;
-        }
-
-        .search-btn {
-            background: linear-gradient(135deg, #4a6cf7, #667eea);
-            color: white;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .search-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
-        }
-
-        .popular-searches {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .popular-tag {
-            background: #f8f9fa;
-            color: #495057;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .popular-tag:hover {
-            background: #4a6cf7;
-            color: white;
+            opacity: 0.9;
         }
 
         /* Main Content */
         .main-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 60px 20px 40px;
+            padding: 60px 20px;
         }
 
-        /* Quick Actions */
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-
-        .action-card {
+        /* Support Channels */
+        .support-channels {
             background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.1);
+            padding: 50px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-channels::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #4a6cf7, #667eea, #764ba2);
+        }
+
+        .section-header {
             text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .channel-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
             transition: all 0.3s ease;
-            border-top: 4px solid transparent;
+            position: relative;
         }
 
-        .action-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        .channel-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
 
-        .action-card.support {
-            border-top-color: #4CAF50;
-        }
-
-        .action-card.contact {
-            border-top-color: #4a6cf7;
-        }
-
-        .action-card.community {
-            border-top-color: #ff9800;
-        }
-
-        .action-card.training {
-            border-top-color: #9c27b0;
-        }
-
-        .action-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
+        .channel-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
             color: white;
             margin: 0 auto 20px;
         }
 
-        .action-card.support .action-icon {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-        }
+        .support-card .channel-icon { background: linear-gradient(135deg, #4CAF50, #45a049); }
+        .docs-card .channel-icon { background: linear-gradient(135deg, #4a6cf7, #667eea); }
+        .community-card .channel-icon { background: linear-gradient(135deg, #ff9800, #f57c00); }
+        .training-card .channel-icon { background: linear-gradient(135deg, #9c27b0, #7b1fa2); }
 
-        .action-card.contact .action-icon {
-            background: linear-gradient(135deg, #4a6cf7, #667eea);
-        }
-
-        .action-card.community .action-icon {
-            background: linear-gradient(135deg, #ff9800, #f57c00);
-        }
-
-        .action-card.training .action-icon {
-            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
-        }
-
-        .action-card h3 {
-            font-size: 20px;
+        .channel-card h3 {
+            font-size: 22px;
             font-weight: 700;
             color: #333;
             margin-bottom: 12px;
         }
 
-        .action-card p {
-            color: #6c757d;
+        .channel-card p {
+            color: #666;
             margin-bottom: 20px;
+            line-height: 1.6;
         }
 
-        .action-btn {
-            background: linear-gradient(135deg, #4a6cf7, #667eea);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
+        .channel-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
         }
 
-        .action-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
         }
 
-        /* Help Categories */
-        .help-categories {
+        /* Knowledge Base */
+        .knowledge-base {
             margin-bottom: 60px;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #6c757d;
-            font-size: 16px;
-            margin-bottom: 40px;
-        }
-
-        .categories-grid {
+        .kb-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
-        .category-card {
+        .kb-category {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 16px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.08);
             overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .category-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        .kb-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 50px rgba(0,0,0,0.15);
         }
 
-        .category-header {
-            padding: 25px 25px 20px;
-            border-bottom: 1px solid #f0f0f0;
+        .kb-header {
+            padding: 30px 30px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
         }
 
-        .category-icon {
+        .kb-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #4a6cf7, #667eea);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
-        .category-title {
+        .getting-started .kb-icon { background: linear-gradient(135deg, #4CAF50, #45a049); }
+        .platform-guide .kb-icon { background: linear-gradient(135deg, #4a6cf7, #667eea); }
+        .troubleshooting .kb-icon { background: linear-gradient(135deg, #ff9800, #f57c00); }
+        .api-docs .kb-icon { background: linear-gradient(135deg, #9c27b0, #7b1fa2); }
+        .billing-help .kb-icon { background: linear-gradient(135deg, #f44336, #d32f2f); }
+        .advanced-features .kb-icon { background: linear-gradient(135deg, #00BCD4, #0097A7); }
+
+        .kb-category h3 {
             font-size: 20px;
             font-weight: 700;
             color: #333;
             margin-bottom: 8px;
         }
 
-        .category-description {
-            color: #6c757d;
+        .kb-category .category-description {
+            color: #666;
             font-size: 14px;
+            margin-bottom: 16px;
         }
 
-        .category-content {
-            padding: 0;
+        .kb-stats {
+            display: flex;
+            gap: 20px;
         }
 
-        .help-topic {
-            padding: 15px 25px;
-            border-bottom: 1px solid #f8f9fa;
-            transition: all 0.3s;
+        .kb-stat {
+            text-align: center;
         }
 
-        .help-topic:last-child {
-            border-bottom: none;
+        .kb-stat-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 4px;
         }
 
-        .help-topic:hover {
-            background: #f8f9fa;
+        .kb-stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
-        .help-topic a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
+        .kb-content {
+            padding: 25px 30px;
+        }
+
+        .kb-topics {
+            list-style: none;
+        }
+
+        .kb-topic {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .help-topic a:hover {
-            color: #4a6cf7;
+        .kb-topic:last-child {
+            border-bottom: none;
         }
 
-        .topic-arrow {
-            color: #6c757d;
+        .kb-topic-title {
+            color: #333;
+            font-weight: 500;
             font-size: 14px;
         }
 
-        /* FAQ Section */
-        .faq-section {
+        .kb-topic-meta {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Popular Articles */
+        .popular-articles {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .article-card {
             background: white;
             border-radius: 12px;
+            padding: 25px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .article-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .article-category {
+            background: rgba(74, 108, 247, 0.1);
+            color: #4a6cf7;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .article-views {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* System Status */
+        .system-status {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.1);
             padding: 40px;
             margin-bottom: 60px;
         }
 
-        .faq-item {
-            border-bottom: 1px solid #f0f0f0;
-            padding: 20px 0;
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
 
-        .faq-item:last-child {
-            border-bottom: none;
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: all 0.3s ease;
         }
 
-        .faq-question {
+        .status-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .status-indicator {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+        }
+
+        .status-operational { background: #4CAF50; }
+        .status-maintenance { background: #ff9800; }
+        .status-issue { background: #f44336; }
+
+        .status-info h4 {
             font-size: 16px;
             font-weight: 600;
             color: #333;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            transition: color 0.3s;
+            margin-bottom: 4px;
         }
 
-        .faq-question:hover {
-            color: #4a6cf7;
-        }
-
-        .faq-toggle {
-            font-size: 18px;
-            font-weight: bold;
-            color: #4a6cf7;
-            transition: transform 0.3s;
-        }
-
-        .faq-answer {
-            color: #6c757d;
-            padding: 15px 0;
-            line-height: 1.6;
-            display: none;
-        }
-
-        .faq-answer.active {
-            display: block;
-        }
-
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-        }
-
-        /* Contact Support */
-        .contact-support {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .contact-support h3 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .contact-support p {
-            color: #6c757d;
-            margin-bottom: 25px;
-        }
-
-        .contact-options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .contact-option {
-            background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 20px;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s;
-            min-width: 150px;
-        }
-
-        .contact-option:hover {
-            border-color: #4a6cf7;
-            color: #4a6cf7;
-            transform: translateY(-2px);
-        }
-
-        .contact-option-icon {
-            font-size: 24px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .contact-option-text {
-            font-weight: 600;
+        .status-info p {
+            color: #666;
+            font-size: 13px;
         }
 
         /* Footer */
@@ -671,21 +659,53 @@
             }
         }
 
-        .action-card {
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .support-channels {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .channel-card {
             animation: fadeInUp 0.6s ease-out;
         }
 
-        .action-card:nth-child(2) { animation-delay: 0.1s; }
-        .action-card:nth-child(3) { animation-delay: 0.2s; }
-        .action-card:nth-child(4) { animation-delay: 0.3s; }
+        .channel-card:nth-child(2) { animation-delay: 0.1s; }
+        .channel-card:nth-child(3) { animation-delay: 0.2s; }
+        .channel-card:nth-child(4) { animation-delay: 0.3s; }
 
-        .category-card {
-            animation: fadeInUp 0.6s ease-out;
+        .kb-category {
+            animation: slideInLeft 0.6s ease-out;
         }
 
-        .category-card:nth-child(2) { animation-delay: 0.1s; }
-        .category-card:nth-child(3) { animation-delay: 0.2s; }
-        .category-card:nth-child(4) { animation-delay: 0.3s; }
+        .kb-category:nth-child(even) {
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .kb-category:nth-child(2) { animation-delay: 0.1s; }
+        .kb-category:nth-child(3) { animation-delay: 0.2s; }
+        .kb-category:nth-child(4) { animation-delay: 0.3s; }
+        .kb-category:nth-child(5) { animation-delay: 0.4s; }
+        .kb-category:nth-child(6) { animation-delay: 0.5s; }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -693,29 +713,34 @@
                 display: none;
             }
 
-            .page-hero h1 {
-                font-size: 32px;
+            .hero-section h1 {
+                font-size: 36px;
             }
 
-            .search-container {
-                padding: 30px 20px;
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .search-box {
-                flex-direction: column;
-            }
-
-            .quick-actions {
+            .channels-grid {
                 grid-template-columns: 1fr;
             }
 
-            .categories-grid {
+            .kb-grid {
                 grid-template-columns: 1fr;
             }
 
-            .contact-options {
-                flex-direction: column;
-                align-items: center;
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-channels,
+            .popular-articles,
+            .system-status {
+                padding: 30px;
             }
 
             .footer-top {
@@ -736,13 +761,6 @@
     </style>
 </head>
 <body>
-    <!-- Promo Banner -->
-    <!--
-    <div class="promo-banner">
-        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
-    </div>
-    -->
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -764,427 +782,431 @@
         </div>
     </nav>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div class="page-hero-container">
-            <h1>Help Center</h1>
-            <p>Find answers to your questions, learn how to use our platform effectively, and get the support you need to make informed investment decisions.</p>
-        </div>
-    </section>
-
-    <!-- Search Section -->
-    <section class="search-section">
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" class="search-input" placeholder="Search for help articles, tutorials, or features..." id="helpSearch">
-                <button class="search-btn" onclick="performSearch()">Search</button>
-            </div>
-            <div class="popular-searches">
-                <span style="color: #6c757d; font-size: 14px; margin-right: 10px;">Popular searches:</span>
-                <a href="#" class="popular-tag">Getting Started</a>
-                <a href="#" class="popular-tag">Stock Screener</a>
-                <a href="#" class="popular-tag">Portfolio Setup</a>
-                <a href="#" class="popular-tag">API Access</a>
-                <a href="#" class="popular-tag">Billing</a>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <h1>🆘 Help Center</h1>
+            <p>Comprehensive support resources, documentation, and assistance to help you maximize your investment research and platform experience.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">24/7</div>
+                    <div class="hero-stat-label">Support Available</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">500+</div>
+                    <div class="hero-stat-label">Help Articles</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">99.9%</div>
+                    <div class="hero-stat-label">Uptime</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">< 2min</div>
+                    <div class="hero-stat-label">Avg Response</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Quick Actions -->
-        <div class="quick-actions">
-            <div class="action-card support">
-                <div class="action-icon">💬</div>
-                <h3>Live Chat Support</h3>
-                <p>Get instant help from our support team. Available 24/7 for premium users, business hours for free users.</p>
-                <a href="#" class="action-btn">Start Chat</a>
+        <!-- Support Channels -->
+        <section class="support-channels">
+            <div class="section-header">
+                <h2>🤝 Support Channels</h2>
+                <p>Multiple ways to get help when you need it most</p>
             </div>
-
-            <div class="action-card contact">
-                <div class="action-icon">📧</div>
-                <h3>Contact Support</h3>
-                <p>Send us a detailed message about your issue and we'll get back to you within 24 hours.</p>
-                <a href="#" class="action-btn">Send Message</a>
-            </div>
-
-            <div class="action-card community">
-                <div class="action-icon">👥</div>
-                <h3>Community Forum</h3>
-                <p>Join discussions with other investors, share insights, and learn from the community.</p>
-                <a href="#" class="action-btn">Visit Forum</a>
-            </div>
-
-            <div class="action-card training">
-                <div class="action-icon">🎓</div>
-                <h3>Video Tutorials</h3>
-                <p>Watch step-by-step video guides to master all features of the GuruFocus platform.</p>
-                <a href="#" class="action-btn">Watch Now</a>
-            </div>
-        </div>
-
-        <!-- Help Categories -->
-        <section class="help-categories">
-            <h2 class="section-title">Help Categories</h2>
-            <p class="section-subtitle">Browse our comprehensive help documentation organized by topic</p>
-            
-            <div class="categories-grid">
-                <!-- Getting Started -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon">🚀</div>
-                        <h3 class="category-title">Getting Started</h3>
-                        <p class="category-description">New to GuruFocus? Start here for the basics</p>
-                    </div>
-                    <div class="category-content">
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Creating Your Account</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Platform Overview & Navigation</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Setting Up Your First Watchlist</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Understanding Premium Features</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Free Trial Guide</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
+            <div class="channels-grid">
+                <div class="channel-card support-card">
+                    <div class="channel-icon">💬</div>
+                    <h3>Live Chat Support</h3>
+                    <p>Get instant help from our expert support team. Available 24/7 for premium users with real-time assistance.</p>
+                    <div class="channel-status">
+                        <div class="status-dot"></div>
+                        Online Now
                     </div>
                 </div>
 
-                <!-- Stock Screener -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon">🔍</div>
-                        <h3 class="category-title">Stock Screener</h3>
-                        <p class="category-description">Master our powerful screening tools</p>
-                    </div>
-                    <div class="category-content">
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Basic Screening Tutorial</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Advanced Filter Combinations</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Custom Screening Templates</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Fundamental vs Technical Filters</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Saving & Sharing Screen Results</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
+                <div class="channel-card docs-card">
+                    <div class="channel-icon">📚</div>
+                    <h3>Documentation</h3>
+                    <p>Comprehensive guides, tutorials, and detailed documentation covering every feature and functionality.</p>
+                    <div class="channel-status">
+                        <div class="status-dot"></div>
+                        Always Available
                     </div>
                 </div>
 
-                <!-- Portfolio Analysis -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon">📊</div>
-                        <h3 class="category-title">Portfolio Analysis</h3>
-                        <p class="category-description">Analyze and optimize your investments</p>
-                    </div>
-                    <div class="category-content">
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Importing Your Portfolio</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Risk Analysis & Metrics</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Performance Attribution</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Diversification Analysis</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Portfolio Comparison Tools</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
+                <div class="channel-card community-card">
+                    <div class="channel-icon">👥</div>
+                    <h3>Community Forum</h3>
+                    <p>Connect with other investors, share insights, and get peer support from our active community.</p>
+                    <div class="channel-status">
+                        <div class="status-dot"></div>
+                        Active Community
                     </div>
                 </div>
 
-                <!-- Backtesting -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon">⚡</div>
-                        <h3 class="category-title">Backtesting</h3>
-                        <p class="category-description">Test your investment strategies</p>
-                    </div>
-                    <div class="category-content">
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Creating Your First Backtest</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Strategy Parameter Settings</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Understanding Backtest Results</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Risk-Adjusted Performance Metrics</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Strategy Optimization Tips</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Account & Billing -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon">💳</div>
-                        <h3 class="category-title">Account & Billing</h3>
-                        <p class="category-description">Manage your subscription and account</p>
-                    </div>
-                    <div class="category-content">
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Subscription Plans & Pricing</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Upgrading Your Account</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Payment Methods & Billing</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Account Settings & Privacy</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Cancellation & Refunds</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- API & Integrations -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon">🔗</div>
-                        <h3 class="category-title">API & Integrations</h3>
-                        <p class="category-description">Connect with third-party tools and data</p>
-                    </div>
-                    <div class="category-content">
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>API Documentation & Setup</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Data Export Options</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Broker Integrations</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Excel & Google Sheets Add-ins</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
-                        <div class="help-topic">
-                            <a href="#">
-                                <span>Webhook Notifications</span>
-                                <span class="topic-arrow">→</span>
-                            </a>
-                        </div>
+                <div class="channel-card training-card">
+                    <div class="channel-icon">🎓</div>
+                    <h3>Video Training</h3>
+                    <p>Step-by-step video tutorials and webinars to help you master investment research techniques.</p>
+                    <div class="channel-status">
+                        <div class="status-dot"></div>
+                        Updated Weekly
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section class="faq-section">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Quick answers to the most common questions</p>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>How do I start my 7-day free trial?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Simply click the "7-Day Free Trial" button in the top navigation or on any pricing page. You'll need to create an account with your email address. No credit card is required for the trial, and you'll have full access to all premium features for 7 days.
-                </div>
+        <!-- Knowledge Base -->
+        <section class="knowledge-base">
+            <div class="section-header">
+                <h2>📖 Knowledge Base</h2>
+                <p>Organized help content to answer your questions and guide your learning</p>
             </div>
+            <div class="kb-grid">
+                <div class="kb-category getting-started">
+                    <div class="kb-header">
+                        <div class="kb-icon">🚀</div>
+                        <h3>Getting Started</h3>
+                        <p class="category-description">Essential guides for new users</p>
+                        <div class="kb-stats">
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">28</div>
+                                <div class="kb-stat-label">Articles</div>
+                            </div>
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">15k</div>
+                                <div class="kb-stat-label">Views</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kb-content">
+                        <ul class="kb-topics">
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">DCF Calculator Usage</span>
+                                <span class="kb-topic-meta">14 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Options Analysis Tools</span>
+                                <span class="kb-topic-meta">20 min read</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>What's included in the free trial?</span>
-                    <span class="faq-toggle">+</span>
+                <div class="kb-category troubleshooting">
+                    <div class="kb-header">
+                        <div class="kb-icon">🔧</div>
+                        <h3>Troubleshooting</h3>
+                        <p class="category-description">Solutions to common issues</p>
+                        <div class="kb-stats">
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">34</div>
+                                <div class="kb-stat-label">Articles</div>
+                            </div>
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">18k</div>
+                                <div class="kb-stat-label">Views</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kb-content">
+                        <ul class="kb-topics">
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Login & Access Issues</span>
+                                <span class="kb-topic-meta">4 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Data Loading Problems</span>
+                                <span class="kb-topic-meta">6 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Browser Compatibility</span>
+                                <span class="kb-topic-meta">5 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Export & Download Issues</span>
+                                <span class="kb-topic-meta">7 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Performance Optimization</span>
+                                <span class="kb-topic-meta">9 min read</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    The free trial includes access to all premium features: advanced stock screener with 500+ filters, portfolio analysis tools, backtesting engine, guru tracking, real-time data, custom alerts, and API access. You can also export data and use all professional tools without any limitations.
-                </div>
-            </div>
 
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>How accurate is your financial data?</span>
-                    <span class="faq-toggle">+</span>
+                <div class="kb-category api-docs">
+                    <div class="kb-header">
+                        <div class="kb-icon">🔗</div>
+                        <h3>API Documentation</h3>
+                        <p class="category-description">Developer resources & integration</p>
+                        <div class="kb-stats">
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">45</div>
+                                <div class="kb-stat-label">Articles</div>
+                            </div>
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">8k</div>
+                                <div class="kb-stat-label">Views</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kb-content">
+                        <ul class="kb-topics">
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">API Authentication</span>
+                                <span class="kb-topic-meta">8 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Endpoint Documentation</span>
+                                <span class="kb-topic-meta">25 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Rate Limits & Usage</span>
+                                <span class="kb-topic-meta">6 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Code Examples</span>
+                                <span class="kb-topic-meta">15 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Webhook Integration</span>
+                                <span class="kb-topic-meta">12 min read</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    We source our data from multiple tier-1 financial data providers including Reuters, Bloomberg, and S&P Global. Our data is updated in real-time during market hours and undergoes rigorous quality checks. We maintain 99.9% data accuracy and provide timestamps for all data points.
-                </div>
-            </div>
 
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Can I import my existing portfolio?</span>
-                    <span class="faq-toggle">+</span>
+                <div class="kb-category billing-help">
+                    <div class="kb-header">
+                        <div class="kb-icon">💳</div>
+                        <h3>Billing & Account</h3>
+                        <p class="category-description">Subscription & payment help</p>
+                        <div class="kb-stats">
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">22</div>
+                                <div class="kb-stat-label">Articles</div>
+                            </div>
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">12k</div>
+                                <div class="kb-stat-label">Views</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kb-content">
+                        <ul class="kb-topics">
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Subscription Plans</span>
+                                <span class="kb-topic-meta">7 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Payment Methods</span>
+                                <span class="kb-topic-meta">5 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Billing Cycles</span>
+                                <span class="kb-topic-meta">4 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Refund Policy</span>
+                                <span class="kb-topic-meta">6 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Account Cancellation</span>
+                                <span class="kb-topic-meta">3 min read</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    Yes! You can import your portfolio in several ways: upload a CSV file with your holdings, connect directly to supported brokers (TD Ameritrade, E*TRADE, Schwab), or manually enter your positions. We support stocks, ETFs, mutual funds, and options across multiple exchanges.
-                </div>
-            </div>
 
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>How does the stock screener work?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Our stock screener allows you to filter stocks based on 500+ criteria including fundamental metrics (P/E, revenue growth, debt levels), technical indicators (RSI, moving averages, volume), and custom combinations. You can save screens, set up alerts, and even backtest your screening strategies to see historical performance.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>What payment methods do you accept?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for annual subscriptions. All payments are processed securely through Stripe. You can update your payment method anytime in your account settings.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Is there an API available?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Yes, we offer a comprehensive RESTful API for premium users. You can access real-time and historical stock data, screening results, portfolio analytics, and more. The API includes detailed documentation, code examples in multiple languages, and generous rate limits. Perfect for algorithmic trading and custom applications.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Can I cancel my subscription anytime?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Absolutely! You can cancel your subscription at any time from your account settings. There are no cancellation fees, and you'll continue to have access to premium features until the end of your current billing period. We also offer a 30-day money-back guarantee for new subscribers.
+                <div class="kb-category advanced-features">
+                    <div class="kb-header">
+                        <div class="kb-icon">⚡</div>
+                        <h3>Advanced Features</h3>
+                        <p class="category-description">Professional tools & techniques</p>
+                        <div class="kb-stats">
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">38</div>
+                                <div class="kb-stat-label">Articles</div>
+                            </div>
+                            <div class="kb-stat">
+                                <div class="kb-stat-number">9k</div>
+                                <div class="kb-stat-label">Views</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kb-content">
+                        <ul class="kb-topics">
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Custom Indicators</span>
+                                <span class="kb-topic-meta">16 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Algorithm Development</span>
+                                <span class="kb-topic-meta">28 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Risk Management Tools</span>
+                                <span class="kb-topic-meta">18 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Multi-Factor Models</span>
+                                <span class="kb-topic-meta">24 min read</span>
+                            </li>
+                            <li class="kb-topic">
+                                <span class="kb-topic-title">Enterprise Features</span>
+                                <span class="kb-topic-meta">20 min read</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Support -->
-        <section class="contact-support">
-            <h3>Still Need Help?</h3>
-            <p>Our support team is here to help you succeed. Choose the option that works best for you:</p>
-            
-            <div class="contact-options">
-                <a href="#" class="contact-option">
-                    <span class="contact-option-icon">💬</span>
-                    <span class="contact-option-text">Live Chat</span>
-                </a>
-                <a href="#" class="contact-option">
-                    <span class="contact-option-icon">📧</span>
-                    <span class="contact-option-text">Email Support</span>
-                </a>
-                <a href="#" class="contact-option">
-                    <span class="contact-option-icon">📞</span>
-                    <span class="contact-option-text">Phone Support</span>
-                </a>
-                <a href="#" class="contact-option">
-                    <span class="contact-option-icon">📅</span>
-                    <span class="contact-option-text">Book Demo</span>
-                </a>
+        <!-- Popular Articles -->
+        <section class="popular-articles">
+            <div class="section-header">
+                <h2>⭐ Most Popular Articles</h2>
+                <p>The most viewed and helpful resources from our knowledge base</p>
+            </div>
+            <div class="articles-grid">
+                <div class="article-card">
+                    <div class="article-badge">Trending</div>
+                    <h3 class="article-title">Complete Guide to Stock Screening</h3>
+                    <p class="article-excerpt">
+                        Learn how to use our advanced stock screener to find investment opportunities. 
+                        This comprehensive guide covers all filters, strategies, and best practices.
+                    </p>
+                    <div class="article-meta">
+                        <span class="article-category">Platform Guide</span>
+                        <span class="article-views">47k views</span>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-badge">Popular</div>
+                    <h3 class="article-title">Setting Up Your First Portfolio</h3>
+                    <p class="article-excerpt">
+                        Step-by-step instructions for importing your portfolio, setting up tracking, 
+                        and understanding performance metrics and risk analysis.
+                    </p>
+                    <div class="article-meta">
+                        <span class="article-category">Getting Started</span>
+                        <span class="article-views">38k views</span>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-badge">New</div>
+                    <h3 class="article-title">Mastering DCF Valuation</h3>
+                    <p class="article-excerpt">
+                        Deep dive into discounted cash flow analysis using our calculator. 
+                        Learn assumptions, sensitivity analysis, and interpretation of results.
+                    </p>
+                    <div class="article-meta">
+                        <span class="article-category">Advanced Features</span>
+                        <span class="article-views">29k views</span>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-badge">Essential</div>
+                    <h3 class="article-title">API Integration Guide</h3>
+                    <p class="article-excerpt">
+                        Complete developer guide for integrating GuruFocus data into your applications. 
+                        Includes authentication, endpoints, and code examples.
+                    </p>
+                    <div class="article-meta">
+                        <span class="article-category">API Docs</span>
+                        <span class="article-views">22k views</span>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-badge">Updated</div>
+                    <h3 class="article-title">Options Analysis Tutorial</h3>
+                    <p class="article-excerpt">
+                        Learn to analyze options using our tools. Covers Greeks, strategies, 
+                        profit/loss scenarios, and risk management techniques.
+                    </p>
+                    <div class="article-meta">
+                        <span class="article-category">Platform Guide</span>
+                        <span class="article-views">25k views</span>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-badge">Hot</div>
+                    <h3 class="article-title">Backtesting Your Strategy</h3>
+                    <p class="article-excerpt">
+                        Test your investment strategies with historical data. Learn parameter 
+                        optimization, performance metrics, and strategy validation.
+                    </p>
+                    <div class="article-meta">
+                        <span class="article-category">Advanced Features</span>
+                        <span class="article-views">31k views</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Status -->
+        <section class="system-status">
+            <div class="section-header">
+                <h2>🔋 System Status</h2>
+                <p>Real-time status of all GuruFocus services and systems</p>
+            </div>
+            <div class="status-grid">
+                <div class="status-item">
+                    <div class="status-indicator status-operational">✓</div>
+                    <div class="status-info">
+                        <h4>Platform Services</h4>
+                        <p>All systems operational</p>
+                    </div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-indicator status-operational">✓</div>
+                    <div class="status-info">
+                        <h4>Data Feeds</h4>
+                        <p>Real-time data flowing normally</p>
+                    </div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-indicator status-operational">✓</div>
+                    <div class="status-info">
+                        <h4>API Services</h4>
+                        <p>All endpoints responding</p>
+                    </div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-indicator status-maintenance">⚠</div>
+                    <div class="status-info">
+                        <h4>Reporting System</h4>
+                        <p>Scheduled maintenance 2:00-3:00 AM EST</p>
+                    </div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-indicator status-operational">✓</div>
+                    <div class="status-info">
+                        <h4>Authentication</h4>
+                        <p>Login and security systems normal</p>
+                    </div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-indicator status-operational">✓</div>
+                    <div class="status-info">
+                        <h4>Payment Processing</h4>
+                        <p>Billing and subscriptions active</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -1279,70 +1301,84 @@
     </footer>
 
     <script>
-        // Search functionality
-        function performSearch() {
-            const searchTerm = document.getElementById('helpSearch').value;
-            if (searchTerm.trim()) {
-                // Simulate search functionality
-                console.log('Searching for:', searchTerm);
-                
-                // Show loading state
-                const searchBtn = document.querySelector('.search-btn');
-                const originalText = searchBtn.textContent;
-                searchBtn.textContent = 'Searching...';
-                searchBtn.disabled = true;
-                
-                // Simulate search delay
-                setTimeout(() => {
-                    searchBtn.textContent = originalText;
-                    searchBtn.disabled = false;
-                    alert(`Showing results for: "${searchTerm}"`);
-                }, 1000);
-            }
-        }
-
-        // FAQ toggle functionality
-        function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            const faqAnswer = faqItem.querySelector('.faq-answer');
-            const isActive = faqItem.classList.contains('active');
-            
-            // Close all other FAQ items
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                item.querySelector('.faq-answer').classList.remove('active');
-            });
-            
-            // Toggle current item
-            if (!isActive) {
-                faqItem.classList.add('active');
-                faqAnswer.classList.add('active');
-            }
-        }
-
-        // Popular search tag functionality
-        document.querySelectorAll('.popular-tag').forEach(tag => {
-            tag.addEventListener('click', function(e) {
-                e.preventDefault();
-                const searchInput = document.getElementById('helpSearch');
-                searchInput.value = this.textContent;
-                performSearch();
-            });
-        });
-
-        // Search on Enter key
-        document.getElementById('helpSearch').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-
-        // Initialize page
+        // Add interactive effects and animations
         document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to action cards
-            document.querySelectorAll('.action-card').forEach(card => {
+            // Animate hero statistics on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.classList.contains('hero-stat-number')) {
+                            animateStatNumber(element);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all statistics that should animate
+            document.querySelectorAll('.hero-stat-number').forEach(el => {
+                observer.observe(el);
+            });
+
+            function animateStatNumber(element) {
+                const text = element.textContent;
+                
+                if (text.includes('%')) {
+                    const number = parseFloat(text.replace(/[^0-9.]/g, ''));
+                    animateToNumber(element, number, text);
+                } else if (text.includes('min')) {
+                    const number = parseFloat(text.replace(/[^0-9.]/g, ''));
+                    animateToNumber(element, number, text);
+                } else if (text.includes('+')) {
+                    const number = parseFloat(text.replace(/[^0-9]/g, ''));
+                    animateToNumber(element, number, text);
+                } else {
+                    const number = parseFloat(text.replace(/[^0-9]/g, ''));
+                    if (!isNaN(number)) {
+                        animateToNumber(element, number, text);
+                    }
+                }
+            }
+
+            function animateToNumber(element, targetNumber, originalText) {
+                let current = 0;
+                const increment = targetNumber / 40;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= targetNumber) {
+                        element.textContent = originalText;
+                        clearInterval(timer);
+                    } else {
+                        if (originalText.includes('%')) {
+                            element.textContent = current.toFixed(1) + '%';
+                        } else if (originalText.includes('min')) {
+                            element.textContent = '< ' + Math.floor(current) + 'min';
+                        } else if (originalText.includes('+')) {
+                            element.textContent = Math.floor(current) + '+';
+                        } else {
+                            element.textContent = Math.floor(current);
+                        }
+                    }
+                }, 30);
+            }
+
+            // Add hover effects to cards
+            document.querySelectorAll('.channel-card, .kb-category, .article-card, .status-item').forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
+                    if (this.classList.contains('channel-card')) {
+                        this.style.transform = 'translateY(-8px)';
+                    } else if (this.classList.contains('kb-category')) {
+                        this.style.transform = 'translateY(-6px)';
+                    } else if (this.classList.contains('article-card')) {
+                        this.style.transform = 'translateY(-4px)';
+                    } else if (this.classList.contains('status-item')) {
+                        this.style.transform = 'translateY(-2px)';
+                    }
                 });
 
                 card.addEventListener('mouseleave', function() {
@@ -1350,80 +1386,50 @@
                 });
             });
 
-            // Add hover effects to category cards
-            document.querySelectorAll('.category-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-4px)';
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Add click tracking for help topics
-            document.querySelectorAll('.help-topic a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const topicName = this.querySelector('span').textContent;
-                    console.log('Help topic clicked:', topicName);
-                    
-                    // Simulate navigation
-                    this.style.opacity = '0.7';
+            // Add click effects to knowledge base topics
+            document.querySelectorAll('.kb-topic').forEach(topic => {
+                topic.addEventListener('click', function() {
+                    this.style.backgroundColor = '#e3f2fd';
                     setTimeout(() => {
-                        this.style.opacity = '1';
-                        alert(`Opening help article: "${topicName}"`);
+                        this.style.backgroundColor = '';
                     }, 200);
                 });
             });
 
-            // Add contact option click tracking
-            document.querySelectorAll('.contact-option').forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const optionType = this.querySelector('.contact-option-text').textContent;
-                    console.log('Contact option clicked:', optionType);
-                    
-                    // Simulate different actions based on option
-                    if (optionType === 'Live Chat') {
-                        alert('Opening live chat window...');
-                    } else if (optionType === 'Email Support') {
-                        alert('Opening email composer...');
-                    } else if (optionType === 'Phone Support') {
-                        alert('Phone support: +1 (555) 123-4567');
-                    } else if (optionType === 'Book Demo') {
-                        alert('Opening calendar booking...');
+            // Add pulse animation to status indicators
+            setInterval(() => {
+                document.querySelectorAll('.status-indicator').forEach(indicator => {
+                    if (indicator.classList.contains('status-operational')) {
+                        indicator.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            indicator.style.transform = 'scale(1)';
+                        }, 200);
                     }
+                });
+            }, 3000);
+
+            // Add reading progress animation to article stats
+            document.querySelectorAll('.kb-stat-number').forEach(stat => {
+                stat.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.2)';
+                    this.style.color = '#4a6cf7';
+                    this.style.transition = 'all 0.2s ease';
+                });
+
+                stat.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.color = '';
                 });
             });
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Add loading animation for action buttons
-            document.querySelectorAll('.action-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const originalText = this.textContent;
-                    this.textContent = 'Loading...';
-                    this.style.opacity = '0.7';
-                    
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                        this.style.opacity = '1';
-                    }, 1500);
-                });
+            // Add article badge animations
+            document.querySelectorAll('.article-badge').forEach(badge => {
+                // Add subtle floating animation
+                let floatDirection = 1;
+                setInterval(() => {
+                    badge.style.transform = `translateY(${floatDirection * 2}px)`;
+                    floatDirection *= -1;
+                }, 2000);
             });
         });
     </script>

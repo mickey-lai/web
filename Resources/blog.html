@@ -19,15 +19,6 @@
         }
 
         /* Header */
-        .promo-banner {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            color: #333;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
         .navbar {
             background: linear-gradient(135deg, #4a6cf7, #3b5998);
             padding: 0;
@@ -150,85 +141,6 @@
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
-        }
-
-        /* Blog Navigation */
-        .blog-nav {
-            background: white;
-            border-bottom: 1px solid #e9ecef;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .blog-nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .blog-categories {
-            display: flex;
-            gap: 15px;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-
-        .blog-categories a {
-            color: #666;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s;
-            white-space: nowrap;
-            min-width: fit-content;
-        }
-
-        .blog-categories a:hover,
-        .blog-categories a.active {
-            background: #4a6cf7;
-            color: white;
-        }
-
-        .blog-search {
-            position: relative;
-        }
-
-        .blog-search input {
-            padding: 10px 40px 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            font-size: 14px;
-            width: 300px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .blog-search input:focus {
-            border-color: #4a6cf7;
-        }
-
-        .blog-search button {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 15px;
-            transition: all 0.3s;
-        }
-
-        .blog-search button:hover {
-            background: #f0f0f0;
         }
 
         /* Main Blog Content */
@@ -354,7 +266,6 @@
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
         }
 
         .article-card:hover {
@@ -419,37 +330,6 @@
             color: white;
         }
 
-        .newsletter-form {
-            margin-top: 20px;
-        }
-
-        .newsletter-input {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .newsletter-btn {
-            width: 100%;
-            padding: 12px;
-            background: #ffc107;
-            color: #333;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .newsletter-btn:hover {
-            background: #ffca2c;
-            transform: translateY(-1px);
-        }
-
         /* Popular Posts */
         .popular-post {
             display: flex;
@@ -502,28 +382,6 @@
         .tag:hover {
             background: #4a6cf7;
             color: white;
-        }
-
-        /* Load More */
-        .load-more {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .load-more-btn {
-            background: #4a6cf7;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .load-more-btn:hover {
-            background: #3b5998;
-            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -657,26 +515,6 @@
                 gap: 40px;
             }
 
-            .blog-nav-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .blog-categories {
-                flex-wrap: wrap;
-                gap: 10px;
-                justify-content: center;
-            }
-
-            .blog-categories a {
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-
-            .blog-search input {
-                width: 250px;
-            }
-
             .articles-grid {
                 grid-template-columns: 1fr;
             }
@@ -725,13 +563,6 @@
     </style>
 </head>
 <body>
-    <!-- Promo Banner -->
-    <!--
-    <div class="promo-banner">
-        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
-    </div>
-    -->
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -760,25 +591,6 @@
             <p>Expert analysis, market trends, and investment strategies from our team of financial professionals and industry leaders.</p>
         </div>
     </section>
-
-    <!-- Blog Navigation -->
-    <div class="blog-nav">
-        <div class="blog-nav-container">
-            <ul class="blog-categories">
-                <li><a href="#" class="active">All Posts</a></li>
-                <li><a href="#">Market Analysis</a></li>
-                <li><a href="#">Investment Strategies</a></li>
-                <li><a href="#">Company Research</a></li>
-                <li><a href="#">Economic Insights</a></li>
-                <li><a href="#">Portfolio Management</a></li>
-                <li><a href="#">Technology</a></li>
-            </ul>
-            <div class="blog-search">
-                <input type="text" placeholder="Search articles...">
-                <button>🔍</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Main Blog Content -->
     <div class="blog-container">
@@ -935,11 +747,6 @@
                     </div>
                 </article>
             </div>
-
-            <!-- Load More -->
-            <div class="load-more">
-                <button class="load-more-btn">Load More Articles</button>
-            </div>
         </main>
 
         <!-- Sidebar -->
@@ -948,10 +755,6 @@
             <div class="sidebar-widget newsletter-widget">
                 <h3 class="widget-title">Stay Updated</h3>
                 <p>Get the latest investment insights and market analysis delivered to your inbox.</p>
-                <form class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Enter your email">
-                    <button type="submit" class="newsletter-btn">Subscribe</button>
-                </form>
             </div>
 
             <!-- Popular Posts -->
@@ -1063,7 +866,6 @@
                     <li><a href="#">Stock Screener Tool</a></li>
                     <li><a href="#">Portfolio Analyzer</a></li>
                     <li><a href="#">Investment Calculator</a></li>
-                    <li><a href="#">Market Calendar</a></li>
                     <li><a href="#">Risk Assessment</a></li>
                     <li><a href="#">Educational Webinars</a></li>
                 </ul>
@@ -1159,189 +961,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // Blog functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Category filtering
-            const categoryLinks = document.querySelectorAll('.blog-categories a');
-            categoryLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all links
-                    categoryLinks.forEach(l => l.classList.remove('active'));
-                    
-                    // Add active class to clicked link
-                    this.classList.add('active');
-                    
-                    // Filter articles (in a real app, this would filter the content)
-                    console.log('Filtering by category:', this.textContent);
-                });
-            });
-
-            // Search functionality
-            const searchInput = document.querySelector('.blog-search input');
-            const searchButton = document.querySelector('.blog-search button');
-            
-            function performSearch() {
-                const query = searchInput.value.trim();
-                if (query) {
-                    console.log('Searching for:', query);
-                    // In a real app, this would perform the search
-                }
-            }
-
-            searchButton.addEventListener('click', performSearch);
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    performSearch();
-                }
-            });
-
-            // Article card hover effects
-            const articleCards = document.querySelectorAll('.article-card, .featured-article');
-            articleCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = this.classList.contains('featured-article') ? 
-                        'translateY(-5px)' : 'translateY(-3px)';
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-
-                // Click to read article
-                card.addEventListener('click', function() {
-                    const title = this.querySelector('.article-title').textContent;
-                    console.log('Opening article:', title);
-                    // In a real app, this would navigate to the full article
-                });
-            });
-
-            // Load more functionality
-            const loadMoreBtn = document.querySelector('.load-more-btn');
-            loadMoreBtn.addEventListener('click', function() {
-                // Show loading state
-                this.textContent = 'Loading...';
-                this.disabled = true;
-                
-                // Simulate loading
-                setTimeout(() => {
-                    this.textContent = 'Load More Articles';
-                    this.disabled = false;
-                    console.log('Loading more articles...');
-                    // In a real app, this would load more content
-                }, 1000);
-            });
-
-            // Newsletter subscription
-            const newsletterForm = document.querySelector('.newsletter-form');
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('.newsletter-input').value;
-                
-                if (email) {
-                    const btn = this.querySelector('.newsletter-btn');
-                    const originalText = btn.textContent;
-                    
-                    btn.textContent = 'Subscribing...';
-                    btn.disabled = true;
-                    
-                    setTimeout(() => {
-                        btn.textContent = 'Subscribed!';
-                        btn.style.background = '#4CAF50';
-                        
-                        setTimeout(() => {
-                            btn.textContent = originalText;
-                            btn.style.background = '#ffc107';
-                            btn.disabled = false;
-                            this.querySelector('.newsletter-input').value = '';
-                        }, 2000);
-                    }, 1000);
-                }
-            });
-
-            // Tag cloud interactions
-            const tags = document.querySelectorAll('.tag');
-            tags.forEach(tag => {
-                tag.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('Filtering by tag:', this.textContent);
-                    // In a real app, this would filter articles by tag
-                });
-            });
-
-            // Popular posts interactions
-            const popularPosts = document.querySelectorAll('.popular-post');
-            popularPosts.forEach(post => {
-                post.addEventListener('click', function() {
-                    const title = this.querySelector('h4').textContent;
-                    console.log('Opening popular post:', title);
-                    // In a real app, this would navigate to the article
-                });
-
-                post.style.cursor = 'pointer';
-            });
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Market data update simulation
-            function updateMarketData() {
-                const marketWidgets = document.querySelectorAll('.sidebar-widget');
-                const marketWidget = Array.from(marketWidgets).find(widget => 
-                    widget.querySelector('.widget-title').textContent === 'Market Snapshot'
-                );
-                
-                if (marketWidget) {
-                    const changeElements = marketWidget.querySelectorAll('[style*="color: #4CAF50"], [style*="color: #f44336"]');
-                    changeElements.forEach(el => {
-                        const isPositive = Math.random() > 0.5;
-                        const change = (Math.random() * 2).toFixed(2);
-                        el.textContent = (isPositive ? '+' : '-') + change + '%';
-                        el.style.color = isPositive ? '#4CAF50' : '#f44336';
-                    });
-                }
-            }
-
-            // Update market data every 30 seconds
-            setInterval(updateMarketData, 30000);
-
-            // Intersection Observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe sidebar widgets for animations
-            document.querySelectorAll('.sidebar-widget').forEach(widget => {
-                widget.style.opacity = '0';
-                widget.style.transform = 'translateY(20px)';
-                widget.style.transition = 'all 0.6s ease-out';
-                observer.observe(widget);
-            });
-        });
-    </script>
 </body>
 </html>

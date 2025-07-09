@@ -171,6 +171,27 @@
             height: fit-content;
             position: sticky;
             top: 100px;
+            opacity: 0.6;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .filter-sidebar * {
+            cursor: not-allowed !important;
+        }
+
+        .filter-sidebar::before {
+            content: '🔒 Premium';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #2196F3;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 10;
         }
 
         .filter-header {
@@ -508,22 +529,32 @@
             padding: 12px 16px;
             border-radius: 8px;
             text-align: center;
-            cursor: pointer;
+            cursor: not-allowed;
             transition: all 0.3s;
             font-size: 14px;
             font-weight: 500;
+            opacity: 0.6;
+            position: relative;
         }
 
         .quick-filter-btn:hover {
-            background: #4a6cf7;
-            color: white;
-            border-color: #4a6cf7;
+            background: #e9ecef;
+            color: #666;
+            border-color: #ddd;
         }
 
         .quick-filter-btn.active {
-            background: #4a6cf7;
-            color: white;
-            border-color: #4a6cf7;
+            background: #e9ecef;
+            color: #666;
+            border-color: #ddd;
+        }
+
+        .quick-filter-btn::after {
+            content: '🔒';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 12px;
         }
 
         /* Responsive */
@@ -651,7 +682,16 @@
         }
 
         .filter-sidebar {
-            animation-delay: 0.2s;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 25px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            opacity: 0.6;
+            pointer-events: none;
+            position: relative;
         }
 
         /* Footer Styles */
@@ -1263,9 +1303,10 @@
             <div class="results-area">
                 <div class="results-header">
                     <div class="results-info">
-                        <div class="results-count">Found 2,847 stocks</div>
+                        <div class="results-count">Found 30 stocks</div>
                         <div style="font-size: 14px; color: #666;">Last updated: 2 minutes ago</div>
                     </div>
+                    <!--
                     <div class="results-actions">
                         <button class="export-btn">Export Results</button>
                         <select class="sort-select">
@@ -1277,6 +1318,7 @@
                             <option value="performance-desc">Performance (Best to Worst)</option>
                         </select>
                     </div>
+                    -->
                 </div>
 
                 <!-- Loading State -->
@@ -1313,9 +1355,6 @@
                             <button class="pagination-btn" onclick="changePage('prev')" id="prevBtn">← Previous</button>
                             <button class="pagination-btn active" onclick="changePage(1)">1</button>
                             <button class="pagination-btn" onclick="changePage(2)">2</button>
-                            <button class="pagination-btn" onclick="changePage(3)">3</button>
-                            <span>...</span>
-                            <button class="pagination-btn" onclick="changePage(57)">57</button>
                             <button class="pagination-btn" onclick="changePage('next')" id="nextBtn">Next →</button>
                         </div>
                     </div>

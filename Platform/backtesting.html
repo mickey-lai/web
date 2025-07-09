@@ -306,10 +306,65 @@
 
         /* Strategy Panel */
         .strategy-panel {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            overflow: hidden;
+            opacity: 0.6;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .strategy-panel * {
+            cursor: not-allowed !important;
+        }
+
+        .strategy-panel::before {
+            content: '🔒 Premium';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #2196F3;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        .strategy-panel .panel-title::after {
+            content: ' (Premium)';
+            color: #999;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .strategy-panel .form-input,
+        .strategy-panel .form-select {
+            background-color: #f8f9fa;
+            color: #999;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .strategy-panel .form-input:focus,
+        .strategy-panel .form-select:focus {
+            outline: none;
+            border-color: #ddd;
+            box-shadow: none;
+        }
+
+        .strategy-panel .form-label {
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .strategy-panel .metric-label,
+        .strategy-panel .metric-value {
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .strategy-panel .metric-positive,
+        .strategy-panel .metric-negative {
+            color: #999 !important;
         }
 
         .panel-header {
@@ -734,7 +789,7 @@
             <div class="backtesting-main">
                 <div class="backtesting-header">
                     <h2 class="backtesting-title">Strategy Performance</h2>
-                    <a href="#" class="run-backtest-btn">▶ Run Backtest</a>
+                    <!--<a href="#" class="run-backtest-btn">▶ Run Backtest</a>-->
                 </div>
                 <div class="chart-container">
                     <div class="chart-placeholder">
@@ -847,10 +902,12 @@
         <section class="results-section">
             <div class="results-header">
                 <h2 class="results-title">Detailed Performance Analysis</h2>
+                <!--
                 <div style="display: flex; gap: 15px;">
                     <a href="#" class="btn btn-demo">Export Report</a>
                     <a href="#" class="btn btn-trial">Save Strategy</a>
                 </div>
+                -->
             </div>
 
             <div class="results-grid">

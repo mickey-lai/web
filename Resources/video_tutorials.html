@@ -19,15 +19,6 @@
         }
 
         /* Header */
-        .promo-banner {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            color: #333;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
         .navbar {
             background: linear-gradient(135deg, #4a6cf7, #3b5998);
             padding: 0;
@@ -172,89 +163,6 @@
             opacity: 0.8;
         }
 
-        /* Filter Section */
-        .filter-section {
-            background: white;
-            padding: 30px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .filter-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .filter-label {
-            font-weight: 600;
-            color: #333;
-            white-space: nowrap;
-        }
-
-        .filter-select {
-            padding: 8px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 6px;
-            background: white;
-            font-size: 14px;
-            min-width: 150px;
-            transition: border-color 0.3s;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: #4a6cf7;
-        }
-
-        .search-box {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .search-input {
-            padding: 8px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 6px;
-            font-size: 14px;
-            width: 250px;
-            transition: border-color 0.3s;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #4a6cf7;
-        }
-
-        .search-btn {
-            background: linear-gradient(135deg, #4a6cf7, #667eea);
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .search-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
-        }
-
         /* Main Content */
         .main-content {
             max-width: 1400px;
@@ -307,7 +215,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
             transition: all 0.3s;
         }
 
@@ -376,23 +283,6 @@
             gap: 5px;
         }
 
-        .watch-btn {
-            background: linear-gradient(135deg, #4a6cf7, #667eea);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: fit-content;
-        }
-
-        .watch-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.4);
-        }
-
         /* Video Categories */
         .categories-section {
             margin-bottom: 60px;
@@ -456,7 +346,6 @@
             padding: 15px 25px;
             border-bottom: 1px solid #f8f9fa;
             transition: all 0.3s;
-            cursor: pointer;
         }
 
         .video-item:last-child {
@@ -498,24 +387,6 @@
             line-height: 1.4;
         }
 
-        .view-all-btn {
-            margin: 20px 25px 25px;
-            background: #f8f9fa;
-            color: #4a6cf7;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: calc(100% - 50px);
-        }
-
-        .view-all-btn:hover {
-            background: #4a6cf7;
-            color: white;
-        }
-
         /* Latest Videos */
         .latest-section {
             margin-bottom: 60px;
@@ -547,11 +418,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-        }
-
-        .video-thumbnail:hover .play-button {
-            transform: scale(1.1);
         }
 
         .video-thumbnail .play-button {
@@ -717,23 +583,6 @@
             gap: 5px;
         }
 
-        .start-path-btn {
-            background: linear-gradient(135deg, #4a6cf7, #667eea);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .start-path-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
-        }
-
         /* Footer */
         .footer {
             background: #1a1a2e;
@@ -893,24 +742,6 @@
                 gap: 20px;
             }
 
-            .filter-container {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 20px;
-            }
-
-            .filter-group {
-                justify-content: space-between;
-            }
-
-            .search-box {
-                flex-direction: column;
-            }
-
-            .search-input {
-                width: 100%;
-            }
-
             .featured-video {
                 grid-template-columns: 1fr;
             }
@@ -945,13 +776,6 @@
     </style>
 </head>
 <body>
-    <!-- Promo Banner -->
-    <!--
-    <div class="promo-banner">
-        🎉 Enjoy a 7-Day Free Trial Through Jun 06, 2025!
-    </div>
-    -->
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -996,48 +820,6 @@
         </div>
     </section>
 
-    <!-- Filter Section -->
-    <section class="filter-section">
-        <div class="filter-container">
-            <div class="filter-group">
-                <span class="filter-label">Category:</span>
-                <select class="filter-select" id="categoryFilter">
-                    <option value="all">All Categories</option>
-                    <option value="getting-started">Getting Started</option>
-                    <option value="screener">Stock Screener</option>
-                    <option value="portfolio">Portfolio Analysis</option>
-                    <option value="backtesting">Backtesting</option>
-                    <option value="advanced">Advanced Features</option>
-                </select>
-            </div>
-            
-            <div class="filter-group">
-                <span class="filter-label">Level:</span>
-                <select class="filter-select" id="levelFilter">
-                    <option value="all">All Levels</option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced">Advanced</option>
-                </select>
-            </div>
-            
-            <div class="filter-group">
-                <span class="filter-label">Duration:</span>
-                <select class="filter-select" id="durationFilter">
-                    <option value="all">Any Duration</option>
-                    <option value="short">Under 5 min</option>
-                    <option value="medium">5-15 min</option>
-                    <option value="long">15+ min</option>
-                </select>
-            </div>
-            
-            <div class="search-box">
-                <input type="text" class="search-input" placeholder="Search tutorials..." id="videoSearch">
-                <button class="search-btn" onclick="searchVideos()">Search</button>
-            </div>
-        </div>
-    </section>
-
     <!-- Main Content -->
     <main class="main-content">
         <!-- Featured Video -->
@@ -1047,7 +829,7 @@
             
             <div class="featured-video">
                 <div class="video-player">
-                    <div class="play-button" onclick="playFeaturedVideo()"></div>
+                    <div class="play-button"></div>
                 </div>
                 <div class="video-info">
                     <div class="video-category">Getting Started</div>
@@ -1069,9 +851,6 @@
                             <span>Updated 3 days ago</span>
                         </div>
                     </div>
-                    <button class="watch-btn" onclick="playFeaturedVideo()">
-                        ▶️ Watch Now
-                    </button>
                 </div>
             </div>
         </section>
@@ -1090,112 +869,14 @@
                         <p class="category-count">12 videos • 2.5 hours</p>
                     </div>
                     <div class="category-videos">
-                        <div class="video-item" onclick="playVideo('platform-overview')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Platform Overview & Navigation</div>
-                                <div class="video-item-duration">8:30</div>
-                            </div>
-                            <div class="video-item-description">Learn the basics of navigating GuruFocus</div>
-                        </div>
-                        <div class="video-item" onclick="playVideo('account-setup')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Setting Up Your Account</div>
-                                <div class="video-item-duration">5:15</div>
-                            </div>
-                            <div class="video-item-description">Complete account configuration guide</div>
-                        </div>
-                        <div class="video-item" onclick="playVideo('first-screen')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Your First Stock Screen</div>
-                                <div class="video-item-duration">12:20</div>
-                            </div>
-                            <div class="video-item-description">Step-by-step screening tutorial</div>
-                        </div>
-                        <div class="video-item" onclick="playVideo('watchlist-setup')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Creating Watchlists</div>
-                                <div class="video-item-duration">6:45</div>
-                            </div>
-                            <div class="video-item-description">Organize your favorite stocks</div>
-                        </div>
-                    </div>
-                    <button class="view-all-btn" onclick="viewCategory('getting-started')">
-                        View All Getting Started Videos
-                    </button>
-                </div>
-
-                <!-- Stock Screener -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon">🔍</div>
-                        <h3 class="category-title">Stock Screener</h3>
-                        <p class="category-count">25 videos • 6.2 hours</p>
-                    </div>
-                    <div class="category-videos">
-                        <div class="video-item" onclick="playVideo('basic-screening')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Basic Screening Techniques</div>
-                                <div class="video-item-duration">15:30</div>
-                            </div>
-                            <div class="video-item-description">Master fundamental screening criteria</div>
-                        </div>
-                        <div class="video-item" onclick="playVideo('advanced-filters')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Advanced Filter Combinations</div>
-                                <div class="video-item-duration">22:15</div>
-                            </div>
-                            <div class="video-item-description">Complex multi-criteria screening</div>
-                        </div>
-                        <div class="video-item" onclick="playVideo('custom-templates')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Custom Screening Templates</div>
-                                <div class="video-item-duration">18:45</div>
-                            </div>
-                            <div class="video-item-description">Save and reuse your favorite screens</div>
-                        </div>
-                        <div class="video-item" onclick="playVideo('technical-screening')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Technical Analysis Screening</div>
-                                <div class="video-item-duration">25:20</div>
-                            </div>
-                            <div class="video-item-description">Chart patterns and technical indicators</div>
-                        </div>
-                    </div>
-                    <button class="view-all-btn" onclick="viewCategory('screener')">
-                        View All Screener Videos
-                    </button>
-                </div>
-
-                <!-- Portfolio Analysis -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon">📊</div>
-                        <h3 class="category-title">Portfolio Analysis</h3>
-                        <p class="category-count">18 videos • 4.8 hours</p>
-                    </div>
-                    <div class="category-videos">
-                        <div class="video-item" onclick="playVideo('import-portfolio')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Importing Your Portfolio</div>
-                                <div class="video-item-duration">10:15</div>
-                            </div>
-                            <div class="video-item-description">Connect brokers and import holdings</div>
-                        </div>
-                        <div class="video-item" onclick="playVideo('risk-analysis')">
-                            <div class="video-item-header">
-                                <div class="video-item-title">Risk Analysis & Metrics</div>
-                                <div class="video-item-duration">20:30</div>
-                            </div>
-                            <div class="video-item-description">Understanding portfolio risk measures</div>
-                        </div>
-                        <div class="video-item" onclick="playVideo('performance-attribution')">
+                        <div class="video-item">
                             <div class="video-item-header">
                                 <div class="video-item-title">Performance Attribution</div>
                                 <div class="video-item-duration">16:45</div>
                             </div>
                             <div class="video-item-description">Analyze what drives your returns</div>
                         </div>
-                        <div class="video-item" onclick="playVideo('diversification')">
+                        <div class="video-item">
                             <div class="video-item-header">
                                 <div class="video-item-title">Diversification Analysis</div>
                                 <div class="video-item-duration">14:20</div>
@@ -1203,9 +884,6 @@
                             <div class="video-item-description">Sector and geographic allocation</div>
                         </div>
                     </div>
-                    <button class="view-all-btn" onclick="viewCategory('portfolio')">
-                        View All Portfolio Videos
-                    </button>
                 </div>
 
                 <!-- Backtesting -->
@@ -1216,28 +894,28 @@
                         <p class="category-count">15 videos • 5.1 hours</p>
                     </div>
                     <div class="category-videos">
-                        <div class="video-item" onclick="playVideo('first-backtest')">
+                        <div class="video-item">
                             <div class="video-item-header">
                                 <div class="video-item-title">Your First Backtest</div>
                                 <div class="video-item-duration">18:30</div>
                             </div>
                             <div class="video-item-description">Create and run your first strategy test</div>
                         </div>
-                        <div class="video-item" onclick="playVideo('strategy-parameters')">
+                        <div class="video-item">
                             <div class="video-item-header">
                                 <div class="video-item-title">Strategy Parameter Optimization</div>
                                 <div class="video-item-duration">24:15</div>
                             </div>
                             <div class="video-item-description">Fine-tune your strategy settings</div>
                         </div>
-                        <div class="video-item" onclick="playVideo('results-analysis')">
+                        <div class="video-item">
                             <div class="video-item-header">
                                 <div class="video-item-title">Understanding Backtest Results</div>
                                 <div class="video-item-duration">21:45</div>
                             </div>
                             <div class="video-item-description">Interpreting performance metrics</div>
                         </div>
-                        <div class="video-item" onclick="playVideo('avoiding-bias')">
+                        <div class="video-item">
                             <div class="video-item-header">
                                 <div class="video-item-title">Avoiding Backtest Bias</div>
                                 <div class="video-item-duration">19:20</div>
@@ -1245,9 +923,6 @@
                             <div class="video-item-description">Common pitfalls and how to avoid them</div>
                         </div>
                     </div>
-                    <button class="view-all-btn" onclick="viewCategory('backtesting')">
-                        View All Backtesting Videos
-                    </button>
                 </div>
             </div>
         </section>
@@ -1276,9 +951,6 @@
                             <span>1.5 hours</span>
                         </div>
                     </div>
-                    <button class="start-path-btn" onclick="startLearningPath('fundamentals')">
-                        Start Learning Path
-                    </button>
                 </div>
 
                 <div class="learning-path-card">
@@ -1297,9 +969,6 @@
                             <span>3.2 hours</span>
                         </div>
                     </div>
-                    <button class="start-path-btn" onclick="startLearningPath('screening')">
-                        Start Learning Path
-                    </button>
                 </div>
 
                 <div class="learning-path-card">
@@ -1318,9 +987,6 @@
                             <span>4.5 hours</span>
                         </div>
                     </div>
-                    <button class="start-path-btn" onclick="startLearningPath('quantitative')">
-                        Start Learning Path
-                    </button>
                 </div>
             </div>
         </section>
@@ -1332,7 +998,7 @@
             
             <div class="videos-grid">
                 <div class="video-card">
-                    <div class="video-thumbnail" onclick="playVideo('new-features-2025')">
+                    <div class="video-thumbnail">
                         <div class="play-button"></div>
                         <div class="video-duration-overlay">12:30</div>
                     </div>
@@ -1353,7 +1019,7 @@
                 </div>
 
                 <div class="video-card">
-                    <div class="video-thumbnail" onclick="playVideo('options-strategies')">
+                    <div class="video-thumbnail">
                         <div class="play-button"></div>
                         <div class="video-duration-overlay">28:15</div>
                     </div>
@@ -1374,7 +1040,7 @@
                 </div>
 
                 <div class="video-card">
-                    <div class="video-thumbnail" onclick="playVideo('dcf-calculator')">
+                    <div class="video-thumbnail">
                         <div class="play-button"></div>
                         <div class="video-duration-overlay">22:45</div>
                     </div>
@@ -1395,7 +1061,7 @@
                 </div>
 
                 <div class="video-card">
-                    <div class="video-thumbnail" onclick="playVideo('guru-tracking')">
+                    <div class="video-thumbnail">
                         <div class="play-button"></div>
                         <div class="video-duration-overlay">16:20</div>
                     </div>
@@ -1416,7 +1082,7 @@
                 </div>
 
                 <div class="video-card">
-                    <div class="video-thumbnail" onclick="playVideo('api-integration')">
+                    <div class="video-thumbnail">
                         <div class="play-button"></div>
                         <div class="video-duration-overlay">35:10</div>
                     </div>
@@ -1437,7 +1103,7 @@
                 </div>
 
                 <div class="video-card">
-                    <div class="video-thumbnail" onclick="playVideo('market-analysis')">
+                    <div class="video-thumbnail">
                         <div class="play-button"></div>
                         <div class="video-duration-overlay">19:35</div>
                     </div>
@@ -1548,385 +1214,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // Video search functionality
-        function searchVideos() {
-            const searchTerm = document.getElementById('videoSearch').value;
-            if (searchTerm.trim()) {
-                console.log('Searching videos for:', searchTerm);
-                
-                // Show loading state
-                const searchBtn = document.querySelector('.search-btn');
-                const originalText = searchBtn.textContent;
-                searchBtn.textContent = 'Searching...';
-                searchBtn.disabled = true;
-                
-                // Simulate search delay
-                setTimeout(() => {
-                    searchBtn.textContent = originalText;
-                    searchBtn.disabled = false;
-                    alert(`Found 15 videos matching: "${searchTerm}"`);
-                }, 1000);
-            }
-        }
-
-        // Filter change handlers
-        document.getElementById('categoryFilter').addEventListener('change', function() {
-            const category = this.value;
-            console.log('Filtering by category:', category);
-            filterVideos();
-        });
-
-        document.getElementById('levelFilter').addEventListener('change', function() {
-            const level = this.value;
-            console.log('Filtering by level:', level);
-            filterVideos();
-        });
-
-        document.getElementById('durationFilter').addEventListener('change', function() {
-            const duration = this.value;
-            console.log('Filtering by duration:', duration);
-            filterVideos();
-        });
-
-        function filterVideos() {
-            const category = document.getElementById('categoryFilter').value;
-            const level = document.getElementById('levelFilter').value;
-            const duration = document.getElementById('durationFilter').value;
-            
-            // Simulate filtering
-            console.log('Applying filters:', { category, level, duration });
-            
-            // Add visual feedback
-            const videoCards = document.querySelectorAll('.video-card');
-            videoCards.forEach(card => {
-                card.style.opacity = '0.5';
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                }, 200);
-            });
-        }
-
-        // Video player functions
-        function playFeaturedVideo() {
-            console.log('Playing featured video');
-            alert('Opening featured video: "Complete GuruFocus Platform Overview"');
-        }
-
-        function playVideo(videoId) {
-            console.log('Playing video:', videoId);
-            alert(`Opening video: ${videoId.replace('-', ' ')}`);
-        }
-
-        function viewCategory(category) {
-            console.log('Viewing category:', category);
-            alert(`Opening ${category.replace('-', ' ')} category page`);
-        }
-
-        function startLearningPath(pathName) {
-            console.log('Starting learning path:', pathName);
-            alert(`Starting learning path: ${pathName} fundamentals`);
-        }
-
-        // Search on Enter key
-        document.getElementById('videoSearch').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchVideos();
-            }
-        });
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to video cards
-            document.querySelectorAll('.video-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Add hover effects to category cards
-            document.querySelectorAll('.category-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-4px)';
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Add hover effects to learning path cards
-            document.querySelectorAll('.learning-path-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-2px)';
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Video item click tracking
-            document.querySelectorAll('.video-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const title = this.querySelector('.video-item-title').textContent;
-                    console.log('Video item clicked:', title);
-                    
-                    // Visual feedback
-                    this.style.opacity = '0.7';
-                    setTimeout(() => {
-                        this.style.opacity = '1';
-                    }, 200);
-                });
-            });
-
-            // Play button hover effects
-            document.querySelectorAll('.play-button').forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.1)';
-                });
-
-                button.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                });
-            });
-
-            // Animate hero stats on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const element = entry.target;
-                        if (element.classList.contains('hero-stat-number')) {
-                            animateNumber(element);
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.hero-stat-number').forEach(el => {
-                observer.observe(el);
-            });
-
-            function animateNumber(element) {
-                const text = element.textContent;
-                const hasPlus = text.includes('+');
-                const number = parseFloat(text.replace(/[^0-9.]/g, ''));
-                const suffix = text.replace(/[0-9.,]/g, '');
-                
-                if (!isNaN(number)) {
-                    let current = 0;
-                    const increment = number / 30;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= number) {
-                            element.textContent = text;
-                            clearInterval(timer);
-                        } else {
-                            const displayNumber = Math.floor(current);
-                            element.textContent = displayNumber + suffix + (hasPlus ? '+' : '');
-                        }
-                    }, 50);
-                }
-            }
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Add loading animation for buttons
-            document.querySelectorAll('.watch-btn, .start-path-btn, .view-all-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    if (this.onclick) return; // Skip if onclick is already defined
-                    
-                    e.preventDefault();
-                    const originalText = this.textContent;
-                    this.textContent = 'Loading...';
-                    this.style.opacity = '0.7';
-                    
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                        this.style.opacity = '1';
-                    }, 1500);
-                });
-            });
-
-            // Filter section sticky behavior
-            let lastScrollTop = 0;
-            const filterSection = document.querySelector('.filter-section');
-            
-            window.addEventListener('scroll', function() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (scrollTop > lastScrollTop && scrollTop > 200) {
-                    // Scrolling down
-                    filterSection.style.transform = 'translateY(-100%)';
-                } else {
-                    // Scrolling up
-                    filterSection.style.transform = 'translateY(0)';
-                }
-                
-                lastScrollTop = scrollTop;
-            });
-
-            // Add search suggestions
-            const searchInput = document.getElementById('videoSearch');
-            const suggestions = [
-                'stock screener',
-                'portfolio analysis',
-                'backtesting',
-                'DCF calculator',
-                'options trading',
-                'market analysis',
-                'getting started',
-                'API integration'
-            ];
-
-            searchInput.addEventListener('input', function() {
-                const value = this.value.toLowerCase();
-                if (value.length > 2) {
-                    const matches = suggestions.filter(s => s.includes(value));
-                    if (matches.length > 0) {
-                        console.log('Search suggestions:', matches);
-                        // In a real implementation, you'd show these suggestions
-                    }
-                }
-            });
-
-            // Video progress tracking simulation
-            let videoProgress = {};
-            
-            function trackVideoProgress(videoId, progress) {
-                videoProgress[videoId] = progress;
-                console.log(`Video ${videoId} progress: ${progress}%`);
-                
-                // Update UI to show progress
-                const videoElements = document.querySelectorAll(`[onclick*="${videoId}"]`);
-                videoElements.forEach(element => {
-                    if (progress > 90) {
-                        element.style.borderLeft = '4px solid #4CAF50';
-                    } else if (progress > 0) {
-                        element.style.borderLeft = '4px solid #ffc107';
-                    }
-                });
-            }
-
-            // Simulate video progress for demo
-            setTimeout(() => {
-                trackVideoProgress('platform-overview', 100);
-                trackVideoProgress('account-setup', 45);
-                trackVideoProgress('first-screen', 20);
-            }, 2000);
-
-            // Enhanced video card interactions
-            document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
-                thumbnail.addEventListener('mouseenter', function() {
-                    const playButton = this.querySelector('.play-button');
-                    if (playButton) {
-                        playButton.style.transform = 'scale(1.2)';
-                        playButton.style.background = 'rgba(255,255,255,1)';
-                    }
-                });
-
-                thumbnail.addEventListener('mouseleave', function() {
-                    const playButton = this.querySelector('.play-button');
-                    if (playButton) {
-                        playButton.style.transform = 'scale(1)';
-                        playButton.style.background = 'rgba(255,255,255,0.9)';
-                    }
-                });
-            });
-
-            // Category card enhanced interactions
-            document.querySelectorAll('.category-card').forEach(card => {
-                const header = card.querySelector('.category-header');
-                const videos = card.querySelector('.category-videos');
-                
-                header.addEventListener('click', function() {
-                    // Toggle expanded state
-                    const isExpanded = card.classList.contains('expanded');
-                    
-                    document.querySelectorAll('.category-card').forEach(c => {
-                        c.classList.remove('expanded');
-                        const v = c.querySelector('.category-videos');
-                        if (v) v.style.maxHeight = '200px';
-                    });
-                    
-                    if (!isExpanded) {
-                        card.classList.add('expanded');
-                        if (videos) {
-                            videos.style.maxHeight = videos.scrollHeight + 'px';
-                        }
-                    }
-                });
-            });
-
-            // Learning path progress simulation
-            const learningPaths = {
-                'fundamentals': { completed: 3, total: 8 },
-                'screening': { completed: 0, total: 12 },
-                'quantitative': { completed: 7, total: 15 }
-            };
-
-            Object.keys(learningPaths).forEach(pathName => {
-                const pathCard = document.querySelector(`[onclick*="${pathName}"]`)?.closest('.learning-path-card');
-                if (pathCard && learningPaths[pathName].completed > 0) {
-                    const { completed, total } = learningPaths[pathName];
-                    const progressBar = document.createElement('div');
-                    progressBar.style.cssText = `
-                        width: 100%;
-                        height: 4px;
-                        background: #f0f0f0;
-                        border-radius: 2px;
-                        margin: 10px 0;
-                        overflow: hidden;
-                    `;
-                    
-                    const progressFill = document.createElement('div');
-                    progressFill.style.cssText = `
-                        width: ${(completed / total) * 100}%;
-                        height: 100%;
-                        background: linear-gradient(135deg, #4a6cf7, #667eea);
-                        transition: width 0.3s ease;
-                    `;
-                    
-                    progressBar.appendChild(progressFill);
-                    
-                    const progressText = document.createElement('div');
-                    progressText.style.cssText = `
-                        font-size: 12px;
-                        color: #666;
-                        margin-top: 5px;
-                    `;
-                    progressText.textContent = `${completed}/${total} videos completed`;
-                    
-                    const statsDiv = pathCard.querySelector('.path-stats');
-                    statsDiv.parentNode.insertBefore(progressBar, statsDiv.nextSibling);
-                    statsDiv.parentNode.insertBefore(progressText, progressBar.nextSibling);
-                }
-            });
-
-            console.log('Video Tutorials page initialized successfully');
-        });
-    </script>
 </body>
 </html>

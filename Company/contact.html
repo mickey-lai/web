@@ -1200,6 +1200,128 @@
                 });
             });
         });
+
+        // FAQ 折疊功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 獲取所有 FAQ 問題按鈕
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    // 獲取對應的答案元素（在同一個 faq-item 內）
+                    const faqItem = this.closest('.faq-item');
+                    const answer = faqItem.querySelector('.faq-answer');
+                    const isActive = this.classList.contains('active');
+                    
+                    // 關閉所有其他已打開的 FAQ
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== this) {
+                            otherQuestion.classList.remove('active');
+                            const otherFaqItem = otherQuestion.closest('.faq-item');
+                            const otherAnswer = otherFaqItem.querySelector('.faq-answer');
+                            otherAnswer.classList.remove('active');
+                        }
+                    });
+                    
+                    // 切換當前 FAQ 的狀態
+                    if (isActive) {
+                        this.classList.remove('active');
+                        answer.classList.remove('active');
+                    } else {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+
+            // 聯絡表單處理
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // 顯示成功消息
+                    successMessage.classList.add('show');
+                    
+                    // 重置表單
+                    contactForm.reset();
+                    
+                    // 3秒後隱藏成功消息
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 3000);
+                });
+            }
+
+            // Live Chat 功能
+            window.openChat = function() {
+                // 這裡可以整合真實的聊天系統
+                alert('Live chat feature would be integrated here. Please use email support for now.');
+            };
+
+            // 表單驗證增強
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+
+                input.addEventListener('input', function() {
+                    // 移除錯誤狀態當用戶開始輸入
+                    this.classList.remove('error');
+                });
+            });
+
+            function validateField(field) {
+                const value = field.value.trim();
+                let isValid = true;
+
+                // 移除之前的錯誤樣式
+                field.classList.remove('error');
+
+                // 必填字段驗證
+                if (field.hasAttribute('required') && !value) {
+                    isValid = false;
+                }
+
+                // Email 格式驗證
+                if (field.type === 'email' && value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        isValid = false;
+                    }
+                }
+
+                // 電話號碼基本驗證
+                if (field.type === 'tel' && value) {
+                    const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+                    if (!phoneRegex.test(value) || value.length < 10) {
+                        isValid = false;
+                    }
+                }
+
+                // 添加錯誤樣式
+                if (!isValid) {
+                    field.classList.add('error');
+                }
+
+                return isValid;
+            }
+
+            // 添加錯誤狀態的 CSS 樣式（如果還沒有的話）
+            const style = document.createElement('style');
+            style.textContent = `
+                .form-group input.error,
+                .form-group textarea.error,
+                .form-group select.error {
+                    border-color: #dc3545;
+                    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+                }
+            `;
+            document.head.appendChild(style);
+        });
     </script>
 </body>
 </html>
