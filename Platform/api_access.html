@@ -916,7 +916,7 @@ headers = {
 
 # Get stock data for Apple
 response = requests.get(
-    "https://api.investfocus.com/v1/stocks/AAPL",
+    "https://api.gurufocus.com/v1/stocks/AAPL",
     headers=headers
 )
 
@@ -935,7 +935,7 @@ const headers = {
 };
 
 // Get stock data for Apple
-axios.get('https://api.investfocus.com/v1/stocks/AAPL', { headers })
+axios.get('https://api.gurufocus.com/v1/stocks/AAPL', { headers })
     .then(response => {
         const data = response.data;
         console.log(`Stock: ${data.symbol}`);
@@ -947,7 +947,7 @@ axios.get('https://api.investfocus.com/v1/stocks/AAPL', { headers })
     });</pre>
 
                     <pre id="curl-code" style="display: none;">curl -X GET \
-  https://api.investfocus.com/v1/stocks/AAPL \
+  https://api.gurufocus.com/v1/stocks/AAPL \
   -H 'Authorization: Bearer your_api_key_here' \
   -H 'Content-Type: application/json'
 
@@ -970,7 +970,7 @@ $headers = [
 
 // Get stock data for Apple
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.investfocus.com/v1/stocks/AAPL');
+curl_setopt($ch, CURLOPT_URL, 'https://api.gurufocus.com/v1/stocks/AAPL');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
